@@ -119,7 +119,7 @@
                 <customObject id="0sX-jC-IKB" userLabel="--Transition2--" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                            <real key="value" value="5"/>
+                            <real key="value" value="0.5"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition2"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="segueIdentifier" value="Detail2"/>
@@ -169,7 +169,7 @@
                 <customObject id="kxY-LF-mHB" userLabel="--Transition3--" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                            <real key="value" value="1"/>
+                            <real key="value" value="0.5"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition3"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="segueIdentifier" value="Detail3"/>
@@ -337,7 +337,7 @@
                 </customObject>
                 <customObject id="veg-Xo-YzD" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition2"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition3"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outletCollection property="behaviours" destination="5DP-BD-VXU" collectionClass="NSMutableArray" id="uiw-sT-bJM"/>
@@ -359,9 +359,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Igj-rI-g09">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Igj-rI-g09">
                                 <rect key="frame" x="150" y="150" width="300" height="300"/>
                                 <state key="normal" image="Gummi Bear"/>
+                                <connections>
+                                    <segue destination="WjE-Ec-zK2" kind="unwind" unwindAction="unwindToViewController:" id="IXz-db-1NI"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0029193768280000002" green="0.81339275840000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -387,6 +390,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ErM-67-HHv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="WjE-Ec-zK2" userLabel="Exit" sceneMemberID="exit"/>
                 <customObject id="Mcl-sb-mxN" userLabel="Whole View Fade In Behaviour" customClass="FadeInTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <connections>
                         <outlet property="view" destination="rQx-0i-2he" id="juo-CQ-ITE"/>
