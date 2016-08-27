@@ -10,34 +10,69 @@ import UIKit
 
 class TransformToPositionSourceBehaviour: TransitionBehaviour {
     
-    @IBInspectable var behaviourIdentifier: String = ""
     var destinationFrame: CGRect?
+    @IBInspectable var shouldBeOnTop: Bool = false
     
-    override func setup(presenting presenting: Bool, destinationBehaviour: TransitionBehaviour? = nil) {
-        super.setup(presenting: presenting)
+    var snapshotView: UIView!
+    
+    override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
+        super.setup(presenting: presenting, container: container, destinationBehaviour: destinationBehaviour)
         destinationFrame = destinationBehaviour?.viewForTransition?.frame
         
-        if let destinationFrame = destinationFrame {
-            let destinationTransform = CGAffineTransformMakeTranslation(destinationFrame.origin.x, destinationFrame.origin.y)
-            viewForTransition?.transform = isPresenting ? CGAffineTransformIdentity : destinationTransform
+        guard let viewForTransition = viewForTransition, destinationFrame = destinationFrame else { return }
+        
+        snapshotView = viewForTransition.snapshotViewAfterScreenUpdates(true)
+        snapshotView.frame = viewForTransition.frame
+        if shouldBeOnTop {
+            container.addSubview(snapshotView)
+        } else {
+            viewForTransition.addSubview(snapshotView)
         }
+        
+        viewForTransition.hidden = true
+        
+        let destTransform = destinationTransform(viewForTransition.frame, destinationFrame: destinationFrame)
+        snapshotView.transform = isPresenting ? CGAffineTransformIdentity : destTransform
     }
     
     override func animate() {
-        if let destinationFrame = destinationFrame {
-            let destinationTransform = CGAffineTransformMakeTranslation(destinationFrame.origin.x, destinationFrame.origin.y)
-            viewForTransition?.transform = isPresenting ? CGAffineTransformIdentity : destinationTransform
-        }
+        guard let destinationFrame = destinationFrame else { return }
+        
+        let destTransform = destinationTransform(snapshotView.frame, destinationFrame: destinationFrame)
+        snapshotView.transform = isPresenting ? destTransform : CGAffineTransformIdentity
     }
     
     override func complete() {
-        viewForTransition?.transform = CGAffineTransformIdentity
+        snapshotView.removeFromSuperview()
+        viewForTransition?.hidden = false
+    }
+    
+    func destinationTransform(sourceFrame: CGRect, destinationFrame: CGRect) -> CGAffineTransform {
+        let posDelta = CGPoint(
+            x: sourceFrame.origin.x - destinationFrame.origin.x,
+            y: sourceFrame.origin.y - destinationFrame.origin.y)
+        
+        let scale = CGPoint(
+            x: destinationFrame.size.width / sourceFrame.size.width,
+            y: destinationFrame.size.height / sourceFrame.size.height)
+        
+        let translateTransform = CGAffineTransformMakeTranslation(posDelta.x, posDelta.y)
+        let sizeTransform = CGAffineTransformMakeScale(scale.x, scale.y)
+        
+        return CGAffineTransformConcat(translateTransform, sizeTransform)
     }
     
 }
 
 class TransformToPositionDestinationBehaviour: TransitionBehaviour {
     
-    @IBInspectable var behaviourIdentifier: String = ""
+    override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
+        super.setup(presenting: presenting, container: container, destinationBehaviour: destinationBehaviour)
+        viewForTransition?.hidden = true
+    }
+    
+    override func complete() {
+        viewForTransition?.hidden = false
+    }
     
 }

@@ -11,13 +11,15 @@ import UIKit
 class TransitionBehaviour: NSObject {
     
     @IBOutlet var view: UIView!
+    @IBInspectable var behaviourIdentifier: String = ""
+    
     var viewForTransition: UIView? {
         return view.viewForBehaviour()
     }
     
     var isPresenting = false
     
-    func setup(presenting presenting: Bool, destinationBehaviour: TransitionBehaviour? = nil) {
+    func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
         isPresenting = presenting
     }
     

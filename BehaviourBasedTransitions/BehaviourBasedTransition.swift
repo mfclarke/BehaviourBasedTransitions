@@ -25,17 +25,27 @@ class BehaviourBasedTransition: NSObject, UIViewControllerAnimatedTransitioning,
             transitionDestination = (self.isPresenting ? toController : fromController) as? BehaviourTransitionable
             else { return }
         
-        let behaviours =
-            (transitionSource.transitionBehaviourCollections.filter { $0.transitionIdentifier == self.transitionIdentifier } +
-            transitionDestination.transitionBehaviourCollections.filter { $0.transitionIdentifier == self.transitionIdentifier })
-                .flatMap { $0.behaviours }
-        
-        behaviours.forEach { $0.setup(presenting: self.isPresenting) }
-        
         if isPresenting {
             container.addSubview(toController.view)
         } else {
             container.insertSubview(toController.view, belowSubview: fromController.view)
+        }
+        
+        let sourceBehaviourCollection = transitionSource.transitionBehaviourCollections.filter { $0.transitionIdentifier == self.transitionIdentifier }.first
+        let destBehaviourCollection = transitionDestination.transitionBehaviourCollections.filter { $0.transitionIdentifier == self.transitionIdentifier }.first
+        
+        let behaviours = (sourceBehaviourCollection?.behaviours ?? []) + (destBehaviourCollection?.behaviours ?? [])
+        
+        sourceBehaviourCollection?.behaviours.forEach { behaviour in
+            behaviour.setup(presenting: self.isPresenting,
+                container: container,
+                destinationBehaviour: destBehaviourCollection?.behaviours.filter { destBehaviour in
+                    behaviour.behaviourIdentifier == destBehaviour.behaviourIdentifier
+                }.first)
+        }
+        
+        destBehaviourCollection?.behaviours.forEach { behaviour in
+            behaviour.setup(presenting: self.isPresenting, container: container)
         }
         
         UIView.animateWithDuration(

@@ -24,17 +24,23 @@
                                     <segue destination="APd-nP-E5c" kind="show" identifier="Detail1" id="vpT-Dm-a9w"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMS-aO-A8A">
-                                <rect key="frame" x="268.5" y="121" width="64" height="89"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="64"/>
-                                <state key="normal" title="😃"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMS-aO-A8A">
+                                <rect key="frame" x="262.5" y="135" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="RA5-mt-qgh"/>
+                                    <constraint firstAttribute="width" constant="75" id="cgy-nr-Klr"/>
+                                </constraints>
+                                <state key="normal" image="Gummi Bear"/>
+                                <connections>
+                                    <segue destination="2YT-75-nK4" kind="show" identifier="Detail2" id="93G-QQ-iLg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXL-a1-zc8">
                                 <rect key="frame" x="268" y="390" width="64" height="89"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                 <state key="normal" title="🤓"/>
                                 <connections>
-                                    <segue destination="pth-LQ-2yJ" kind="show" identifier="Detail2" id="PNo-ok-IgV"/>
+                                    <segue destination="pth-LQ-2yJ" kind="show" identifier="Detail3" id="PNo-ok-IgV"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -51,8 +57,10 @@
                     <connections>
                         <outletCollection property="transitionBehaviourCollections" destination="wEz-Ef-V1l" collectionClass="NSMutableArray" id="37G-eC-LZW"/>
                         <outletCollection property="transitions" destination="Wpd-oW-J8M" collectionClass="NSMutableArray" id="6l8-vT-4LD"/>
-                        <outletCollection property="transitions" destination="kxY-LF-mHB" collectionClass="NSMutableArray" id="xiu-eI-Qwd"/>
                         <outletCollection property="transitionBehaviourCollections" destination="sAi-k6-YAn" collectionClass="NSMutableArray" id="Uew-hf-7NV"/>
+                        <outletCollection property="transitionBehaviourCollections" destination="8sN-nC-EAF" collectionClass="NSMutableArray" id="NUh-t7-7w1"/>
+                        <outletCollection property="transitions" destination="kxY-LF-mHB" collectionClass="NSMutableArray" id="aHu-fx-Vmf"/>
+                        <outletCollection property="transitions" destination="0sX-jC-IKB" collectionClass="NSMutableArray" id="kmu-PZ-OEh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -108,18 +116,68 @@
                         <outlet property="view" destination="0yd-Jm-ZXF" id="Vd3-v4-6jJ"/>
                     </connections>
                 </customObject>
-                <customObject id="kxY-LF-mHB" userLabel="--Transition2--" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                <customObject id="0sX-jC-IKB" userLabel="--Transition2--" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                            <real key="value" value="1"/>
+                            <real key="value" value="5"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition2"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="segueIdentifier" value="Detail2"/>
                     </userDefinedRuntimeAttributes>
                 </customObject>
-                <customObject id="sAi-k6-YAn" userLabel="Transition 2 Behaviour Collection" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                <customObject id="8sN-nC-EAF" userLabel="Transition 2 Behaviour Collection" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition2"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outletCollection property="behaviours" destination="HGd-Y6-clq" collectionClass="NSMutableArray" id="g5m-yJ-XA0"/>
+                        <outletCollection property="behaviours" destination="iU4-bU-35G" collectionClass="NSMutableArray" id="xDu-j1-rsC"/>
+                        <outletCollection property="behaviours" destination="tRC-zh-Ln2" collectionClass="NSMutableArray" id="AXz-89-Hnw"/>
+                    </connections>
+                </customObject>
+                <customObject id="tRC-zh-Ln2" customClass="TransformToPositionSourceBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="behaviourIdentifier" value="Transform1"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="shouldBeOnTop" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="view" destination="TMS-aO-A8A" id="Y2M-IS-iEs"/>
+                    </connections>
+                </customObject>
+                <customObject id="HGd-Y6-clq" userLabel="Emoji 2 Translation" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="point" keyPath="destination">
+                            <point key="value" x="0.0" y="0.5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="superview" destination="8bC-Xf-vdC" id="2WB-Qu-m3I"/>
+                        <outlet property="view" destination="IXL-a1-zc8" id="Ots-X2-bLc"/>
+                    </connections>
+                </customObject>
+                <customObject id="iU4-bU-35G" userLabel="Button Translation Left" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="point" keyPath="destination">
+                            <point key="value" x="-0.59999999999999998" y="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="superview" destination="8bC-Xf-vdC" id="nVm-OP-J98"/>
+                        <outlet property="view" destination="0yd-Jm-ZXF" id="IMY-aM-Czt"/>
+                    </connections>
+                </customObject>
+                <customObject id="kxY-LF-mHB" userLabel="--Transition3--" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition3"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="segueIdentifier" value="Detail3"/>
+                    </userDefinedRuntimeAttributes>
+                </customObject>
+                <customObject id="sAi-k6-YAn" userLabel="Transition 3 Behaviour Collection" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition3"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outletCollection property="behaviours" destination="5wb-K6-ItC" collectionClass="NSMutableArray" id="3Rs-58-YmE"/>
@@ -287,7 +345,75 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="1058" y="1277"/>
+            <point key="canvasLocation" x="1582" y="1277"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="qZn-Wq-WMV">
+            <objects>
+                <viewController id="2YT-75-nK4" customClass="DetailViewController" customModule="BehaviourBasedTransitions" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D2Y-2w-f21"/>
+                        <viewControllerLayoutGuide type="bottom" id="NX5-RN-zdL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rQx-0i-2he">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Igj-rI-g09">
+                                <rect key="frame" x="150" y="150" width="300" height="300"/>
+                                <state key="normal" image="Gummi Bear"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0029193768280000002" green="0.81339275840000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Igj-rI-g09" firstAttribute="top" secondItem="rQx-0i-2he" secondAttribute="top" id="8d4-bC-J1F"/>
+                            <constraint firstAttribute="trailing" secondItem="Igj-rI-g09" secondAttribute="trailing" id="FkH-aB-Voo"/>
+                            <constraint firstItem="Igj-rI-g09" firstAttribute="leading" secondItem="rQx-0i-2he" secondAttribute="leading" id="fmU-lO-cRW"/>
+                            <constraint firstItem="Igj-rI-g09" firstAttribute="centerY" secondItem="rQx-0i-2he" secondAttribute="centerY" id="g8g-Nn-exr"/>
+                            <constraint firstAttribute="bottom" secondItem="Igj-rI-g09" secondAttribute="bottom" id="md3-92-pVK"/>
+                            <constraint firstItem="Igj-rI-g09" firstAttribute="centerX" secondItem="rQx-0i-2he" secondAttribute="centerX" id="ngf-Cs-W5S"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="8d4-bC-J1F"/>
+                                <exclude reference="FkH-aB-Voo"/>
+                                <exclude reference="fmU-lO-cRW"/>
+                                <exclude reference="md3-92-pVK"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outletCollection property="transitionBehaviourCollections" destination="xqW-bF-rsT" collectionClass="NSMutableArray" id="qKq-lg-Kih"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ErM-67-HHv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="Mcl-sb-mxN" userLabel="Whole View Fade In Behaviour" customClass="FadeInTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <connections>
+                        <outlet property="view" destination="rQx-0i-2he" id="juo-CQ-ITE"/>
+                    </connections>
+                </customObject>
+                <customObject id="5w7-tY-ysC" customClass="TransformToPositionDestinationBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="behaviourIdentifier" value="Transform1"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="view" destination="Igj-rI-g09" id="1v0-VZ-kd8"/>
+                    </connections>
+                </customObject>
+                <customObject id="xqW-bF-rsT" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition2"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outletCollection property="behaviours" destination="Mcl-sb-mxN" collectionClass="NSMutableArray" id="OPI-xt-BxE"/>
+                        <outletCollection property="behaviours" destination="5w7-tY-ysC" collectionClass="NSMutableArray" id="Da8-Pc-DIx"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="959" y="1277"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Gummi Bear" width="300" height="300"/>
+    </resources>
 </document>

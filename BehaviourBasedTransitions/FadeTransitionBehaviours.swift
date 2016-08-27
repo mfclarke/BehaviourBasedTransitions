@@ -10,8 +10,8 @@ import UIKit
 
 class FadeInTransitionBehaviour: TransitionBehaviour {
     
-    override func setup(presenting presenting: Bool, destinationBehaviour: TransitionBehaviour?) {
-        super.setup(presenting: presenting)
+    override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour?) {
+        super.setup(presenting: presenting, container: container, destinationBehaviour: destinationBehaviour)
         viewForTransition?.alpha = isPresenting ? 0 : 1
     }
     
@@ -27,8 +27,8 @@ class FadeInTransitionBehaviour: TransitionBehaviour {
 
 class FadeOutTransitionBehaviour: TransitionBehaviour {
     
-    override func setup(presenting presenting: Bool, destinationBehaviour: TransitionBehaviour?) {
-        super.setup(presenting: presenting)
+    override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour?) {
+        super.setup(presenting: presenting, container: container, destinationBehaviour: destinationBehaviour)
         viewForTransition?.alpha = isPresenting ? 1 : 0
     }
     
