@@ -16,16 +16,16 @@ class TranslateToTransitionBehaviour: TransitionBehaviour {
     override func setup(presenting presenting: Bool) {
         super.setup(presenting: presenting)
         let destinationTransform = CGAffineTransformMakeTranslation(superview.frame.width * destination.x, superview.frame.height * destination.y)
-        view.transform = isPresenting ? CGAffineTransformIdentity : destinationTransform
+        viewForTransition?.transform = isPresenting ? CGAffineTransformIdentity : destinationTransform
     }
     
     override func animate() {
         let destinationTransform = CGAffineTransformMakeTranslation(superview.frame.width * destination.x, superview.frame.height * destination.y)
-        view.transform = isPresenting ? destinationTransform : CGAffineTransformIdentity
+        viewForTransition?.transform = isPresenting ? destinationTransform : CGAffineTransformIdentity
     }
     
     override func complete() {
-        view.transform = CGAffineTransformIdentity
+        viewForTransition?.transform = CGAffineTransformIdentity
     }
     
 }
@@ -38,16 +38,16 @@ class TranslateFromTransitionBehaviour: TransitionBehaviour {
     override func setup(presenting presenting: Bool) {
         super.setup(presenting: presenting)
         let originTransform = CGAffineTransformMakeTranslation(superview.frame.width * origin.x, superview.frame.height * origin.y)
-        view.transform = isPresenting ? originTransform : CGAffineTransformIdentity
+        viewForTransition?.transform = isPresenting ? originTransform : CGAffineTransformIdentity
     }
     
     override func animate() {
         let originTransform = CGAffineTransformMakeTranslation(superview.frame.width * origin.x, superview.frame.height * origin.y)
-        view.transform = isPresenting ? CGAffineTransformIdentity : originTransform
+        viewForTransition?.transform = isPresenting ? CGAffineTransformIdentity : originTransform
     }
     
     override func complete() {
-        view.transform = CGAffineTransformIdentity
+        viewForTransition?.transform = CGAffineTransformIdentity
     }
     
 }

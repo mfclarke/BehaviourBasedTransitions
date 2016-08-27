@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F12E8C121D71B77500A1D39D /* UIView+BehaviourViewProvideable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12E8C111D71B77500A1D39D /* UIView+BehaviourViewProvideable.swift */; };
+		F12E8C141D71B7D600A1D39D /* BehaviourViewProvideable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12E8C131D71B7D600A1D39D /* BehaviourViewProvideable.swift */; };
 		F18AF0A91D718D67002C624E /* FadeTransitionBehaviours.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18AF0A61D718D67002C624E /* FadeTransitionBehaviours.swift */; };
 		F18AF0AA1D718D67002C624E /* TransitionBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18AF0A71D718D67002C624E /* TransitionBehaviour.swift */; };
 		F18AF0AB1D718D67002C624E /* TranslateTransitionBehaviours.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18AF0A81D718D67002C624E /* TranslateTransitionBehaviours.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F12E8C111D71B77500A1D39D /* UIView+BehaviourViewProvideable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+BehaviourViewProvideable.swift"; sourceTree = SOURCE_ROOT; };
+		F12E8C131D71B7D600A1D39D /* BehaviourViewProvideable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BehaviourViewProvideable.swift; sourceTree = SOURCE_ROOT; };
 		F13E86611D70AE0C0003C8EC /* BehaviourBasedTransitions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BehaviourBasedTransitions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F13E86751D70AE0C0003C8EC /* BehaviourBasedTransitions.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BehaviourBasedTransitions.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18AF0A61D718D67002C624E /* FadeTransitionBehaviours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FadeTransitionBehaviours.swift; path = BehaviourBasedTransitions/FadeTransitionBehaviours.swift; sourceTree = SOURCE_ROOT; };
@@ -128,6 +132,8 @@
 				F1798CF11D71816100F5A405 /* Transition Behaviours */,
 				F18AF0AC1D718D77002C624E /* BehaviourBasedTransition.swift */,
 				F18AF0AD1D718D77002C624E /* BehaviourTransitionable.swift */,
+				F12E8C111D71B77500A1D39D /* UIView+BehaviourViewProvideable.swift */,
+				F12E8C131D71B7D600A1D39D /* BehaviourViewProvideable.swift */,
 			);
 			name = Transition;
 			sourceTree = "<group>";
@@ -233,11 +239,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F12E8C141D71B7D600A1D39D /* BehaviourViewProvideable.swift in Sources */,
 				F18AF0AB1D718D67002C624E /* TranslateTransitionBehaviours.swift in Sources */,
 				F18AF0B31D718D86002C624E /* AppDelegate.swift in Sources */,
 				F18AF0AF1D718D77002C624E /* BehaviourTransitionable.swift in Sources */,
 				F18AF0AE1D718D77002C624E /* BehaviourBasedTransition.swift in Sources */,
 				F18AF0AA1D718D67002C624E /* TransitionBehaviour.swift in Sources */,
+				F12E8C121D71B77500A1D39D /* UIView+BehaviourViewProvideable.swift in Sources */,
 				F18AF0B51D718D86002C624E /* HomeViewController.swift in Sources */,
 				F18AF0B41D718D86002C624E /* DetailViewController.swift in Sources */,
 				F18AF0A91D718D67002C624E /* FadeTransitionBehaviours.swift in Sources */,

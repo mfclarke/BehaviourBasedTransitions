@@ -11,6 +11,9 @@ import UIKit
 class TransitionBehaviour: NSObject {
     
     @IBOutlet var view: UIView!
+    var viewForTransition: UIView? {
+        return view.viewForBehaviour()
+    }
     
     var isPresenting = false
     
