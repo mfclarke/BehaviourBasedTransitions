@@ -1,15 +1,15 @@
 //
-//  BehaviourableTests.swift
-//  BehaviourableTests
+//  BehaviourBasedTransitionsTests.swift
+//  BehaviourBasedTransitionsTests
 //
 //  Created by Maximilian Clarke on 26/08/2016.
 //  Copyright © 2016 Maximilian Clarke. All rights reserved.
 //
 
 import XCTest
-@testable import Behaviourable
+@testable import BehaviourBasedTransitions
 
-class BehaviourableTests: XCTestCase {
+class BehaviourBasedTransitionsTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="BehaviourBasedTransitions" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qj4-lx-b1E">
+                                <rect key="frame" x="268.5" y="108.5" width="64" height="76.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="64"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🤓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7m-sQ-8Ny">
+                                <rect key="frame" x="268" y="415" width="64" height="76.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="64"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yd-Jm-ZXF">
+                                <rect key="frame" x="258" y="285" width="84" height="30"/>
+                                <state key="normal" title="Go To Detail"/>
+                                <connections>
+                                    <segue destination="APd-nP-E5c" kind="show" id="vpT-Dm-a9w"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Qj4-lx-b1E" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MaC-fe-tLK"/>
+                            <constraint firstItem="u7m-sQ-8Ny" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QZU-zb-fho"/>
+                            <constraint firstItem="0yd-Jm-ZXF" firstAttribute="top" secondItem="Qj4-lx-b1E" secondAttribute="bottom" constant="100" id="WUm-AQ-HmU"/>
+                            <constraint firstItem="u7m-sQ-8Ny" firstAttribute="top" secondItem="0yd-Jm-ZXF" secondAttribute="bottom" constant="100" id="XRT-hX-Rwj"/>
+                            <constraint firstItem="0yd-Jm-ZXF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Ygn-CB-gz6"/>
+                            <constraint firstItem="0yd-Jm-ZXF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="y51-4j-A24"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="transition" destination="Wpd-oW-J8M" id="G5l-hZ-cBw"/>
+                        <outletCollection property="transitionBehaviours" destination="JmP-dB-u2R" collectionClass="NSMutableArray" id="tBT-Gg-qQj"/>
+                        <outletCollection property="transitionBehaviours" destination="AjN-lE-eXv" collectionClass="NSMutableArray" id="Jq2-m2-SVN"/>
+                        <outletCollection property="transitionBehaviours" destination="FNB-BQ-h1P" collectionClass="NSMutableArray" id="6xf-ER-Axq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="Wpd-oW-J8M" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customObject>
+                <customObject id="yg9-Jn-Q92" userLabel="Whole View Fade Out" customClass="FadeOutTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <connections>
+                        <outlet property="view" destination="8bC-Xf-vdC" id="CyG-n8-EFy"/>
+                    </connections>
+                </customObject>
+                <customObject id="JmP-dB-u2R" userLabel="Emoji 1 Translation" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="point" keyPath="destination">
+                            <point key="value" x="0.0" y="-0.5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="superview" destination="8bC-Xf-vdC" id="dBf-1v-T7P"/>
+                        <outlet property="view" destination="Qj4-lx-b1E" id="olT-Jy-Opo"/>
+                    </connections>
+                </customObject>
+                <customObject id="AjN-lE-eXv" userLabel="Emoji 2 Translation" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="point" keyPath="destination">
+                            <point key="value" x="0.0" y="0.5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="superview" destination="8bC-Xf-vdC" id="hik-1u-V01"/>
+                        <outlet property="view" destination="u7m-sQ-8Ny" id="wh8-YD-u6C"/>
+                    </connections>
+                </customObject>
+                <customObject id="FNB-BQ-h1P" userLabel="Button Translation" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="point" keyPath="destination">
+                            <point key="value" x="-0.59999999999999998" y="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="superview" destination="8bC-Xf-vdC" id="3Zz-6q-4Nn"/>
+                        <outlet property="view" destination="0yd-Jm-ZXF" id="Vd3-v4-6jJ"/>
+                    </connections>
+                </customObject>
+            </objects>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="MuV-YD-M1w">
+            <objects>
+                <viewController id="APd-nP-E5c" customClass="DetailViewController" customModule="BehaviourBasedTransitions" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lUQ-VY-1BF"/>
+                        <viewControllerLayoutGuide type="bottom" id="Llc-BC-ysK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Geh-NA-aAN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3L-jU-NaJ">
+                                <rect key="frame" x="264" y="285" width="73" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="73" id="yWf-pr-6pB"/>
+                                </constraints>
+                                <state key="normal" title="Go Back"/>
+                                <connections>
+                                    <segue destination="cfc-qH-pvH" kind="unwind" unwindAction="unwindToViewController:" id="lpc-TM-qqr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.002919376827776432" green="0.8133927583694458" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="v3L-jU-NaJ" firstAttribute="centerX" secondItem="Geh-NA-aAN" secondAttribute="centerX" id="QNR-Kt-RUp"/>
+                            <constraint firstItem="v3L-jU-NaJ" firstAttribute="centerY" secondItem="Geh-NA-aAN" secondAttribute="centerY" id="RMh-gv-CGV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outletCollection property="transitionBehaviours" destination="es7-Zh-khf" collectionClass="NSMutableArray" id="f5b-am-nnU"/>
+                        <outletCollection property="transitionBehaviours" destination="K03-Kn-QvJ" collectionClass="NSMutableArray" id="UEg-ye-Y1z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xAx-3w-tPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="cfc-qH-pvH" userLabel="Exit" sceneMemberID="exit"/>
+                <customObject id="es7-Zh-khf" userLabel="Whole View Fade In Behaviour" customClass="FadeInTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <connections>
+                        <outlet property="view" destination="Geh-NA-aAN" id="Njm-td-7to"/>
+                    </connections>
+                </customObject>
+                <customObject id="K03-Kn-QvJ" userLabel="Button Translation" customClass="TranslateFromTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="point" keyPath="origin">
+                            <point key="value" x="0.59999999999999998" y="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="superview" destination="Geh-NA-aAN" id="eFR-BK-YXH"/>
+                        <outlet property="view" destination="v3L-jU-NaJ" id="fEV-xB-yIW"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="351" y="1277"/>
+        </scene>
+    </scenes>
+</document>

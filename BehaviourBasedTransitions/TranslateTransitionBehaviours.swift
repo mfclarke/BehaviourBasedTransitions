@@ -1,0 +1,53 @@
+//
+//  TranslateTransitionBehaviour.swift
+//  BehaviourBasedTransitions
+//
+//  Created by Maximilian Clarke on 27/08/2016.
+//  Copyright © 2016 Maximilian Clarke. All rights reserved.
+//
+
+import UIKit
+
+class TranslateToTransitionBehaviour: TransitionBehaviour {
+    
+    @IBInspectable var destination: CGPoint = CGPointZero
+    @IBOutlet var superview: UIView!
+    
+    override func setup(presenting presenting: Bool) {
+        super.setup(presenting: presenting)
+        let destinationTransform = CGAffineTransformMakeTranslation(superview.frame.width * destination.x, superview.frame.height * destination.y)
+        view.transform = isPresenting ? CGAffineTransformIdentity : destinationTransform
+    }
+    
+    override func animate() {
+        let destinationTransform = CGAffineTransformMakeTranslation(superview.frame.width * destination.x, superview.frame.height * destination.y)
+        view.transform = isPresenting ? destinationTransform : CGAffineTransformIdentity
+    }
+    
+    override func complete() {
+        view.transform = CGAffineTransformIdentity
+    }
+    
+}
+
+class TranslateFromTransitionBehaviour: TransitionBehaviour {
+    
+    @IBInspectable var origin: CGPoint = CGPointZero
+    @IBOutlet var superview: UIView!
+    
+    override func setup(presenting presenting: Bool) {
+        super.setup(presenting: presenting)
+        let originTransform = CGAffineTransformMakeTranslation(superview.frame.width * origin.x, superview.frame.height * origin.y)
+        view.transform = isPresenting ? originTransform : CGAffineTransformIdentity
+    }
+    
+    override func animate() {
+        let originTransform = CGAffineTransformMakeTranslation(superview.frame.width * origin.x, superview.frame.height * origin.y)
+        view.transform = isPresenting ? CGAffineTransformIdentity : originTransform
+    }
+    
+    override func complete() {
+        view.transform = CGAffineTransformIdentity
+    }
+    
+}
