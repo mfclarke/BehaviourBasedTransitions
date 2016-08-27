@@ -20,3 +20,5 @@ The ```TransitionBehaviour```s for the destination VC have to reside in the dest
 
 * Move the animate() callback outside of the ```BehaviourBasedTransition``` animate function, and migrate ```TransitionBehaviour``` to create keyframe animations instead (with IBInspectable delay and relate start/end times)
 * Add more ```TransitionBehaviour```s, and expand the existing ones to allow physics based UIView animations configurable via IBInspectables
+* Allow VCs to have multiple transitions with unique identifiers (like segues), each with their own set of behaviours
+* Add ```TransitionBehaviour``` protocol to allow ```TransitionBehaviour```s to ask a view for the correct view to transition, in the case of embedded controllers, table views or collection views. Eg, a collection view could offer the image in a cell as the view to transition
