@@ -10,6 +10,6 @@ import UIKit
 
 class DetailViewController: UIViewController, BehaviourTransitionable {
     
-    @IBOutlet var transitionBehaviours: [TransitionBehaviour] = []
+    @IBOutlet var transitionBehaviourCollections: [TransitionBehaviourCollection] = []
     
 }

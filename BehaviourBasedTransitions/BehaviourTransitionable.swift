@@ -9,5 +9,5 @@
 import UIKit
 
 protocol BehaviourTransitionable {
-    var transitionBehaviours: [TransitionBehaviour] { get set }
+    var transitionBehaviourCollections: [TransitionBehaviourCollection] { get set }
 }

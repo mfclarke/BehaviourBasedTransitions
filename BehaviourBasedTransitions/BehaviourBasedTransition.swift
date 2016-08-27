@@ -10,6 +10,8 @@ import UIKit
 
 class BehaviourBasedTransition: NSObject, UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate  {
     
+    @IBInspectable var transitionIdentifier: String = ""
+    @IBInspectable var segueIdentifier: String = ""
     @IBInspectable var duration: Double = 0.5
     
     private var isPresenting = false
@@ -23,7 +25,10 @@ class BehaviourBasedTransition: NSObject, UIViewControllerAnimatedTransitioning,
             transitionDestination = (self.isPresenting ? toController : fromController) as? BehaviourTransitionable
             else { return }
         
-        let behaviours = transitionSource.transitionBehaviours + transitionDestination.transitionBehaviours
+        let behaviours =
+            (transitionSource.transitionBehaviourCollections.filter { $0.transitionIdentifier == self.transitionIdentifier } +
+            transitionDestination.transitionBehaviourCollections.filter { $0.transitionIdentifier == self.transitionIdentifier })
+                .flatMap { $0.behaviours }
         
         behaviours.forEach { $0.setup(presenting: self.isPresenting) }
         

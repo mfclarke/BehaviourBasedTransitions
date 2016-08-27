@@ -13,7 +13,7 @@ class TranslateToTransitionBehaviour: TransitionBehaviour {
     @IBInspectable var destination: CGPoint = CGPointZero
     @IBOutlet var superview: UIView!
     
-    override func setup(presenting presenting: Bool) {
+    override func setup(presenting presenting: Bool, destinationBehaviour: TransitionBehaviour?) {
         super.setup(presenting: presenting)
         let destinationTransform = CGAffineTransformMakeTranslation(superview.frame.width * destination.x, superview.frame.height * destination.y)
         viewForTransition?.transform = isPresenting ? CGAffineTransformIdentity : destinationTransform
@@ -35,7 +35,7 @@ class TranslateFromTransitionBehaviour: TransitionBehaviour {
     @IBInspectable var origin: CGPoint = CGPointZero
     @IBOutlet var superview: UIView!
     
-    override func setup(presenting presenting: Bool) {
+    override func setup(presenting presenting: Bool, destinationBehaviour: TransitionBehaviour?) {
         super.setup(presenting: presenting)
         let originTransform = CGAffineTransformMakeTranslation(superview.frame.width * origin.x, superview.frame.height * origin.y)
         viewForTransition?.transform = isPresenting ? originTransform : CGAffineTransformIdentity

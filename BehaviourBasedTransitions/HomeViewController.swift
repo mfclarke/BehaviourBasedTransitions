@@ -10,13 +10,13 @@ import UIKit
 
 class HomeViewController: UIViewController, BehaviourTransitionable {
     
-    @IBOutlet var transition: BehaviourBasedTransition?
+    @IBOutlet var transitions: [BehaviourBasedTransition] = []
     
-    @IBOutlet var transitionBehaviours: [TransitionBehaviour] = []
+    @IBOutlet var transitionBehaviourCollections: [TransitionBehaviourCollection] = []
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
-        segue.destinationViewController.transitioningDelegate = transition
+        segue.destinationViewController.transitioningDelegate = transitions.filter { $0.segueIdentifier == segue.identifier }.first
     }
     
     @IBAction func unwindToViewController (sender: UIStoryboardSegue) {}
