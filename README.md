@@ -13,8 +13,12 @@ The project has a working implementation of multiple transitions from one ```UIV
 * Each ```TransitionBehaviour``` belongs to a ```TransitionBehaviourCollection``` object. These are used to group behaviours for a single transition, using a ```transitionIdentifier```. In this way you can implement multiple transitions from a single view controller. Usually you will have one of these in the source view controller and one in the destination, because you'll probably have stuff in both the source and destination you want to animate for a transition.
 * Finally, your source view controller will need a ```BehaviourBasedTransition``` object, connected to the view controller's ```transitions``` collection outlet. This ```BehaviourBasedTransition``` has a ```transitionIdentifier``` (to link it with the behaviours) and a ```segueIdentifier``` to link it to the segue it should transition for
 
-### Advanced Behaviours
+## Advanced Behaviours
 
+### Providing views for dynamic content
+In a lot of cases, you'll want to transition views that are created dynamically (for example, a ```UIImageView``` in a ```UICollectionViewCell``` in the ```UICollectionView``` of your ```UICollectionViewController```). For this you can implement the ```TransitionBehaviourViewProvider``` protocol and connect to you ```TransitionBehaviour``` object. Use the ```viewForBehaviour(identifier:)``` method to implement logic to return the appropriate view for the behaviour. You can return nil, which will cause the behaviour to have no effect.
+
+### Source/destination behaviour linking
 There is support for linking behaviours that are situated in different view controllers. In this way, you can have a behaviour that effects a view in the source view controller, but uses the frame or other properties of a view in the destination controller for the animation. An example of this is the ```TransformToPositionSourceBehaviour``` and ```TransformToPositionDestinationBehaviour```, which via the ```behaviourIdentifier``` property are linked together to provide Photos.app style transitions (small image grows to full size in the new view controller). The combination of both behaviours handle snapshotting, movement, scale and view visibility for the whole transition effect.
 
 ## Roll your own TransitionBehaviours
