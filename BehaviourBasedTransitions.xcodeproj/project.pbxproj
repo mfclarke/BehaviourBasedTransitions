@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F12E8C121D71B77500A1D39D /* UIView+BehaviourViewProvideable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12E8C111D71B77500A1D39D /* UIView+BehaviourViewProvideable.swift */; };
 		F12E8C141D71B7D600A1D39D /* BehaviourViewProvideable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12E8C131D71B7D600A1D39D /* BehaviourViewProvideable.swift */; };
 		F12E8C161D71E59900A1D39D /* TransitionBehaviourCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12E8C151D71E59900A1D39D /* TransitionBehaviourCollection.swift */; };
 		F12E8C181D71E69500A1D39D /* BehaviourBasedTransitionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18AF0B91D718DC7002C624E /* BehaviourBasedTransitionsTests.swift */; };
@@ -36,7 +35,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F12E8C111D71B77500A1D39D /* UIView+BehaviourViewProvideable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+BehaviourViewProvideable.swift"; sourceTree = SOURCE_ROOT; };
 		F12E8C131D71B7D600A1D39D /* BehaviourViewProvideable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BehaviourViewProvideable.swift; sourceTree = SOURCE_ROOT; };
 		F12E8C151D71E59900A1D39D /* TransitionBehaviourCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionBehaviourCollection.swift; sourceTree = SOURCE_ROOT; };
 		F12E8C191D71EA7400A1D39D /* TransformToPositionBehaviours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformToPositionBehaviours.swift; sourceTree = SOURCE_ROOT; };
@@ -137,7 +135,6 @@
 				F1798CF11D71816100F5A405 /* Transition Behaviours */,
 				F18AF0AC1D718D77002C624E /* BehaviourBasedTransition.swift */,
 				F18AF0AD1D718D77002C624E /* BehaviourTransitionable.swift */,
-				F12E8C111D71B77500A1D39D /* UIView+BehaviourViewProvideable.swift */,
 				F12E8C131D71B7D600A1D39D /* BehaviourViewProvideable.swift */,
 				F12E8C151D71E59900A1D39D /* TransitionBehaviourCollection.swift */,
 			);
@@ -253,7 +250,6 @@
 				F18AF0AE1D718D77002C624E /* BehaviourBasedTransition.swift in Sources */,
 				F12E8C161D71E59900A1D39D /* TransitionBehaviourCollection.swift in Sources */,
 				F18AF0AA1D718D67002C624E /* TransitionBehaviour.swift in Sources */,
-				F12E8C121D71B77500A1D39D /* UIView+BehaviourViewProvideable.swift in Sources */,
 				F18AF0B51D718D86002C624E /* HomeViewController.swift in Sources */,
 				F18AF0B41D718D86002C624E /* DetailViewController.swift in Sources */,
 				F18AF0A91D718D67002C624E /* FadeTransitionBehaviours.swift in Sources */,

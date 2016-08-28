@@ -8,10 +8,17 @@
 
 import UIKit
 
+/// Takes a snapshot of the view and transforms it to the ```CGRect``` of the corresponding 
+/// ```TransformToPositionDestinationBehaviour```'s ```viewForTransition```.
+///
+/// Typically used to provide the Photos.app style transition when you tap on a photo in the collection view.
+///
+/// Note: This ```TransitionBehaviour``` needs a corresponding ```TransformToPositionDestinationBehaviour``` with the same
+/// behaviourIdentifier to function correctly
 class TransformToPositionSourceBehaviour: TransitionBehaviour {
     
-    var sourceFrame: CGRect!
-    var destinationFrame: CGRect!
+    var sourceFrame: CGRect?
+    var destinationFrame: CGRect?
     
     @IBInspectable var shouldBeOnTop: Bool = false
     
@@ -25,20 +32,28 @@ class TransformToPositionSourceBehaviour: TransitionBehaviour {
         destinationFrame = getContainerFrame(container, view: destinationView)
         
         snapshotView = sourceView.snapshotViewAfterScreenUpdates(true)
-        snapshotView.frame = sourceFrame
+        snapshotView.frame = sourceFrame!
         if shouldBeOnTop {
             container.addSubview(snapshotView)
         } else {
-            viewForTransition!.addSubview(snapshotView)
+            sourceView.addSubview(snapshotView)
         }
         
         sourceView.hidden = true
         
-        let destTransform = destinationTransform(sourceFrame, destinationFrame: destinationFrame)
+        let destTransform = destinationTransform(sourceFrame!, destinationFrame: destinationFrame!)
         snapshotView.transform = isPresenting ? CGAffineTransformIdentity : destTransform
     }
     
-    override func animate() {
+    override func addAnimationKeyFrames() {
+        UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1) {
+            self.applyAnimation()
+        }
+    }
+    
+    func applyAnimation() {
+        guard let sourceFrame = sourceFrame, destinationFrame = destinationFrame else { return }
+        
         let destTransform = destinationTransform(sourceFrame, destinationFrame: destinationFrame)
         snapshotView.transform = isPresenting ? destTransform : CGAffineTransformIdentity
     }
@@ -71,6 +86,12 @@ class TransformToPositionSourceBehaviour: TransitionBehaviour {
     
 }
 
+
+/// Provides the destination position for the corresponding ```TransformToPositionSourceBehaviour```, via it's
+/// ```viewForTransition```.
+///
+/// Note: This ```TransitionBehaviour``` isn't supposed to be used on it's own. It should be paired with a
+/// ```TransformToPositionSourceBehaviour``` with the same behaviourIdentifier
 class TransformToPositionDestinationBehaviour: TransitionBehaviour {
     
     override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {

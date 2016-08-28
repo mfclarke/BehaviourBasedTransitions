@@ -8,10 +8,10 @@
 
 import UIKit
 
+/// Used by ```BehaviourBasedTransition```s to get access to the correct ```TransitionBehaviour```s for animation
 protocol BehaviourTransitionable {
-    var transitionBehaviours: [TransitionBehaviour] { get set }
-}
-
-protocol BehaviourMultiTransitionable {
+    
+    /// Array of collections, which should each be assigned a unique ```transitionIdentifier``` that matches the
+    /// ```BehaviourBasedTransition``` they should be used in
     var transitionBehaviourCollections: [TransitionBehaviourCollection] { get set }
 }

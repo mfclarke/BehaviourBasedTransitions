@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Fades a UIView in
 class FadeInTransitionBehaviour: TransitionBehaviour {
     
     override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour?) {
@@ -15,7 +16,13 @@ class FadeInTransitionBehaviour: TransitionBehaviour {
         viewForTransition?.alpha = isPresenting ? 0 : 1
     }
     
-    override func animate() {
+    override func addAnimationKeyFrames() {
+        UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1) { 
+            self.applyAnimation()
+        }
+    }
+    
+    private func applyAnimation() {
         viewForTransition?.alpha = isPresenting ? 1 : 0
     }
     
@@ -25,6 +32,7 @@ class FadeInTransitionBehaviour: TransitionBehaviour {
     
 }
 
+/// Fades a UIView out
 class FadeOutTransitionBehaviour: TransitionBehaviour {
     
     override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour?) {
@@ -32,7 +40,13 @@ class FadeOutTransitionBehaviour: TransitionBehaviour {
         viewForTransition?.alpha = isPresenting ? 1 : 0
     }
     
-    override func animate() {
+    override func addAnimationKeyFrames() {
+        UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1) {
+            self.applyAnimation()
+        }
+    }
+    
+    private func applyAnimation() {
         viewForTransition?.alpha = isPresenting ? 0 : 1
     }
     
