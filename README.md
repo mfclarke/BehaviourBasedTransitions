@@ -13,9 +13,7 @@ The project has an example implementation of multiple transitions from one ```UI
 * Each ```TransitionBehaviour``` belongs to a ```TransitionBehaviourCollection``` object. These are used to group behaviours for a single transition, using a ```transitionIdentifier```. In this way you can implement multiple transitions from a single view controller. Usually you will have one of these in the source view controller and one in the destination, because you'll probably have stuff in both the source and destination you want to animate for a transition.
 * Finally, your source view controller will need a ```BehaviourBasedTransition``` object, connected to the view controller's ```transitions``` collection outlet. This ```BehaviourBasedTransition``` has a ```transitionIdentifier``` (to link it with the behaviours) and a ```segueIdentifier``` to link it to the segue it should transition for.
 
-The handling of the transition enforces the following rule: the presented controller view always starts on top of the presenting controller view in the view hierarchy at the start of the transition.
-
-## As a dependency
+### Including the framework
 
 To use it in your own project, add this repository as a git submodule and then follow standard procedure to link the framework to your project. If it makes it out of experimental status I'll add support for Carthage etc.
 
