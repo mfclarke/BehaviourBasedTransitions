@@ -95,10 +95,14 @@
 		F13E86631D70AE0C0003C8EC /* BehaviourBasedTransitions */ = {
 			isa = PBXGroup;
 			children = (
-				F1798CF21D71817A00F5A405 /* Transition */,
+				F1798CF11D71816100F5A405 /* Transition Behaviours */,
 				F18AF0B01D718D86002C624E /* AppDelegate.swift */,
 				F18AF0B11D718D86002C624E /* DetailViewController.swift */,
 				F18AF0B21D718D86002C624E /* HomeViewController.swift */,
+				F18AF0AC1D718D77002C624E /* BehaviourBasedTransition.swift */,
+				F18AF0AD1D718D77002C624E /* BehaviourTransitionable.swift */,
+				F12E8C131D71B7D600A1D39D /* BehaviourViewProvideable.swift */,
+				F12E8C151D71E59900A1D39D /* TransitionBehaviourCollection.swift */,
 				F18AF0BC1D718DEB002C624E /* Main.storyboard */,
 				F18AF0B61D718DAC002C624E /* Assets.xcassets */,
 				F18AF0B81D718DB3002C624E /* Info.plist */,
@@ -127,18 +131,6 @@
 				F12E8C191D71EA7400A1D39D /* TransformToPositionBehaviours.swift */,
 			);
 			name = "Transition Behaviours";
-			sourceTree = "<group>";
-		};
-		F1798CF21D71817A00F5A405 /* Transition */ = {
-			isa = PBXGroup;
-			children = (
-				F1798CF11D71816100F5A405 /* Transition Behaviours */,
-				F18AF0AC1D718D77002C624E /* BehaviourBasedTransition.swift */,
-				F18AF0AD1D718D77002C624E /* BehaviourTransitionable.swift */,
-				F12E8C131D71B7D600A1D39D /* BehaviourViewProvideable.swift */,
-				F12E8C151D71E59900A1D39D /* TransitionBehaviourCollection.swift */,
-			);
-			name = Transition;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

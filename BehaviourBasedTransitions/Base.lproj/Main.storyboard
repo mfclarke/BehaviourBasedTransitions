@@ -18,22 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yd-Jm-ZXF">
-                                <rect key="frame" x="268.5" y="255.5" width="64" height="89"/>
+                                <rect key="frame" x="268" y="91" width="64" height="89"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                 <state key="normal" title="😃"/>
                                 <connections>
                                     <segue destination="APd-nP-E5c" kind="show" identifier="Detail1" id="vpT-Dm-a9w"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMS-aO-A8A">
-                                <rect key="frame" x="250" y="80.5" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="RA5-mt-qgh"/>
-                                    <constraint firstAttribute="width" constant="100" id="cgy-nr-Klr"/>
-                                </constraints>
-                                <state key="normal" image="Gummi Bear"/>
-                                <connections>
-                                    <segue destination="2YT-75-nK4" kind="show" identifier="Detail2" id="93G-QQ-iLg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXL-a1-zc8">
@@ -44,15 +33,26 @@
                                     <segue destination="Iyk-W4-wWg" kind="show" identifier="Detail3" id="FLD-vg-luf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMS-aO-A8A">
+                                <rect key="frame" x="250" y="250" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="RA5-mt-qgh"/>
+                                    <constraint firstAttribute="width" constant="100" id="cgy-nr-Klr"/>
+                                </constraints>
+                                <state key="normal" image="Gummi Bear"/>
+                                <connections>
+                                    <segue destination="2YT-75-nK4" kind="show" identifier="Detail2" id="93G-QQ-iLg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="IXL-a1-zc8" firstAttribute="top" secondItem="0yd-Jm-ZXF" secondAttribute="bottom" constant="75" id="6iT-Ps-UF0"/>
                             <constraint firstItem="TMS-aO-A8A" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DBc-5V-idN"/>
+                            <constraint firstItem="IXL-a1-zc8" firstAttribute="top" secondItem="TMS-aO-A8A" secondAttribute="bottom" constant="69.5" id="FfB-LL-ryO"/>
                             <constraint firstItem="IXL-a1-zc8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OpF-69-HpY"/>
-                            <constraint firstItem="0yd-Jm-ZXF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Ygn-CB-gz6"/>
-                            <constraint firstItem="0yd-Jm-ZXF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="y51-4j-A24"/>
-                            <constraint firstItem="0yd-Jm-ZXF" firstAttribute="top" secondItem="TMS-aO-A8A" secondAttribute="bottom" constant="75" id="yh1-eh-7bj"/>
+                            <constraint firstItem="TMS-aO-A8A" firstAttribute="top" secondItem="0yd-Jm-ZXF" secondAttribute="bottom" constant="70" id="jYH-Ap-Qyw"/>
+                            <constraint firstItem="0yd-Jm-ZXF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kbT-AI-ARc"/>
+                            <constraint firstItem="TMS-aO-A8A" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="qpj-JT-lm5"/>
                         </constraints>
                     </view>
                     <connections>
@@ -84,10 +84,21 @@
                         <outletCollection property="behaviours" destination="FNB-BQ-h1P" collectionClass="NSMutableArray" id="YRi-bt-55o"/>
                     </connections>
                 </customObject>
-                <customObject id="JmP-dB-u2R" userLabel="Emoji 1 Translation" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                <customObject id="FNB-BQ-h1P" userLabel="Emoji 1 Translation" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="point" keyPath="destination">
                             <point key="value" x="0.0" y="-0.5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="superview" destination="8bC-Xf-vdC" id="3Zz-6q-4Nn"/>
+                        <outlet property="view" destination="0yd-Jm-ZXF" id="Vd3-v4-6jJ"/>
+                    </connections>
+                </customObject>
+                <customObject id="JmP-dB-u2R" userLabel="Gummi Translation" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="point" keyPath="destination">
+                            <point key="value" x="-0.5" y="0.0"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
@@ -106,17 +117,6 @@
                         <outlet property="view" destination="IXL-a1-zc8" id="SBz-FQ-6CO"/>
                     </connections>
                 </customObject>
-                <customObject id="FNB-BQ-h1P" userLabel="Button Translation Left" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="point" keyPath="destination">
-                            <point key="value" x="-0.59999999999999998" y="0.0"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <outlet property="superview" destination="8bC-Xf-vdC" id="3Zz-6q-4Nn"/>
-                        <outlet property="view" destination="0yd-Jm-ZXF" id="Vd3-v4-6jJ"/>
-                    </connections>
-                </customObject>
                 <customObject id="0sX-jC-IKB" userLabel="Transition2" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="duration">
@@ -131,9 +131,20 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition2"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outletCollection property="behaviours" destination="HGd-Y6-clq" collectionClass="NSMutableArray" id="g5m-yJ-XA0"/>
-                        <outletCollection property="behaviours" destination="iU4-bU-35G" collectionClass="NSMutableArray" id="xDu-j1-rsC"/>
                         <outletCollection property="behaviours" destination="tRC-zh-Ln2" collectionClass="NSMutableArray" id="AXz-89-Hnw"/>
+                        <outletCollection property="behaviours" destination="QwC-mb-p8w" collectionClass="NSMutableArray" id="wWO-mV-geb"/>
+                        <outletCollection property="behaviours" destination="HGd-Y6-clq" collectionClass="NSMutableArray" id="a1z-cF-tNv"/>
+                    </connections>
+                </customObject>
+                <customObject id="QwC-mb-p8w" userLabel="Emoji 1 Translation" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="point" keyPath="destination">
+                            <point key="value" x="0.0" y="-0.5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="superview" destination="8bC-Xf-vdC" id="qPh-zE-wIw"/>
+                        <outlet property="view" destination="0yd-Jm-ZXF" id="t1B-6X-aCq"/>
                     </connections>
                 </customObject>
                 <customObject id="tRC-zh-Ln2" customClass="TransformToPositionSourceBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
@@ -145,17 +156,6 @@
                         <outlet property="view" destination="TMS-aO-A8A" id="Y2M-IS-iEs"/>
                     </connections>
                 </customObject>
-                <customObject id="QwC-mb-p8w" userLabel="Emoji 1 Translation" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="point" keyPath="destination">
-                            <point key="value" x="-0.5" y="0.0"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <outlet property="superview" destination="8bC-Xf-vdC" id="qPh-zE-wIw"/>
-                        <outlet property="view" destination="TMS-aO-A8A" id="3hx-J0-FlT"/>
-                    </connections>
-                </customObject>
                 <customObject id="HGd-Y6-clq" userLabel="Emoji 2 Translation" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="point" keyPath="destination">
@@ -165,17 +165,6 @@
                     <connections>
                         <outlet property="superview" destination="8bC-Xf-vdC" id="2WB-Qu-m3I"/>
                         <outlet property="view" destination="IXL-a1-zc8" id="Ots-X2-bLc"/>
-                    </connections>
-                </customObject>
-                <customObject id="iU4-bU-35G" userLabel="Button Translation Down" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="point" keyPath="destination">
-                            <point key="value" x="0.0" y="0.5"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <outlet property="superview" destination="8bC-Xf-vdC" id="nVm-OP-J98"/>
-                        <outlet property="view" destination="0yd-Jm-ZXF" id="IMY-aM-Czt"/>
                     </connections>
                 </customObject>
                 <customObject id="kxY-LF-mHB" userLabel="Transition3" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions" customModuleProvider="target">
