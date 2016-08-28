@@ -20,13 +20,22 @@ public class TransitionBehaviour: NSObject {
     /// for each must be the same
     @IBInspectable public var behaviourIdentifier: String = ""
     
-    /// Optional view provider for the behaviour
-    @IBOutlet public var viewProvider: TransitionBehaviourViewProvider?
+    /// Optional TransitionBehaviourViewProvider for the behaviour. Type here is ```AnyObject``` due to this Xcode
+    /// issue: http://stackoverflow.com/a/26180481/281734
+    @IBOutlet public var viewProvider: AnyObject?
+    
+    /// Start time for the animation, relative to the overall transition duration (0..1)
+    @IBInspectable public var relativeStartTime: Double = 0
+    
+    /// Duration for the animation, relative to the overall transition duration (0..1)
+    @IBInspectable public var relativeDuration: Double = 1
+    
+    @IBInspectable public var reverseKeyFrameTimingOnDismissal: Bool = false
     
     /// Returns the view to use for the transition. If there's a viewProvider connected, the viewProvider must provide the view.
     /// If no delegate connected, it will use the view ```IBOutlet```.
     var viewForTransition: UIView? {
-        if let viewProvider = viewProvider {
+        if let viewProvider = viewProvider as? TransitionBehaviourViewProvider {
             return viewProvider.viewForBehaviour(identifier: behaviourIdentifier)
         } else {
             return view
@@ -49,13 +58,22 @@ public class TransitionBehaviour: NSObject {
     /// Override this func to clean up or reset your views at the end of the transition animation
     func complete() {}
     
+    func addKeyFrame(animations: () -> ()) {
+        let startTime = reverseKeyFrameTimingOnDismissal && !isPresenting ?
+            (1 - relativeStartTime - relativeDuration) :
+            relativeStartTime
+        UIView.addKeyframeWithRelativeStartTime(startTime, relativeDuration: relativeDuration) {
+            animations()
+        }
+    }
+    
 }
 
 /// Allows an object to dynamically provide the right view for the behaviour. Used for views that are created dynamically
 /// like ```UITableView```s or ```UICollectionView```s, views loaded from xibs, embedded controllers etc. 
 ///
 /// You can use this to provide a UICollectionViewCell's subview to a behaviour for example.
-@objc public protocol TransitionBehaviourViewProvider {
+public protocol TransitionBehaviourViewProvider {
     
     func viewForBehaviour(identifier identifier: String) -> UIView?
     

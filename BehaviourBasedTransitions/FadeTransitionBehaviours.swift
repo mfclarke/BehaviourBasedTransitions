@@ -17,9 +17,7 @@ public class FadeInTransitionBehaviour: TransitionBehaviour {
     }
     
     override func addAnimationKeyFrames() {
-        UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1) { 
-            self.applyAnimation()
-        }
+        addKeyFrame(applyAnimation)
     }
     
     private func applyAnimation() {
@@ -41,9 +39,7 @@ public class FadeOutTransitionBehaviour: TransitionBehaviour {
     }
     
     override func addAnimationKeyFrames() {
-        UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1) {
-            self.applyAnimation()
-        }
+        addKeyFrame(applyAnimation)
     }
     
     private func applyAnimation() {

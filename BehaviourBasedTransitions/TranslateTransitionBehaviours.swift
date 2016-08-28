@@ -30,9 +30,7 @@ public class TranslateToTransitionBehaviour: TransitionBehaviour {
     }
     
     override func addAnimationKeyFrames() {
-        UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1) {
-            self.applyAnimation()
-        }
+        addKeyFrame(applyAnimation)
     }
     
     private func applyAnimation() {
@@ -72,9 +70,7 @@ public class TranslateFromTransitionBehaviour: TransitionBehaviour {
     }
     
     override func addAnimationKeyFrames() {
-        UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1) {
-            self.applyAnimation()
-        }
+        addKeyFrame(applyAnimation)
     }
     
     private func applyAnimation() {

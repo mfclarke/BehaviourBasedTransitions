@@ -46,9 +46,7 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
     }
     
     override func addAnimationKeyFrames() {
-        UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1) {
-            self.applyAnimation()
-        }
+        addKeyFrame(applyAnimation)
     }
     
     func applyAnimation() {
