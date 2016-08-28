@@ -20,12 +20,13 @@ class TransitionBehaviour: NSObject {
     /// for each must be the same
     @IBInspectable var behaviourIdentifier: String = ""
     
+    /// Optional delegate for the behaviour
+    @IBOutlet var delegate: TransitionBehaviourDelegate?
+    
     /// Returns the view to use for the transition, asking the delegate first if there's one connected
     var viewForTransition: UIView {
         return delegate?.viewForBehaviour(identifier: behaviourIdentifier) ?? view
     }
-    
-    var delegate: TransitionBehaviourDelegate?
     
     /// Returns true if the transition is presenting rather than dismissing. 
     /// Set up by the BehaviourBasedTransition object.
@@ -49,7 +50,7 @@ class TransitionBehaviour: NSObject {
 /// like ```UITableView```s or ```UICollectionView```s, views loaded from xibs, embedded controllers etc. 
 ///
 /// You can use this to provide a UICollectionViewCell's subview to a behaviour for example.
-protocol TransitionBehaviourDelegate {
+@objc protocol TransitionBehaviourDelegate {
     
     func viewForBehaviour(identifier identifier: String) -> UIView?
     
