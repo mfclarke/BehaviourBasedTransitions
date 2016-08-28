@@ -29,5 +29,6 @@ And don't forget to submit a PR with your fancy new behaviour ;)
 
 ## TODO
 
-* Tests
+* Convert to framework for Cocoapods, Carthage, Swift Package Manager and submodule imports
+* Add tests
 * Add more ```TransitionBehaviour```s (blur, 3D stuff, opacity), and expand the existing ones to allow physics based UIView animations configurable via IBInspectables
