@@ -41,7 +41,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                 <state key="normal" title="🤓"/>
                                 <connections>
-                                    <segue destination="pth-LQ-2yJ" kind="show" identifier="Detail3" id="PNo-ok-IgV"/>
+                                    <segue destination="Iyk-W4-wWg" kind="show" identifier="Detail3" id="FLD-vg-luf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -192,67 +192,29 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition3"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outletCollection property="behaviours" destination="5wb-K6-ItC" collectionClass="NSMutableArray" id="3Rs-58-YmE"/>
-                        <outletCollection property="behaviours" destination="QwC-mb-p8w" collectionClass="NSMutableArray" id="SBJ-t3-SKg"/>
-                        <outletCollection property="behaviours" destination="WIC-nF-0kR" collectionClass="NSMutableArray" id="JhQ-YH-p3B"/>
+                        <outletCollection property="behaviours" destination="fi7-su-SIE" collectionClass="NSMutableArray" id="bpY-vi-7BT"/>
                     </connections>
                 </customObject>
-                <customObject id="WIC-nF-0kR" userLabel="Emoji 2 Translation" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                <customObject id="fi7-su-SIE" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="point" keyPath="destination">
-                            <point key="value" x="0.5" y="0.0"/>
+                            <point key="value" x="0.0" y="-1"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="superview" destination="8bC-Xf-vdC" id="3Q2-fl-rb3"/>
-                        <outlet property="view" destination="IXL-a1-zc8" id="Ujb-5k-Vn3"/>
-                    </connections>
-                </customObject>
-                <customObject id="5wb-K6-ItC" userLabel="Button Translation Down" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="point" keyPath="destination">
-                            <point key="value" x="0.0" y="0.59999999999999998"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <outlet property="superview" destination="8bC-Xf-vdC" id="ysl-wr-66b"/>
-                        <outlet property="view" destination="0yd-Jm-ZXF" id="VdE-9s-igm"/>
+                        <outlet property="superview" destination="8bC-Xf-vdC" id="Wyg-FU-c73"/>
+                        <outlet property="view" destination="8bC-Xf-vdC" id="9GG-gj-kmN"/>
                     </connections>
                 </customObject>
             </objects>
             <point key="canvasLocation" x="959" y="389"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Detail1-->
         <scene sceneID="MuV-YD-M1w">
             <objects>
-                <customObject id="yHr-07-Z1A" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions" customModuleProvider="target">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition1"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <outletCollection property="behaviours" destination="es7-Zh-khf" collectionClass="NSMutableArray" id="hBl-xt-PKs"/>
-                        <outletCollection property="behaviours" destination="K03-Kn-QvJ" collectionClass="NSMutableArray" id="yrb-xO-i2n"/>
-                    </connections>
-                </customObject>
-                <customObject id="K03-Kn-QvJ" userLabel="Button Translation" customClass="TranslateFromTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="point" keyPath="origin">
-                            <point key="value" x="0.59999999999999998" y="0.0"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <outlet property="superview" destination="Geh-NA-aAN" id="eFR-BK-YXH"/>
-                        <outlet property="view" destination="v3L-jU-NaJ" id="fEV-xB-yIW"/>
-                    </connections>
-                </customObject>
-                <customObject id="es7-Zh-khf" userLabel="Whole View Fade In Behaviour" customClass="FadeInTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
-                    <connections>
-                        <outlet property="view" destination="Geh-NA-aAN" id="Njm-td-7to"/>
-                    </connections>
-                </customObject>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xAx-3w-tPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="cfc-qH-pvH" userLabel="Exit" sceneMemberID="exit"/>
-                <viewController id="APd-nP-E5c" customClass="DetailViewController" customModule="BehaviourBasedTransitions" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Detail1" id="APd-nP-E5c" customClass="DetailViewController" customModule="BehaviourBasedTransitions" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lUQ-VY-1BF"/>
                         <viewControllerLayoutGuide type="bottom" id="Llc-BC-ysK"/>
@@ -282,76 +244,38 @@
                         <outletCollection property="transitionBehaviourCollections" destination="yHr-07-Z1A" collectionClass="NSMutableArray" id="Lpl-4E-pgq"/>
                     </connections>
                 </viewController>
-            </objects>
-            <point key="canvasLocation" x="337" y="1277"/>
-        </scene>
-        <!--Detail View Controller-->
-        <scene sceneID="c5x-OA-0sO">
-            <objects>
-                <viewController id="pth-LQ-2yJ" customClass="DetailViewController" customModule="BehaviourBasedTransitions" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pO7-1M-BFb"/>
-                        <viewControllerLayoutGuide type="bottom" id="O4O-Ap-A5T"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="C8G-7x-rra">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZA-n1-u2q">
-                                <rect key="frame" x="264" y="285" width="73" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="73" id="cc9-0b-uIG"/>
-                                </constraints>
-                                <state key="normal" title="Go Back"/>
-                                <connections>
-                                    <segue destination="2vx-oS-2XT" kind="unwind" unwindAction="unwindToViewController:" id="Ccc-rk-WGe"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0029193768280000002" green="0.81339275840000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="zZA-n1-u2q" firstAttribute="centerY" secondItem="C8G-7x-rra" secondAttribute="centerY" id="BBS-As-k9E"/>
-                            <constraint firstItem="zZA-n1-u2q" firstAttribute="centerX" secondItem="C8G-7x-rra" secondAttribute="centerX" id="Plf-cL-cHg"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outletCollection property="transitionBehaviourCollections" destination="veg-Xo-YzD" collectionClass="NSMutableArray" id="MKA-5y-yp2"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="T1o-vj-Iah" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="2vx-oS-2XT" userLabel="Exit" sceneMemberID="exit"/>
-                <customObject id="veg-Xo-YzD" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                <customObject id="yHr-07-Z1A" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition3"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition1"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outletCollection property="behaviours" destination="5DP-BD-VXU" collectionClass="NSMutableArray" id="uiw-sT-bJM"/>
-                        <outletCollection property="behaviours" destination="1rf-Gd-cMY" collectionClass="NSMutableArray" id="erK-nz-yFQ"/>
+                        <outletCollection property="behaviours" destination="es7-Zh-khf" collectionClass="NSMutableArray" id="hBl-xt-PKs"/>
+                        <outletCollection property="behaviours" destination="K03-Kn-QvJ" collectionClass="NSMutableArray" id="yrb-xO-i2n"/>
                     </connections>
                 </customObject>
-                <customObject id="5DP-BD-VXU" userLabel="Whole View Fade In Behaviour" customClass="FadeInTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
-                    <connections>
-                        <outlet property="view" destination="C8G-7x-rra" id="qew-yz-BQY"/>
-                    </connections>
-                </customObject>
-                <customObject id="1rf-Gd-cMY" userLabel="Button Translation" customClass="TranslateFromTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                <customObject id="K03-Kn-QvJ" userLabel="Button Translation" customClass="TranslateFromTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="point" keyPath="origin">
                             <point key="value" x="0.59999999999999998" y="0.0"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="superview" destination="C8G-7x-rra" id="oB5-ju-N1P"/>
-                        <outlet property="view" destination="zZA-n1-u2q" id="mQJ-LZ-6jA"/>
+                        <outlet property="superview" destination="Geh-NA-aAN" id="eFR-BK-YXH"/>
+                        <outlet property="view" destination="v3L-jU-NaJ" id="fEV-xB-yIW"/>
+                    </connections>
+                </customObject>
+                <customObject id="es7-Zh-khf" userLabel="Whole View Fade In Behaviour" customClass="FadeInTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <connections>
+                        <outlet property="view" destination="Geh-NA-aAN" id="Njm-td-7to"/>
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="1582" y="1277"/>
+            <point key="canvasLocation" x="337" y="1277"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Detail2-->
         <scene sceneID="qZn-Wq-WMV">
             <objects>
-                <viewController id="2YT-75-nK4" customClass="DetailViewController" customModule="BehaviourBasedTransitions" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Detail2" id="2YT-75-nK4" customClass="DetailViewController" customModule="BehaviourBasedTransitions" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D2Y-2w-f21"/>
                         <viewControllerLayoutGuide type="bottom" id="NX5-RN-zdL"/>
@@ -420,6 +344,63 @@
                 </customObject>
             </objects>
             <point key="canvasLocation" x="959" y="1277"/>
+        </scene>
+        <!--Detail3-->
+        <scene sceneID="EMa-n0-2jG">
+            <objects>
+                <viewController title="Detail3" id="Iyk-W4-wWg" customClass="DetailViewController" customModule="BehaviourBasedTransitions" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oag-GE-EL3"/>
+                        <viewControllerLayoutGuide type="bottom" id="NjP-MP-vN2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7R0-Pn-46E">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DFP-bp-3pp">
+                                <rect key="frame" x="264" y="285" width="73" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="73" id="uGu-zS-ZBV"/>
+                                </constraints>
+                                <state key="normal" title="Go Back"/>
+                                <connections>
+                                    <segue destination="Hkq-o4-8ZV" kind="unwind" unwindAction="unwindToViewController:" id="bO3-jY-eWj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0029193768280000002" green="0.81339275840000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="DFP-bp-3pp" firstAttribute="centerX" secondItem="7R0-Pn-46E" secondAttribute="centerX" id="0cd-pO-R3B"/>
+                            <constraint firstItem="DFP-bp-3pp" firstAttribute="centerY" secondItem="7R0-Pn-46E" secondAttribute="centerY" id="aq6-hB-SU2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outletCollection property="transitionBehaviourCollections" destination="HHy-nW-2ia" collectionClass="NSMutableArray" id="dVF-co-mxd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zbS-Bc-TyW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Hkq-o4-8ZV" userLabel="Exit" sceneMemberID="exit"/>
+                <customObject id="HHy-nW-2ia" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition3"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outletCollection property="behaviours" destination="LIR-s0-JM8" collectionClass="NSMutableArray" id="AEc-Fq-7CC"/>
+                    </connections>
+                </customObject>
+                <customObject id="LIR-s0-JM8" customClass="TranslateFromTransitionBehaviour" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="point" keyPath="origin">
+                            <point key="value" x="0.0" y="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="superview" destination="7R0-Pn-46E" id="JUK-31-qMX"/>
+                        <outlet property="view" destination="7R0-Pn-46E" id="2We-Cv-CyM"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="1582" y="1277"/>
         </scene>
     </scenes>
     <resources>
