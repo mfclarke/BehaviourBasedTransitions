@@ -31,7 +31,7 @@ class TransformToPositionSourceBehaviour: TransitionBehaviour {
         sourceFrame = getContainerFrame(container, view: sourceView)
         destinationFrame = getContainerFrame(container, view: destinationView)
         
-        snapshotView = sourceView.snapshotViewAfterScreenUpdates(true)
+        snapshotView = sourceView.resizableSnapshotViewFromRect(sourceView.bounds, afterScreenUpdates: true, withCapInsets: UIEdgeInsetsZero)
         snapshotView.frame = sourceFrame!
         if shouldBeOnTop {
             container.addSubview(snapshotView)
