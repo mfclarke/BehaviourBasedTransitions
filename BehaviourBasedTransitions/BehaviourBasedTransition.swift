@@ -20,9 +20,7 @@ class BehaviourBasedTransition: NSObject, UIViewControllerAnimatedTransitioning,
         guard let
             container = transitionContext.containerView(),
             fromController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey),
-            toController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey),
-            transitionSource = (self.isPresenting ? fromController : toController)  as? BehaviourTransitionable,
-            transitionDestination = (self.isPresenting ? toController : fromController) as? BehaviourTransitionable
+            toController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
             else { return }
         
         if isPresenting {
@@ -31,20 +29,19 @@ class BehaviourBasedTransition: NSObject, UIViewControllerAnimatedTransitioning,
             container.insertSubview(toController.view, belowSubview: fromController.view)
         }
         
-        let sourceBehaviourCollection = transitionSource.transitionBehaviourCollections.filter { $0.transitionIdentifier == self.transitionIdentifier }.first
-        let destBehaviourCollection = transitionDestination.transitionBehaviourCollections.filter { $0.transitionIdentifier == self.transitionIdentifier }.first
+        let sourceBehaviours = isPresenting ? behavioursFromController(fromController) : behavioursFromController(toController)
+        let destBehaviours = isPresenting ? behavioursFromController(toController) : behavioursFromController(fromController)
+        let behaviours = sourceBehaviours + destBehaviours
         
-        let behaviours = (sourceBehaviourCollection?.behaviours ?? []) + (destBehaviourCollection?.behaviours ?? [])
-        
-        sourceBehaviourCollection?.behaviours.forEach { behaviour in
-            behaviour.setup(presenting: self.isPresenting,
+        sourceBehaviours.forEach { behaviour in
+            behaviour.setup(
+                presenting: self.isPresenting,
                 container: container,
-                destinationBehaviour: destBehaviourCollection?.behaviours.filter { destBehaviour in
-                    behaviour.behaviourIdentifier == destBehaviour.behaviourIdentifier
-                }.first)
+                destinationBehaviour: destBehaviours.filter { behaviour.behaviourIdentifier == $0.behaviourIdentifier}.first
+            )
         }
         
-        destBehaviourCollection?.behaviours.forEach { behaviour in
+        destBehaviours.forEach { behaviour in
             behaviour.setup(presenting: self.isPresenting, container: container)
         }
         
@@ -65,7 +62,11 @@ class BehaviourBasedTransition: NSObject, UIViewControllerAnimatedTransitioning,
         return duration
     }
     
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationControllerForPresentedController(
+        presented: UIViewController,
+        presentingController presenting: UIViewController,
+        sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning?
+    {
         isPresenting = true
         return self
     }
@@ -73,6 +74,24 @@ class BehaviourBasedTransition: NSObject, UIViewControllerAnimatedTransitioning,
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresenting = false
         return self
+    }
+    
+}
+
+extension BehaviourBasedTransition {
+    
+    func behavioursFromController(controller: UIViewController) -> [TransitionBehaviour] {
+        if let transitionable = controller as? BehaviourTransitionable {
+            return transitionable.transitionBehaviours
+        }
+        
+        if let multiTransitionable = controller as? BehaviourMultiTransitionable {
+            return multiTransitionable.transitionBehaviourCollections
+                .filter { $0.transitionIdentifier == self.transitionIdentifier }
+                .flatMap { $0.behaviours }
+        }
+        
+        return []
     }
     
 }

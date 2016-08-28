@@ -64,7 +64,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <customObject id="Wpd-oW-J8M" userLabel="--Transition1--" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                <customObject id="Wpd-oW-J8M" userLabel="Transition1" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="duration">
                             <real key="value" value="0.5"/>
@@ -73,7 +73,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="segueIdentifier" value="Detail1"/>
                     </userDefinedRuntimeAttributes>
                 </customObject>
-                <customObject id="wEz-Ef-V1l" userLabel="Transition 1 Behaviour Collection" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                <customObject id="wEz-Ef-V1l" userLabel="Transition1 Behaviour Collection" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition1"/>
                     </userDefinedRuntimeAttributes>
@@ -116,7 +116,7 @@
                         <outlet property="view" destination="0yd-Jm-ZXF" id="Vd3-v4-6jJ"/>
                     </connections>
                 </customObject>
-                <customObject id="0sX-jC-IKB" userLabel="--Transition2--" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                <customObject id="0sX-jC-IKB" userLabel="Transition2" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="duration">
                             <real key="value" value="0.5"/>
@@ -125,7 +125,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="segueIdentifier" value="Detail2"/>
                     </userDefinedRuntimeAttributes>
                 </customObject>
-                <customObject id="8sN-nC-EAF" userLabel="Transition 2 Behaviour Collection" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                <customObject id="8sN-nC-EAF" userLabel="Transition2 Behaviour Collection" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition2"/>
                     </userDefinedRuntimeAttributes>
@@ -166,7 +166,7 @@
                         <outlet property="view" destination="0yd-Jm-ZXF" id="IMY-aM-Czt"/>
                     </connections>
                 </customObject>
-                <customObject id="kxY-LF-mHB" userLabel="--Transition3--" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                <customObject id="kxY-LF-mHB" userLabel="Transition3" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="duration">
                             <real key="value" value="0.5"/>
@@ -175,7 +175,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="segueIdentifier" value="Detail3"/>
                     </userDefinedRuntimeAttributes>
                 </customObject>
-                <customObject id="sAi-k6-YAn" userLabel="Transition 3 Behaviour Collection" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions" customModuleProvider="target">
+                <customObject id="sAi-k6-YAn" userLabel="Transition3 Behaviour Collection" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition3"/>
                     </userDefinedRuntimeAttributes>

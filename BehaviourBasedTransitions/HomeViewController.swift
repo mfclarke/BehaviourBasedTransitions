@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, BehaviourTransitionable {
+class HomeViewController: UIViewController, BehaviourMultiTransitionable {
     
     @IBOutlet var transitions: [BehaviourBasedTransition] = []
     

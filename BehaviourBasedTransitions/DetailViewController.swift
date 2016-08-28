@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, BehaviourTransitionable {
+class DetailViewController: UIViewController, BehaviourMultiTransitionable {
     
     @IBOutlet var transitionBehaviourCollections: [TransitionBehaviourCollection] = []
     
