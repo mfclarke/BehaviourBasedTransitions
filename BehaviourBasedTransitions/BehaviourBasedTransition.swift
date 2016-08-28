@@ -23,6 +23,14 @@ class BehaviourBasedTransition: NSObject, UIViewControllerAnimatedTransitioning,
             toController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
             else { return }
         
+        // The toController's subviews are laid out incorrectly until we call layoutIfNeeded(). But, this can cause
+        // a flicker, when UIKit lays out the view before a sourceBehaviour has a chance to hide it. So, until I find
+        // a better solution, we hide it here and show it after the behaviours are all set up
+        if isPresenting {
+            toController.view.hidden = true
+            toController.view.layoutIfNeeded()
+        }
+        
         if isPresenting {
             container.addSubview(toController.view)
         } else {
@@ -43,6 +51,11 @@ class BehaviourBasedTransition: NSObject, UIViewControllerAnimatedTransitioning,
         
         destBehaviours.forEach { behaviour in
             behaviour.setup(presenting: self.isPresenting, container: container)
+        }
+        
+        // See above
+        if isPresenting {
+            toController.view.hidden = false
         }
         
         UIView.animateWithDuration(

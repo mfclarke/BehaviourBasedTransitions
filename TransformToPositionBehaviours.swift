@@ -21,9 +21,6 @@ class TransformToPositionSourceBehaviour: TransitionBehaviour {
         super.setup(presenting: presenting, container: container, destinationBehaviour: destinationBehaviour)
         guard let sourceView = viewForTransition, destinationView = destinationBehaviour?.viewForTransition else { return }
         
-        // Why do we need to do this?
-        destinationView.superview?.layoutSubviews()
-        
         sourceFrame = getContainerFrame(container, view: sourceView)
         destinationFrame = getContainerFrame(container, view: destinationView)
         
