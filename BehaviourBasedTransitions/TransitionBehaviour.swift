@@ -20,10 +20,12 @@ class TransitionBehaviour: NSObject {
     /// for each must be the same
     @IBInspectable var behaviourIdentifier: String = ""
     
-    /// Returns the view that the connected view wants to use for this transition
-    var viewForTransition: UIView? {
-        return view.viewForBehaviour()
+    /// Returns the view to use for the transition, asking the delegate first if there's one connected
+    var viewForTransition: UIView {
+        return delegate?.viewForBehaviour(identifier: behaviourIdentifier) ?? view
     }
+    
+    var delegate: TransitionBehaviourDelegate?
     
     /// Returns true if the transition is presenting rather than dismissing. 
     /// Set up by the BehaviourBasedTransition object.
@@ -40,5 +42,15 @@ class TransitionBehaviour: NSObject {
     
     /// Override this func to clean up or reset your views at the end of the transition animation
     func complete() {}
+    
+}
+
+/// Allows an object to dynamically provide the right view for the behaviour. Used for views that are created dynamically
+/// like ```UITableView```s or ```UICollectionView```s, views loaded from xibs, embedded controllers etc. 
+///
+/// You can use this to provide a UICollectionViewCell's subview to a behaviour for example.
+protocol TransitionBehaviourDelegate {
+    
+    func viewForBehaviour(identifier identifier: String) -> UIView?
     
 }

@@ -26,7 +26,7 @@ class TranslateToTransitionBehaviour: TransitionBehaviour {
     override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour?) {
         super.setup(presenting: presenting, container: container, destinationBehaviour: destinationBehaviour)
         
-        viewForTransition?.transform = isPresenting ? CGAffineTransformIdentity : destinationTransform()
+        viewForTransition.transform = isPresenting ? CGAffineTransformIdentity : destinationTransform()
     }
     
     override func addAnimationKeyFrames() {
@@ -36,11 +36,11 @@ class TranslateToTransitionBehaviour: TransitionBehaviour {
     }
     
     private func applyAnimation() {
-        viewForTransition?.transform = isPresenting ? destinationTransform() : CGAffineTransformIdentity
+        viewForTransition.transform = isPresenting ? destinationTransform() : CGAffineTransformIdentity
     }
     
     override func complete() {
-        viewForTransition?.transform = CGAffineTransformIdentity
+        viewForTransition.transform = CGAffineTransformIdentity
     }
     
     private func destinationTransform() -> CGAffineTransform {
@@ -68,7 +68,7 @@ class TranslateFromTransitionBehaviour: TransitionBehaviour {
     override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour?) {
         super.setup(presenting: presenting, container: container, destinationBehaviour: destinationBehaviour)
         
-        viewForTransition?.transform = isPresenting ? originTransform() : CGAffineTransformIdentity
+        viewForTransition.transform = isPresenting ? originTransform() : CGAffineTransformIdentity
     }
     
     override func addAnimationKeyFrames() {
@@ -78,11 +78,11 @@ class TranslateFromTransitionBehaviour: TransitionBehaviour {
     }
     
     private func applyAnimation() {
-        viewForTransition?.transform = isPresenting ? CGAffineTransformIdentity : originTransform()
+        viewForTransition.transform = isPresenting ? CGAffineTransformIdentity : originTransform()
     }
     
     override func complete() {
-        viewForTransition?.transform = CGAffineTransformIdentity
+        viewForTransition.transform = CGAffineTransformIdentity
     }
     
     private func originTransform() -> CGAffineTransform {

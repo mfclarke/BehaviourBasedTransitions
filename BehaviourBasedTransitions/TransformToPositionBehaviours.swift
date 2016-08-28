@@ -26,20 +26,20 @@ class TransformToPositionSourceBehaviour: TransitionBehaviour {
     
     override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
         super.setup(presenting: presenting, container: container, destinationBehaviour: destinationBehaviour)
-        guard let sourceView = viewForTransition, destinationView = destinationBehaviour?.viewForTransition else { return }
+        guard let destinationView = destinationBehaviour?.viewForTransition else { return }
         
-        sourceFrame = getContainerFrame(container, view: sourceView)
+        sourceFrame = getContainerFrame(container, view: viewForTransition)
         destinationFrame = getContainerFrame(container, view: destinationView)
         
-        snapshotView = sourceView.resizableSnapshotViewFromRect(sourceView.bounds, afterScreenUpdates: true, withCapInsets: UIEdgeInsetsZero)
+        snapshotView = viewForTransition.resizableSnapshotViewFromRect(viewForTransition.bounds, afterScreenUpdates: true, withCapInsets: UIEdgeInsetsZero)
         snapshotView.frame = sourceFrame!
         if shouldBeOnTop {
             container.addSubview(snapshotView)
         } else {
-            sourceView.addSubview(snapshotView)
+            viewForTransition.addSubview(snapshotView)
         }
         
-        sourceView.hidden = true
+        viewForTransition.hidden = true
         
         let destTransform = destinationTransform(sourceFrame!, destinationFrame: destinationFrame!)
         snapshotView.transform = isPresenting ? CGAffineTransformIdentity : destTransform
@@ -60,7 +60,7 @@ class TransformToPositionSourceBehaviour: TransitionBehaviour {
     
     override func complete() {
         snapshotView.removeFromSuperview()
-        viewForTransition?.hidden = false
+        viewForTransition.hidden = false
     }
     
     func destinationTransform(sourceFrame: CGRect, destinationFrame: CGRect) -> CGAffineTransform {
@@ -96,11 +96,11 @@ class TransformToPositionDestinationBehaviour: TransitionBehaviour {
     
     override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
         super.setup(presenting: presenting, container: container, destinationBehaviour: destinationBehaviour)
-        viewForTransition?.hidden = true
+        viewForTransition.hidden = true
     }
     
     override func complete() {
-        viewForTransition?.hidden = false
+        viewForTransition.hidden = false
     }
     
 }
