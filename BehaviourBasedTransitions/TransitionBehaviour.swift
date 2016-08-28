@@ -10,18 +10,18 @@ import UIKit
 
 /// An abstract class for implementation of IB behaviours that execute during a transition. Subclass this to provide
 /// a specific behaviour to use on a single view in a UIViewControllerAnimatedTransitioning animation
-class TransitionBehaviour: NSObject {
+public class TransitionBehaviour: NSObject {
     
     /// The view the behaviour should effect
-    @IBOutlet var view: UIView!
+    @IBOutlet public var view: UIView!
     
     /// The identifier of this behaviour. Normally not used, unless the particular behaviour has a corresponding
     /// destination ```TransitionBehaviour``` in another UIViewController. In which case the behaviourIdentifier values
     /// for each must be the same
-    @IBInspectable var behaviourIdentifier: String = ""
+    @IBInspectable public var behaviourIdentifier: String = ""
     
     /// Optional view provider for the behaviour
-    @IBOutlet var viewProvider: TransitionBehaviourViewProvider?
+    @IBOutlet public var viewProvider: TransitionBehaviourViewProvider?
     
     /// Returns the view to use for the transition. If there's a viewProvider connected, the viewProvider must provide the view.
     /// If no delegate connected, it will use the view ```IBOutlet```.
@@ -55,7 +55,7 @@ class TransitionBehaviour: NSObject {
 /// like ```UITableView```s or ```UICollectionView```s, views loaded from xibs, embedded controllers etc. 
 ///
 /// You can use this to provide a UICollectionViewCell's subview to a behaviour for example.
-@objc protocol TransitionBehaviourViewProvider {
+@objc public protocol TransitionBehaviourViewProvider {
     
     func viewForBehaviour(identifier identifier: String) -> UIView?
     

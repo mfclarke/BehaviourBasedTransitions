@@ -15,12 +15,12 @@ import UIKit
 ///
 /// Note: This ```TransitionBehaviour``` needs a corresponding ```TransformToPositionDestinationBehaviour``` with the same
 /// behaviourIdentifier to function correctly
-class TransformToPositionSourceBehaviour: TransitionBehaviour {
+public class TransformToPositionSourceBehaviour: TransitionBehaviour {
+    
+    @IBInspectable public var shouldBeOnTop: Bool = false
     
     var sourceFrame: CGRect?
     var destinationFrame: CGRect?
-    
-    @IBInspectable var shouldBeOnTop: Bool = false
     
     var snapshotView: UIView!
     
@@ -92,7 +92,7 @@ class TransformToPositionSourceBehaviour: TransitionBehaviour {
 ///
 /// Note: This ```TransitionBehaviour``` isn't supposed to be used on it's own. It should be paired with a
 /// ```TransformToPositionSourceBehaviour``` with the same behaviourIdentifier
-class TransformToPositionDestinationBehaviour: TransitionBehaviour {
+public class TransformToPositionDestinationBehaviour: TransitionBehaviour {
     
     override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
         super.setup(presenting: presenting, container: container, destinationBehaviour: destinationBehaviour)

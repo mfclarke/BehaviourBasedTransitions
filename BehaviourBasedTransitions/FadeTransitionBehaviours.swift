@@ -9,7 +9,7 @@
 import UIKit
 
 /// Fades a UIView in
-class FadeInTransitionBehaviour: TransitionBehaviour {
+public class FadeInTransitionBehaviour: TransitionBehaviour {
     
     override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour?) {
         super.setup(presenting: presenting, container: container, destinationBehaviour: destinationBehaviour)
@@ -33,7 +33,7 @@ class FadeInTransitionBehaviour: TransitionBehaviour {
 }
 
 /// Fades a UIView out
-class FadeOutTransitionBehaviour: TransitionBehaviour {
+public class FadeOutTransitionBehaviour: TransitionBehaviour {
     
     override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour?) {
         super.setup(presenting: presenting, container: container, destinationBehaviour: destinationBehaviour)

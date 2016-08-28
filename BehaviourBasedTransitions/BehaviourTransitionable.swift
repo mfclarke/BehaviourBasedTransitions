@@ -9,7 +9,7 @@
 import UIKit
 
 /// Used by ```BehaviourBasedTransition```s to get access to the correct ```TransitionBehaviour```s for animation
-protocol BehaviourTransitionable {
+public protocol BehaviourTransitionable {
     
     /// Array of collections, which should each be assigned a unique ```transitionIdentifier``` that matches the
     /// ```BehaviourBasedTransition``` they should be used in

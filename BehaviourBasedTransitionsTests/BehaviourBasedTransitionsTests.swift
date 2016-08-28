@@ -2,7 +2,7 @@
 //  BehaviourBasedTransitionsTests.swift
 //  BehaviourBasedTransitionsTests
 //
-//  Created by Maximilian Clarke on 26/08/2016.
+//  Created by Maximilian Clarke on 28/08/2016.
 //  Copyright © 2016 Maximilian Clarke. All rights reserved.
 //
 

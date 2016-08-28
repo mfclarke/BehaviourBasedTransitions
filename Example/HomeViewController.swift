@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BehaviourBasedTransitions
 
 class HomeViewController: UIViewController, BehaviourTransitionable {
     

@@ -11,16 +11,16 @@ import UIKit
 /// Moves a UIView from it's current position to a destination position without changing it's superview.
 ///
 /// Typically used to move views away in the source UIViewController.
-class TranslateToTransitionBehaviour: TransitionBehaviour {
+public class TranslateToTransitionBehaviour: TransitionBehaviour {
     
     /// Destination position relative to the size of the superview.
     ///
     ///```{0,0}``` is the top left corner, ```{1,1}``` is the bottom right corner
-    @IBInspectable var destination: CGPoint = CGPointZero
+    @IBInspectable public var destination: CGPoint = CGPointZero
     
     /// The superview used to calculate the relative destination position. This doesn't have to be a direct parent
     /// of the view, but normally would be.
-    @IBOutlet var superview: UIView!
+    @IBOutlet public var superview: UIView!
     
 
     override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour?) {
@@ -53,7 +53,7 @@ class TranslateToTransitionBehaviour: TransitionBehaviour {
 /// Moves a UIView from a specified origin position to it's regular position in the Storyboard without changing it's superview.
 ///
 /// Typically used to move views into place in the destination UIViewController.
-class TranslateFromTransitionBehaviour: TransitionBehaviour {
+public class TranslateFromTransitionBehaviour: TransitionBehaviour {
     
     /// Start position relative to the size of the superview.
     ///

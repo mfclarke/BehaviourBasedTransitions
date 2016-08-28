@@ -15,20 +15,20 @@ import UIKit
 ///
 /// Each ```BehaviourBasedTransition``` should have a unique transitionIdentifier, which is used to get the correct
 /// ```TransitionBehaviour``` for the transition via the ```UIViewController```s ```TransitionBehaviourCollection```s.
-class BehaviourBasedTransition: NSObject, UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate  {
+public class BehaviourBasedTransition: NSObject, UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate  {
     
     /// Unique identifier for the transition
-    @IBInspectable var transitionIdentifier: String = ""
+    @IBInspectable public var transitionIdentifier: String = ""
     
     /// Segue identifier that should use the transition
-    @IBInspectable var segueIdentifier: String = ""
+    @IBInspectable public var segueIdentifier: String = ""
     
     /// Duration of the transition
-    @IBInspectable var duration: Double = 0.5
+    @IBInspectable public var duration: Double = 0.5
     
     private var isPresenting = false
     
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    public func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         guard let
             container = transitionContext.containerView(),
             fromController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey),
@@ -58,11 +58,11 @@ class BehaviourBasedTransition: NSObject, UIViewControllerAnimatedTransitioning,
         )
     }
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    public func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return duration
     }
     
-    func animationControllerForPresentedController(
+    public func animationControllerForPresentedController(
         presented: UIViewController,
         presentingController presenting: UIViewController,
         sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning?
@@ -71,18 +71,18 @@ class BehaviourBasedTransition: NSObject, UIViewControllerAnimatedTransitioning,
         return self
     }
     
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresenting = false
         return self
     }
     
     // TODO: Handle interactive transitions
     
-    func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    public func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return nil
     }
     
-    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    public func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return nil
     }
     
