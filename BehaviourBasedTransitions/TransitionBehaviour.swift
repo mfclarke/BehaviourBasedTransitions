@@ -20,12 +20,17 @@ class TransitionBehaviour: NSObject {
     /// for each must be the same
     @IBInspectable var behaviourIdentifier: String = ""
     
-    /// Optional delegate for the behaviour
-    @IBOutlet var delegate: TransitionBehaviourDelegate?
+    /// Optional view provider for the behaviour
+    @IBOutlet var viewProvider: TransitionBehaviourViewProvider?
     
-    /// Returns the view to use for the transition, asking the delegate first if there's one connected
-    var viewForTransition: UIView {
-        return delegate?.viewForBehaviour(identifier: behaviourIdentifier) ?? view
+    /// Returns the view to use for the transition. If there's a viewProvider connected, the viewProvider must provide the view.
+    /// If no delegate connected, it will use the view ```IBOutlet```.
+    var viewForTransition: UIView? {
+        if let viewProvider = viewProvider {
+            return viewProvider.viewForBehaviour(identifier: behaviourIdentifier)
+        } else {
+            return view
+        }
     }
     
     /// Returns true if the transition is presenting rather than dismissing. 
@@ -50,7 +55,7 @@ class TransitionBehaviour: NSObject {
 /// like ```UITableView```s or ```UICollectionView```s, views loaded from xibs, embedded controllers etc. 
 ///
 /// You can use this to provide a UICollectionViewCell's subview to a behaviour for example.
-@objc protocol TransitionBehaviourDelegate {
+@objc protocol TransitionBehaviourViewProvider {
     
     func viewForBehaviour(identifier identifier: String) -> UIView?
     
