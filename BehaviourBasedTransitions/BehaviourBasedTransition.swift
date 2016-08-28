@@ -23,13 +23,7 @@ class BehaviourBasedTransition: NSObject, UIViewControllerAnimatedTransitioning,
             toController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
             else { return }
         
-        // The toController's subviews are laid out incorrectly until we call layoutIfNeeded(). But, this can cause
-        // a flicker, when UIKit lays out the view before a sourceBehaviour has a chance to hide it. So, until I find
-        // a better solution, we hide it here and show it after the behaviours are all set up
-        if isPresenting {
-            toController.view.hidden = true
-            toController.view.layoutIfNeeded()
-        }
+        layoutDestinationViewControllerWithoutFlicker(toController)
         
         if isPresenting {
             container.addSubview(toController.view)
@@ -50,13 +44,10 @@ class BehaviourBasedTransition: NSObject, UIViewControllerAnimatedTransitioning,
         }
         
         destBehaviours.forEach { behaviour in
-            behaviour.setup(presenting: self.isPresenting, container: container)
+            behaviour.setup(presenting: self.isPresenting, container: container, destinationBehaviour: nil)
         }
         
-        // See above
-        if isPresenting {
-            toController.view.hidden = false
-        }
+        unhideDestinationViewControllerAfterBehaviourSetup(toController)
         
         UIView.animateWithDuration(
             transitionDuration(transitionContext),
@@ -92,6 +83,22 @@ class BehaviourBasedTransition: NSObject, UIViewControllerAnimatedTransitioning,
 }
 
 extension BehaviourBasedTransition {
+    
+    // The toController's subviews are laid out incorrectly when presenting until we call layoutIfNeeded(). But,
+    // this can cause a flicker, when UIKit lays out the view before a sourceBehaviour has a chance to hide it. So,
+    // until I find a better solution, we hide it before laying out, then show it after the behaviours are set up
+    func layoutDestinationViewControllerWithoutFlicker(toController: UIViewController) {
+        if isPresenting {
+            toController.view.hidden = true
+            toController.view.layoutIfNeeded()
+        }
+    }
+    
+    func unhideDestinationViewControllerAfterBehaviourSetup(toController: UIViewController) {
+        if isPresenting {
+            toController.view.hidden = false
+        }
+    }
     
     func behavioursFromController(controller: UIViewController) -> [TransitionBehaviour] {
         if let transitionable = controller as? BehaviourTransitionable {

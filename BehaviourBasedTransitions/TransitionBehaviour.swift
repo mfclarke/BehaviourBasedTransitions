@@ -19,7 +19,7 @@ class TransitionBehaviour: NSObject {
     
     var isPresenting = false
     
-    func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
+    func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour?) {
         isPresenting = presenting
     }
     
