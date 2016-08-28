@@ -12,12 +12,11 @@ import BehaviourBasedTransitions
 class HomeViewController: UIViewController, BehaviourTransitionable {
     
     @IBOutlet var transitions: [BehaviourBasedTransition] = []
-    
     @IBOutlet var transitionBehaviourCollections: [TransitionBehaviourCollection] = []
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
-        segue.destinationViewController.transitioningDelegate = transitions.filter { $0.segueIdentifier == segue.identifier }.first
+        prepareSegueForTransition(segue)
     }
     
     @IBAction func unwindToViewController (sender: UIStoryboardSegue) {}

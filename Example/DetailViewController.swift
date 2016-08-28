@@ -11,6 +11,7 @@ import BehaviourBasedTransitions
 
 class DetailViewController: UIViewController, BehaviourTransitionable {
     
+    @IBOutlet var transitions: [BehaviourBasedTransition] = []
     @IBOutlet var transitionBehaviourCollections: [TransitionBehaviourCollection] = []
     
 }
