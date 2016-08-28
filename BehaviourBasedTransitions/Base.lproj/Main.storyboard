@@ -361,6 +361,10 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Igj-rI-g09">
                                 <rect key="frame" x="150" y="150" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="fXZ-bg-cYg"/>
+                                    <constraint firstAttribute="height" constant="300" id="mcU-ha-MPI"/>
+                                </constraints>
                                 <state key="normal" image="Gummi Bear"/>
                                 <connections>
                                     <segue destination="WjE-Ec-zK2" kind="unwind" unwindAction="unwindToViewController:" id="IXz-db-1NI"/>

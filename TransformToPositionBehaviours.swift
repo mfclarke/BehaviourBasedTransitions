@@ -10,35 +10,39 @@ import UIKit
 
 class TransformToPositionSourceBehaviour: TransitionBehaviour {
     
-    var destinationFrame: CGRect?
+    var sourceFrame: CGRect!
+    var destinationFrame: CGRect!
+    
     @IBInspectable var shouldBeOnTop: Bool = false
     
     var snapshotView: UIView!
     
     override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
         super.setup(presenting: presenting, container: container, destinationBehaviour: destinationBehaviour)
-        destinationFrame = destinationBehaviour?.viewForTransition?.frame
+        guard let sourceView = viewForTransition, destinationView = destinationBehaviour?.viewForTransition else { return }
         
-        guard let viewForTransition = viewForTransition, destinationFrame = destinationFrame else { return }
+        // Why do we need to do this?
+        destinationView.superview?.layoutSubviews()
         
-        snapshotView = viewForTransition.snapshotViewAfterScreenUpdates(true)
-        snapshotView.frame = viewForTransition.frame
+        sourceFrame = getContainerFrame(container, view: sourceView)
+        destinationFrame = getContainerFrame(container, view: destinationView)
+        
+        snapshotView = sourceView.snapshotViewAfterScreenUpdates(true)
+        snapshotView.frame = sourceFrame
         if shouldBeOnTop {
             container.addSubview(snapshotView)
         } else {
-            viewForTransition.addSubview(snapshotView)
+            viewForTransition!.addSubview(snapshotView)
         }
         
-        viewForTransition.hidden = true
+        sourceView.hidden = true
         
-        let destTransform = destinationTransform(viewForTransition.frame, destinationFrame: destinationFrame)
+        let destTransform = destinationTransform(sourceFrame, destinationFrame: destinationFrame)
         snapshotView.transform = isPresenting ? CGAffineTransformIdentity : destTransform
     }
     
     override func animate() {
-        guard let destinationFrame = destinationFrame else { return }
-        
-        let destTransform = destinationTransform(snapshotView.frame, destinationFrame: destinationFrame)
+        let destTransform = destinationTransform(sourceFrame, destinationFrame: destinationFrame)
         snapshotView.transform = isPresenting ? destTransform : CGAffineTransformIdentity
     }
     
@@ -48,18 +52,24 @@ class TransformToPositionSourceBehaviour: TransitionBehaviour {
     }
     
     func destinationTransform(sourceFrame: CGRect, destinationFrame: CGRect) -> CGAffineTransform {
-        let posDelta = CGPoint(
-            x: sourceFrame.origin.x - destinationFrame.origin.x,
-            y: sourceFrame.origin.y - destinationFrame.origin.y)
+        let offset = CGPoint(
+            x: destinationFrame.midX - sourceFrame.midX,
+            y: destinationFrame.midY - sourceFrame.midY)
         
         let scale = CGPoint(
             x: destinationFrame.size.width / sourceFrame.size.width,
             y: destinationFrame.size.height / sourceFrame.size.height)
         
-        let translateTransform = CGAffineTransformMakeTranslation(posDelta.x, posDelta.y)
-        let sizeTransform = CGAffineTransformMakeScale(scale.x, scale.y)
+        return CGAffineTransformMake(scale.x, 0, 0, scale.y, offset.x, offset.y)
+    }
+    
+    func getContainerFrame(container: UIView, view: UIView) -> CGRect {
+        if let frameInContainer = view.superview?.convertRect(view.frame, toView: container) {
+            return frameInContainer
+        }
         
-        return CGAffineTransformConcat(translateTransform, sizeTransform)
+        assertionFailure("Expected view to have a superview to calculate it's coordinates with respect to the container")
+        return CGRect.zero
     }
     
 }
