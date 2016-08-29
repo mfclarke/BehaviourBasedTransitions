@@ -70,10 +70,21 @@ public class TransitionBehaviour: NSObject {
     
     /// Adds a key frame with appropriate handling of start and duration times
     func addKeyFrame(animations: () -> ()) {
-        let startTime = reverseKeyFrameTimingOnDismissal && !isPresenting ?
-            (1 - relativeStartTime - relativeDuration) :
-            relativeStartTime
-        UIView.addKeyframeWithRelativeStartTime(startTime, relativeDuration: relativeDuration) {
+        let clampedStartTime = min(relativeStartTime, 1)
+        let clampedDuration = min(relativeDuration, 1 - clampedStartTime)
+        let finishTime = clampedStartTime + clampedDuration
+        
+        let startTime: NSTimeInterval
+        let duration: NSTimeInterval
+        if !isPresenting && reverseKeyFrameTimingOnDismissal {
+            startTime = 1 - finishTime
+            duration = min(clampedDuration, 1 - startTime)
+        } else {
+            startTime = clampedStartTime
+            duration = clampedDuration
+        }
+        
+        UIView.addKeyframeWithRelativeStartTime(startTime, relativeDuration: duration) {
             animations()
         }
     }

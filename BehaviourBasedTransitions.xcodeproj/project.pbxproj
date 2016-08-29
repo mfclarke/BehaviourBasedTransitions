@@ -15,8 +15,8 @@
 		F1338D7B1D73295A00D5DC34 /* BehaviourTransitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18AF0AD1D718D77002C624E /* BehaviourTransitionable.swift */; };
 		F1338D7C1D73295A00D5DC34 /* TransitionBehaviourCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AB56A41D73155400BCAB21 /* TransitionBehaviourCollection.swift */; };
 		F1338D7D1D73296000D5DC34 /* TransitionBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18AF0A71D718D67002C624E /* TransitionBehaviour.swift */; };
-		F1338D7E1D73296000D5DC34 /* FadeTransitionBehaviours.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18AF0A61D718D67002C624E /* FadeTransitionBehaviours.swift */; };
-		F1338D7F1D73296000D5DC34 /* TranslateTransitionBehaviours.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18AF0A81D718D67002C624E /* TranslateTransitionBehaviours.swift */; };
+		F1338D7E1D73296000D5DC34 /* FadeTransitionBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18AF0A61D718D67002C624E /* FadeTransitionBehaviour.swift */; };
+		F1338D7F1D73296000D5DC34 /* TranslateTransitionBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18AF0A81D718D67002C624E /* TranslateTransitionBehaviour.swift */; };
 		F1338D801D73296000D5DC34 /* TransformToPositionBehaviours.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AB56A61D73155E00BCAB21 /* TransformToPositionBehaviours.swift */; };
 		F1338D8D1D732C5300D5DC34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1338D841D732C5300D5DC34 /* AppDelegate.swift */; };
 		F1338D8E1D732C5300D5DC34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1338D851D732C5300D5DC34 /* Assets.xcassets */; };
@@ -76,9 +76,9 @@
 		F1338D8B1D732C5300D5DC34 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F1338D8C1D732C5300D5DC34 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F13E86611D70AE0C0003C8EC /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F18AF0A61D718D67002C624E /* FadeTransitionBehaviours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FadeTransitionBehaviours.swift; path = BehaviourBasedTransitions/FadeTransitionBehaviours.swift; sourceTree = SOURCE_ROOT; };
+		F18AF0A61D718D67002C624E /* FadeTransitionBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FadeTransitionBehaviour.swift; path = BehaviourBasedTransitions/FadeTransitionBehaviour.swift; sourceTree = SOURCE_ROOT; };
 		F18AF0A71D718D67002C624E /* TransitionBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransitionBehaviour.swift; path = BehaviourBasedTransitions/TransitionBehaviour.swift; sourceTree = SOURCE_ROOT; };
-		F18AF0A81D718D67002C624E /* TranslateTransitionBehaviours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TranslateTransitionBehaviours.swift; path = BehaviourBasedTransitions/TranslateTransitionBehaviours.swift; sourceTree = SOURCE_ROOT; };
+		F18AF0A81D718D67002C624E /* TranslateTransitionBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TranslateTransitionBehaviour.swift; path = BehaviourBasedTransitions/TranslateTransitionBehaviour.swift; sourceTree = SOURCE_ROOT; };
 		F18AF0AC1D718D77002C624E /* BehaviourBasedTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BehaviourBasedTransition.swift; path = BehaviourBasedTransitions/BehaviourBasedTransition.swift; sourceTree = SOURCE_ROOT; };
 		F18AF0AD1D718D77002C624E /* BehaviourTransitionable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BehaviourTransitionable.swift; path = BehaviourBasedTransitions/BehaviourTransitionable.swift; sourceTree = SOURCE_ROOT; };
 		F18AF0B91D718DC7002C624E /* BehaviourBasedTransitionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BehaviourBasedTransitionsTests.swift; path = BehaviourBasedTransitionsTests/BehaviourBasedTransitionsTests.swift; sourceTree = SOURCE_ROOT; };
@@ -176,8 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				F18AF0A71D718D67002C624E /* TransitionBehaviour.swift */,
-				F18AF0A61D718D67002C624E /* FadeTransitionBehaviours.swift */,
-				F18AF0A81D718D67002C624E /* TranslateTransitionBehaviours.swift */,
+				F18AF0A61D718D67002C624E /* FadeTransitionBehaviour.swift */,
+				F18AF0A81D718D67002C624E /* TranslateTransitionBehaviour.swift */,
 				F1AB56A61D73155E00BCAB21 /* TransformToPositionBehaviours.swift */,
 			);
 			name = "Transition Behaviours";
@@ -331,9 +331,9 @@
 				F1338D7D1D73296000D5DC34 /* TransitionBehaviour.swift in Sources */,
 				F1338D7C1D73295A00D5DC34 /* TransitionBehaviourCollection.swift in Sources */,
 				F1338D7B1D73295A00D5DC34 /* BehaviourTransitionable.swift in Sources */,
-				F1338D7E1D73296000D5DC34 /* FadeTransitionBehaviours.swift in Sources */,
+				F1338D7E1D73296000D5DC34 /* FadeTransitionBehaviour.swift in Sources */,
 				F1338D7A1D73295A00D5DC34 /* BehaviourBasedTransition.swift in Sources */,
-				F1338D7F1D73296000D5DC34 /* TranslateTransitionBehaviours.swift in Sources */,
+				F1338D7F1D73296000D5DC34 /* TranslateTransitionBehaviour.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

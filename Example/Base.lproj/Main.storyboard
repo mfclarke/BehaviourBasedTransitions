@@ -68,10 +68,13 @@
                 <customObject id="Wpd-oW-J8M" userLabel="Transition1" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                            <real key="value" value="0.5"/>
+                            <real key="value" value="1"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition1"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="segueIdentifier" value="Detail1"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="animationCurve">
+                            <integer key="value" value="0"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </customObject>
                 <customObject id="wEz-Ef-V1l" userLabel="Transition1 Behaviour Collection" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions">
@@ -84,10 +87,17 @@
                         <outletCollection property="behaviours" destination="FNB-BQ-h1P" collectionClass="NSMutableArray" id="YRi-bt-55o"/>
                     </connections>
                 </customObject>
-                <customObject id="FNB-BQ-h1P" userLabel="Emoji 1 Translation" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions">
+                <customObject id="FNB-BQ-h1P" userLabel="Emoji 1 Translation" customClass="TranslateTransitionBehaviour" customModule="BehaviourBasedTransitions">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="point" keyPath="destination">
-                            <point key="value" x="0.0" y="-0.5"/>
+                            <point key="value" x="0.0" y="-0.29999999999999999"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="reverseKeyFrameTimingOnDismissal" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="relativeDuration">
+                            <real key="value" value="0.40000000000000002"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="relativeStartTime">
+                            <real key="value" value="0.0"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
@@ -95,10 +105,17 @@
                         <outlet property="view" destination="0yd-Jm-ZXF" id="Vd3-v4-6jJ"/>
                     </connections>
                 </customObject>
-                <customObject id="JmP-dB-u2R" userLabel="Gummi Translation" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions">
+                <customObject id="JmP-dB-u2R" userLabel="Gummi Translation" customClass="TranslateTransitionBehaviour" customModule="BehaviourBasedTransitions">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="point" keyPath="destination">
-                            <point key="value" x="-0.5" y="0.0"/>
+                            <point key="value" x="-0.59999999999999998" y="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="relativeStartTime">
+                            <real key="value" value="0.20000000000000001"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="reverseKeyFrameTimingOnDismissal" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="relativeDuration">
+                            <real key="value" value="0.40000000000000002"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
@@ -106,10 +123,17 @@
                         <outlet property="view" destination="TMS-aO-A8A" id="Iww-PD-6YX"/>
                     </connections>
                 </customObject>
-                <customObject id="AjN-lE-eXv" userLabel="Emoji 2 Translation" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions">
+                <customObject id="AjN-lE-eXv" userLabel="Emoji 2 Translation" customClass="TranslateTransitionBehaviour" customModule="BehaviourBasedTransitions">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="point" keyPath="destination">
-                            <point key="value" x="0.0" y="0.5"/>
+                            <point key="value" x="0.0" y="0.29999999999999999"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="relativeStartTime">
+                            <real key="value" value="0.40000000000000002"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="reverseKeyFrameTimingOnDismissal" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="relativeDuration">
+                            <real key="value" value="0.40000000000000002"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
@@ -136,7 +160,7 @@
                         <outletCollection property="behaviours" destination="HGd-Y6-clq" collectionClass="NSMutableArray" id="a1z-cF-tNv"/>
                     </connections>
                 </customObject>
-                <customObject id="QwC-mb-p8w" userLabel="Emoji 1 Translation" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions">
+                <customObject id="QwC-mb-p8w" userLabel="Emoji 1 Translation" customClass="TranslateTransitionBehaviour" customModule="BehaviourBasedTransitions">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="point" keyPath="destination">
                             <point key="value" x="0.0" y="-0.5"/>
@@ -156,7 +180,7 @@
                         <outlet property="view" destination="TMS-aO-A8A" id="Y2M-IS-iEs"/>
                     </connections>
                 </customObject>
-                <customObject id="HGd-Y6-clq" userLabel="Emoji 2 Translation" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions">
+                <customObject id="HGd-Y6-clq" userLabel="Emoji 2 Translation" customClass="TranslateTransitionBehaviour" customModule="BehaviourBasedTransitions">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="point" keyPath="destination">
                             <point key="value" x="0.0" y="0.5"/>
@@ -184,7 +208,7 @@
                         <outletCollection property="behaviours" destination="fi7-su-SIE" collectionClass="NSMutableArray" id="bpY-vi-7BT"/>
                     </connections>
                 </customObject>
-                <customObject id="fi7-su-SIE" customClass="TranslateToTransitionBehaviour" customModule="BehaviourBasedTransitions">
+                <customObject id="fi7-su-SIE" customClass="TranslateTransitionBehaviour" customModule="BehaviourBasedTransitions">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="point" keyPath="destination">
                             <point key="value" x="0.0" y="-1"/>
@@ -242,10 +266,17 @@
                         <outletCollection property="behaviours" destination="K03-Kn-QvJ" collectionClass="NSMutableArray" id="yrb-xO-i2n"/>
                     </connections>
                 </customObject>
-                <customObject id="K03-Kn-QvJ" userLabel="Button Translation" customClass="TranslateFromTransitionBehaviour" customModule="BehaviourBasedTransitions">
+                <customObject id="K03-Kn-QvJ" userLabel="Button Translation" customClass="TranslateTransitionBehaviour" customModule="BehaviourBasedTransitions">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="point" keyPath="origin">
                             <point key="value" x="0.59999999999999998" y="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="relativeStartTime">
+                            <real key="value" value="0.59999999999999998"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="reverseKeyFrameTimingOnDismissal" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="relativeDuration">
+                            <real key="value" value="0.40000000000000002"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
@@ -253,7 +284,15 @@
                         <outlet property="view" destination="v3L-jU-NaJ" id="fEV-xB-yIW"/>
                     </connections>
                 </customObject>
-                <customObject id="es7-Zh-khf" userLabel="Whole View Fade In Behaviour" customClass="FadeInTransitionBehaviour" customModule="BehaviourBasedTransitions">
+                <customObject id="es7-Zh-khf" userLabel="Whole View Fade In Behaviour" customClass="FadeTransitionBehaviour" customModule="BehaviourBasedTransitions">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fromAlpha">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="toAlpha">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="view" destination="Geh-NA-aAN" id="Njm-td-7to"/>
                     </connections>
@@ -318,7 +357,15 @@
                         <outletCollection property="behaviours" destination="5w7-tY-ysC" collectionClass="NSMutableArray" id="Da8-Pc-DIx"/>
                     </connections>
                 </customObject>
-                <customObject id="Mcl-sb-mxN" userLabel="Whole View Fade In Behaviour" customClass="FadeInTransitionBehaviour" customModule="BehaviourBasedTransitions">
+                <customObject id="Mcl-sb-mxN" userLabel="Whole View Fade In Behaviour" customClass="FadeTransitionBehaviour" customModule="BehaviourBasedTransitions">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fromAlpha">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="toAlpha">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="view" destination="rQx-0i-2he" id="juo-CQ-ITE"/>
                     </connections>
@@ -377,7 +424,7 @@
                         <outletCollection property="behaviours" destination="LIR-s0-JM8" collectionClass="NSMutableArray" id="AEc-Fq-7CC"/>
                     </connections>
                 </customObject>
-                <customObject id="LIR-s0-JM8" customClass="TranslateFromTransitionBehaviour" customModule="BehaviourBasedTransitions">
+                <customObject id="LIR-s0-JM8" customClass="TranslateTransitionBehaviour" customModule="BehaviourBasedTransitions">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="point" keyPath="origin">
                             <point key="value" x="0.0" y="1"/>
