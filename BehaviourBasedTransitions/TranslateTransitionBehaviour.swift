@@ -28,7 +28,7 @@ public class TranslateTransitionBehaviour: TransitionBehaviour {
     @IBInspectable public var destination: CGPoint = CGPointZero
     
     /// The superview used to calculate the relative origin and destination positions. This doesn't have to be a direct 
-    /// parent of the view, but normally would be.
+    /// ancestor of the view, but normally would be.
     @IBOutlet public var superview: UIView!
     
 
