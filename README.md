@@ -1,4 +1,4 @@
-# Behaviour Based UIViewController Transitions
+# 🚅 The Transition Express
 
 An experimental approach to building UIViewControllerAnimatedTransitioning transitions out of small configurable behaviour modules directly in the storyboard. A behaviour applies a single animation to a single ```UIView```, so in this way you can compose a complex transition out of small building blocks, all in the relative comfort of IB, without any code. 
 
