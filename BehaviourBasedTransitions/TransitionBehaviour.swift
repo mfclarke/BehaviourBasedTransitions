@@ -92,17 +92,15 @@ public class TransitionBehaviour: NSObject {
         self.transitionDuration = transitionDuration
     }
     
-    /// Override this func to add animation key frames. If your key frames don't need any custom start or duration
-    /// handling, you can use the built in start/duration handling by adding the frames with the ```addKeyFrame``` func.
-    ///
-    /// Otherwise, you'll have to manage this yourself to maintain the expected behaviour of the ```relativeStartTime```,
-    /// ```relativeDuration``` and ```reverseKeyFrameTimingOnDismissal``` settings
+    /// Override this func to add animations, using your own ```UIView.animate``` calls or using the provided
+    /// ```addAnimation``` func which gives you built in handling of start time and duration
     func addAnimations() {}
     
     /// Override this func to clean up or reset your views at the end of the transition animation
     func complete() {}
     
-    /// Adds a key frame with appropriate handling of start and duration times
+    /// Adds an animation with appropriate handling of start and duration times. The times passed in here will be relative
+    /// to the time of the ```TransitionBehaviour```, which in turn is relative to the duration of the whole transition
     func addAnimation(animRelativeStartTime: NSTimeInterval = 0, animRelativeDuration: NSTimeInterval = 1, animation: () -> ()) {
         // Setup single animation clamped values (0..1)
         let animClampedStartTime = min(animRelativeStartTime, 1)
