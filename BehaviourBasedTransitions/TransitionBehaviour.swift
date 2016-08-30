@@ -37,7 +37,40 @@ public class TransitionBehaviour: NSObject {
     /// 
     /// So if a behaviour started at 0.25 and ended at 0.5 (duration 0.25), then on dismissal it would start at 0.5
     /// and end at 0.75
-    @IBInspectable public var reverseKeyFrameTimingOnDismissal: Bool = false
+    @IBInspectable public var reverseTimingOnDismissal: Bool = false
+    
+    /// Easing curve for the animation. Maps to the curves in UIViewAnimationOptions.
+    ///
+    /// EaseInOut = 0
+    /// EaseIn = 1
+    /// EaseOut = 2
+    /// Linear = 3
+    @IBInspectable public var animationCurve: Int = 0
+    
+    
+    // MARK: Enums
+    
+    enum AnimationCurve: Int {
+        case EaseInOut = 0
+        case EaseIn = 1
+        case EaseOut = 2
+        case Linear = 3
+        
+        func toUIViewAnimationOption() -> UIViewAnimationOptions {
+            switch self {
+            case EaseInOut: return .CurveEaseInOut
+            case EaseIn: return .CurveEaseIn
+            case EaseOut: return .CurveEaseOut
+            case Linear: return .CurveLinear
+            }
+        }
+    }
+    
+    
+    // MARK: Internal
+    
+    /// Set by setup function for calculation of relative start and duration times
+    var transitionDuration: NSTimeInterval = 0
     
     /// Returns the view to use for the transition. If there's a viewProvider connected, the viewProvider must provide the view.
     /// If no delegate connected, it will use the view ```IBOutlet```.
@@ -54,8 +87,9 @@ public class TransitionBehaviour: NSObject {
     var isPresenting = false
     
     /// Extend this func to set up your viewForTransition for animation to start
-    func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour?) {
-        isPresenting = presenting
+    func setup(presenting presenting: Bool, transitionDuration: NSTimeInterval, container: UIView, destinationBehaviour: TransitionBehaviour?) {
+        self.isPresenting = presenting
+        self.transitionDuration = transitionDuration
     }
     
     /// Override this func to add animation key frames. If your key frames don't need any custom start or duration
@@ -63,30 +97,40 @@ public class TransitionBehaviour: NSObject {
     ///
     /// Otherwise, you'll have to manage this yourself to maintain the expected behaviour of the ```relativeStartTime```,
     /// ```relativeDuration``` and ```reverseKeyFrameTimingOnDismissal``` settings
-    func addAnimationKeyFrames() {}
+    func addAnimations() {}
     
     /// Override this func to clean up or reset your views at the end of the transition animation
     func complete() {}
     
     /// Adds a key frame with appropriate handling of start and duration times
-    func addKeyFrame(animations: () -> ()) {
+    func addAnimation(animRelativeStartTime: NSTimeInterval = 0, animRelativeDuration: NSTimeInterval = 1, animation: () -> ()) {
+        // Setup single animation clamped values (0..1)
+        let animClampedStartTime = min(animRelativeStartTime, 1)
+        let animClampedDuration = min(animRelativeDuration, 1 - animClampedStartTime)
+        let animFinishTime = animClampedStartTime + animClampedDuration
+        
+        // Setup behaviour clamped values (0..1)
         let clampedStartTime = min(relativeStartTime, 1)
         let clampedDuration = min(relativeDuration, 1 - clampedStartTime)
         let finishTime = clampedStartTime + clampedDuration
         
-        let startTime: NSTimeInterval
-        let duration: NSTimeInterval
-        if !isPresenting && reverseKeyFrameTimingOnDismissal {
-            startTime = 1 - finishTime
-            duration = min(clampedDuration, 1 - startTime)
-        } else {
-            startTime = clampedStartTime
-            duration = clampedDuration
-        }
+        let realStartTime = clampedStartTime + (animClampedStartTime * clampedDuration)
+        let realDuration = min(clampedDuration * animClampedDuration, clampedDuration)
+        let realFinishTime = finishTime * animFinishTime
+        let reversedStartTime = 1 - realFinishTime
+        let reversedDuration = min(realDuration, 1 - realStartTime)
         
-        UIView.addKeyframeWithRelativeStartTime(startTime, relativeDuration: duration) {
-            animations()
-        }
+        let durationForAnim = (!isPresenting && reverseTimingOnDismissal) ? reversedDuration : realDuration
+        let delayForAnim = (!isPresenting && reverseTimingOnDismissal) ? reversedStartTime : realStartTime
+        
+        let animCurve = AnimationCurve(rawValue: animationCurve) ?? .EaseInOut
+        
+        UIView.animateWithDuration(
+            durationForAnim * transitionDuration,
+            delay: delayForAnim * transitionDuration,
+            options: [animCurve.toUIViewAnimationOption()],
+            animations: animation,
+            completion: nil)
     }
     
 }

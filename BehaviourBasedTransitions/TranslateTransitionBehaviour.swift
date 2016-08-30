@@ -32,14 +32,14 @@ public class TranslateTransitionBehaviour: TransitionBehaviour {
     @IBOutlet public var superview: UIView!
     
 
-    override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour?) {
-        super.setup(presenting: presenting, container: container, destinationBehaviour: destinationBehaviour)
+    override func setup(presenting presenting: Bool, transitionDuration: NSTimeInterval, container: UIView, destinationBehaviour: TransitionBehaviour?) {
+        super.setup(presenting: presenting, transitionDuration: transitionDuration, container: container, destinationBehaviour: destinationBehaviour)
         
         viewForTransition?.transform = isPresenting ? originTransform() : destinationTransform()
     }
     
-    override func addAnimationKeyFrames() {
-        addKeyFrame {
+    override func addAnimations() {
+        addAnimation {
             self.viewForTransition?.transform = self.isPresenting ? self.destinationTransform() : self.originTransform()
         }
     }

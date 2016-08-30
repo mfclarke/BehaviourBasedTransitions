@@ -17,6 +17,7 @@ import UIKit
 /// ```TransitionBehaviour``` for the transition via the ```UIViewController```s ```TransitionBehaviourCollection```s.
 public class BehaviourBasedTransition: NSObject {
     
+    
     // MARK: IBInspectable vars
     
     /// Unique identifier for the transition
@@ -27,33 +28,6 @@ public class BehaviourBasedTransition: NSObject {
     
     /// Duration of the transition
     @IBInspectable public var duration: Double = 0.5
-    
-    /// Easing curve for the transition. Maps to the curves in UIViewAnimationOptions.
-    ///
-    /// EaseInOut = 0
-    /// EaseIn = 1
-    /// EaseOut = 2
-    /// Linear = 3
-    @IBInspectable public var animationCurve: Int = 0
-    
-    
-    // MARK: Enums
-    
-    enum AnimationCurve: Int {
-        case EaseInOut = 0
-        case EaseIn = 1
-        case EaseOut = 2
-        case Linear = 3
-        
-        func toUIViewKeyframeAnimationOptions() -> UIViewKeyframeAnimationOptions {
-            switch self {
-            case EaseInOut: return UIViewKeyframeAnimationOptions(rawValue: UIViewAnimationOptions.CurveEaseInOut.rawValue)
-            case EaseIn: return UIViewKeyframeAnimationOptions(rawValue: UIViewAnimationOptions.CurveEaseIn.rawValue)
-            case EaseOut: return UIViewKeyframeAnimationOptions(rawValue: UIViewAnimationOptions.CurveEaseOut.rawValue)
-            case Linear: return UIViewKeyframeAnimationOptions(rawValue: UIViewAnimationOptions.CurveLinear.rawValue)
-            }
-        }
-    }
     
     
     // MARK: Private
@@ -78,21 +52,15 @@ extension BehaviourBasedTransition: UIViewControllerAnimatedTransitioning, UIVie
         }
         
         let behaviours = setupBehaviours(fromController, toController: toController, container: container)
-        let animCurve = (AnimationCurve(rawValue: animationCurve) ?? .EaseInOut).toUIViewKeyframeAnimationOptions()
         
-        UIView.animateKeyframesWithDuration(
-            transitionDuration(transitionContext),
-            delay: 0,
-            options: [animCurve],
-            animations: { 
-                behaviours.forEach { $0.addAnimationKeyFrames() }
-            },
-            completion: { completed in
-                behaviours.forEach { $0.complete() }
-                
-                transitionContext.completeTransition(true)
-            }
-        )
+        behaviours.forEach { $0.addAnimations() }
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(duration * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            behaviours.forEach { $0.complete() }
+            
+            transitionContext.completeTransition(true)
+        }
     }
     
     public func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
@@ -140,13 +108,14 @@ private extension BehaviourBasedTransition {
         sourceBehaviours.forEach { behaviour in
             behaviour.setup(
                 presenting: self.isPresenting,
+                transitionDuration: duration,
                 container: container,
                 destinationBehaviour: destBehaviours.filter { behaviour.behaviourIdentifier == $0.behaviourIdentifier}.first
             )
         }
         
         destBehaviours.forEach { behaviour in
-            behaviour.setup(presenting: self.isPresenting, container: container, destinationBehaviour: nil)
+            behaviour.setup(presenting: self.isPresenting, transitionDuration: duration, container: container, destinationBehaviour: nil)
         }
         
         if isPresenting {

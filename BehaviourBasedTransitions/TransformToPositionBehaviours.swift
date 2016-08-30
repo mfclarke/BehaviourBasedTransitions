@@ -24,8 +24,8 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
     
     var snapshotView: UIView!
     
-    override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
-        super.setup(presenting: presenting, container: container, destinationBehaviour: destinationBehaviour)
+    override func setup(presenting presenting: Bool, transitionDuration: NSTimeInterval, container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
+        super.setup(presenting: presenting, transitionDuration: transitionDuration, container: container, destinationBehaviour: destinationBehaviour)
         guard let sourceView = viewForTransition, destinationView = destinationBehaviour?.viewForTransition else { return }
         
         sourceFrame = getContainerFrame(container, view: sourceView)
@@ -45,8 +45,10 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
         snapshotView.transform = isPresenting ? CGAffineTransformIdentity : destTransform
     }
     
-    override func addAnimationKeyFrames() {
-        addKeyFrame(applyAnimation)
+    override func addAnimations() {
+        addAnimation {
+            self.applyAnimation()
+        }
     }
     
     func applyAnimation() {
@@ -92,8 +94,8 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
 /// ```TransformToPositionSourceBehaviour``` with the same behaviourIdentifier
 public class TransformToPositionDestinationBehaviour: TransitionBehaviour {
     
-    override func setup(presenting presenting: Bool, container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
-        super.setup(presenting: presenting, container: container, destinationBehaviour: destinationBehaviour)
+    override func setup(presenting presenting: Bool, transitionDuration: NSTimeInterval, container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
+        super.setup(presenting: presenting, transitionDuration: transitionDuration, container: container, destinationBehaviour: destinationBehaviour)
         viewForTransition?.hidden = true
     }
     
