@@ -101,34 +101,37 @@ public class TransitionBehaviour: NSObject {
     
     /// Adds an animation with appropriate handling of start and duration times. The times passed in here will be relative
     /// to the time of the ```TransitionBehaviour```, which in turn is relative to the duration of the whole transition
-    func addAnimation(animRelativeStartTime: NSTimeInterval = 0, animRelativeDuration: NSTimeInterval = 1, animation: () -> ()) {
-        // Setup single animation clamped values (0..1)
-        let animClampedStartTime = min(animRelativeStartTime, 1)
-        let animClampedDuration = min(animRelativeDuration, 1 - animClampedStartTime)
-        let animFinishTime = animClampedStartTime + animClampedDuration
+    func addAnimation(startTime: NSTimeInterval = 0, duration: NSTimeInterval = 1, animation: () -> ()) {
+        let (animStartTime, animDuration, animFinishTime) = clampedTimes(startTime, duration)
+        let (behaviourStartTime, behaviourDuration, behaviourFinishTime) = clampedTimes(relativeStartTime, relativeDuration)
         
-        // Setup behaviour clamped values (0..1)
-        let clampedStartTime = min(relativeStartTime, 1)
-        let clampedDuration = min(relativeDuration, 1 - clampedStartTime)
-        let finishTime = clampedStartTime + clampedDuration
+        let forwardStartTime = behaviourStartTime + (animStartTime * behaviourDuration)
+        let forwardDuration = min(behaviourDuration * animDuration, behaviourDuration)
+        let forwardFinishTime = behaviourFinishTime * animFinishTime
         
-        let realStartTime = clampedStartTime + (animClampedStartTime * clampedDuration)
-        let realDuration = min(clampedDuration * animClampedDuration, clampedDuration)
-        let realFinishTime = finishTime * animFinishTime
-        let reversedStartTime = 1 - realFinishTime
-        let reversedDuration = min(realDuration, 1 - realStartTime)
+        let reverseStartTime = 1 - forwardFinishTime
+        let reverseDuration = min(forwardDuration, 1 - forwardStartTime)
         
-        let durationForAnim = (!isPresenting && reverseTimingOnDismissal) ? reversedDuration : realDuration
-        let delayForAnim = (!isPresenting && reverseTimingOnDismissal) ? reversedStartTime : realStartTime
+        let isReverse = (!isPresenting && reverseTimingOnDismissal)
         
+        let durationForAnim = (isReverse ? reverseDuration : forwardDuration) * transitionDuration
+        let delayForAnim = (isReverse ? reverseStartTime : forwardStartTime) * transitionDuration
         let animCurve = AnimationCurve(rawValue: animationCurve) ?? .EaseInOut
         
         UIView.animateWithDuration(
-            durationForAnim * transitionDuration,
-            delay: delayForAnim * transitionDuration,
+            durationForAnim,
+            delay: delayForAnim,
             options: [animCurve.toUIViewAnimationOption()],
             animations: animation,
             completion: nil)
+    }
+    
+    private func clampedTimes(startTime: NSTimeInterval, _ duration: NSTimeInterval) -> (NSTimeInterval, NSTimeInterval, NSTimeInterval) {
+        let clampedStartTime = min(startTime, 1)
+        let clampedDuration = min(duration, 1 - clampedStartTime)
+        let finishTime = clampedStartTime + clampedDuration
+        
+        return (clampedStartTime, clampedDuration, finishTime)
     }
     
 }
