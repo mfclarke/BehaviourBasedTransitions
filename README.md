@@ -30,7 +30,7 @@ There is support for linking behaviours that are situated in different view cont
 To implement new ```TransitionBehaviour```s, simply subclass the ```TransitionBehaviour``` object and extend the 3 callback functions:
 
 * ```setup``` is used to prepare your view for animation (```.alpha = 0``` it before fading in for example)
-* ```addAnimationKeyFrames``` is used to implement the actual animation. Use the ```addKeyFrame``` function if want regular handling of start/duration ```IBInspectable``` settings for free. For more complex transitions where 1 key frame isn't enough, use the ```UIView.addKeyframeWithRelativeStartTime``` API.
+* ```addAnimations``` is used to implement the actual animation. Use the ```addAnimation``` function if want regular handling of the animation's start/duration, relative to the ```IBInspectable``` start/duration settings for free. Otherwise, feel free to do anything you want here that is animation related, as long as it's finished by the end of the ```transitionDuration```
 * ```complete``` is used for clean up, to reset your views to an expected state
 
 And don't forget to submit a PR with your fancy new behaviour ;)
