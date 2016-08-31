@@ -34,6 +34,9 @@ public class BehaviourBasedTransition: NSObject {
     
     private var isPresenting = false
     
+    private var behaviourAnimationsCompleted = 0
+    private var allBehaviours: [TransitionBehaviour] = []
+    
 }
 
 extension BehaviourBasedTransition: UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate {
@@ -51,16 +54,9 @@ extension BehaviourBasedTransition: UIViewControllerAnimatedTransitioning, UIVie
             container.insertSubview(toController.view, belowSubview: fromController.view)
         }
         
-        let behaviours = setupBehaviours(fromController, toController: toController, container: container)
+        let behaviours = setupBehaviours(fromController, toController: toController, container: container, context: transitionContext)
         
         behaviours.forEach { $0.addAnimations() }
-        
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(duration * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            behaviours.forEach { $0.complete() }
-            
-            transitionContext.completeTransition(true)
-        }
     }
     
     public func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
@@ -95,7 +91,7 @@ extension BehaviourBasedTransition: UIViewControllerAnimatedTransitioning, UIVie
 
 private extension BehaviourBasedTransition {
     
-    func setupBehaviours(fromController: UIViewController, toController: UIViewController, container: UIView) -> [TransitionBehaviour] {
+    func setupBehaviours(fromController: UIViewController, toController: UIViewController, container: UIView, context: UIViewControllerContextTransitioning) -> [TransitionBehaviour] {
         if isPresenting {
             toController.view.hidden = true
             toController.view.layoutIfNeeded()
@@ -103,19 +99,27 @@ private extension BehaviourBasedTransition {
         
         let sourceBehaviours = isPresenting ? behavioursFromController(fromController) : behavioursFromController(toController)
         let destBehaviours = isPresenting ? behavioursFromController(toController) : behavioursFromController(fromController)
-        let allBehaviours = sourceBehaviours + destBehaviours
+        allBehaviours = sourceBehaviours + destBehaviours
+        
+        behaviourAnimationsCompleted = 0
+        
+        allBehaviours.forEach { behaviour in
+            behaviour.isPresenting = self.isPresenting
+            behaviour.transitionDuration = self.duration
+            behaviour.animationCompleted = {
+                self.behaviourAnimationCompleted(context)
+            }
+        }
         
         sourceBehaviours.forEach { behaviour in
             behaviour.setup(
-                presenting: self.isPresenting,
-                transitionDuration: duration,
-                container: container,
+                container,
                 destinationBehaviour: destBehaviours.filter { behaviour.behaviourIdentifier == $0.behaviourIdentifier}.first
             )
         }
         
         destBehaviours.forEach { behaviour in
-            behaviour.setup(presenting: self.isPresenting, transitionDuration: duration, container: container, destinationBehaviour: nil)
+            behaviour.setup(container, destinationBehaviour: nil)
         }
         
         if isPresenting {
@@ -133,6 +137,15 @@ private extension BehaviourBasedTransition {
         }
         
         return []
+    }
+    
+    func behaviourAnimationCompleted(context: UIViewControllerContextTransitioning) {
+        behaviourAnimationsCompleted += 1
+        if behaviourAnimationsCompleted == allBehaviours.count {
+            allBehaviours.forEach { $0.complete() }
+            
+            context.completeTransition(true)
+        }
     }
     
 }

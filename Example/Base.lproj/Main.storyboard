@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--The Transition Express-->
+        <!--Behaviour Based Transitions-->
         <scene sceneID="Q8U-P3-Otu">
             <objects>
-                <tableViewController title="The Transition Express" id="7B1-wl-F0e" sceneMemberID="viewController">
+                <tableViewController id="7B1-wl-F0e" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ebq-gt-ZGr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,7 +85,7 @@
                             <outlet property="delegate" destination="7B1-wl-F0e" id="p9o-wq-ytJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="The Transition Express" id="Bqg-As-Y1e"/>
+                    <navigationItem key="navigationItem" title="Behaviour Based Transitions" id="Bqg-As-Y1e"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ny-p5-5mA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -94,7 +94,6 @@
         <!--Navigation Controller-->
         <scene sceneID="V0J-88-lbw">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rUf-bP-lVF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="TDN-dU-3No" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PRX-cX-Ul7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -104,6 +103,7 @@
                         <segue destination="7B1-wl-F0e" kind="relationship" relationship="rootViewController" id="CYg-x6-wbQ"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rUf-bP-lVF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="545" y="-470"/>
         </scene>
@@ -203,11 +203,11 @@
                         <userDefinedRuntimeAttribute type="point" keyPath="destination">
                             <point key="value" x="0.0" y="-0.29999999999999999"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="relativeDuration">
-                            <real key="value" value="0.59999999999999998"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="springDamping">
+                            <real key="value" value="0.69999999999999996"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="relativeStartTime">
-                            <real key="value" value="0.0"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="initialSpringVelocity">
+                            <real key="value" value="2"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
@@ -220,11 +220,11 @@
                         <userDefinedRuntimeAttribute type="point" keyPath="destination">
                             <point key="value" x="-0.59999999999999998" y="0.0"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="relativeStartTime">
-                            <real key="value" value="0.10000000000000001"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="springDamping">
+                            <real key="value" value="0.69999999999999996"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="relativeDuration">
-                            <real key="value" value="0.59999999999999998"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="initialSpringVelocity">
+                            <real key="value" value="2"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
@@ -237,11 +237,11 @@
                         <userDefinedRuntimeAttribute type="point" keyPath="destination">
                             <point key="value" x="0.0" y="0.29999999999999999"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="relativeStartTime">
-                            <real key="value" value="0.20000000000000001"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="springDamping">
+                            <real key="value" value="0.69999999999999996"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="relativeDuration">
-                            <real key="value" value="0.59999999999999998"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="initialSpringVelocity">
+                            <real key="value" value="2"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
@@ -301,13 +301,15 @@
                         <userDefinedRuntimeAttribute type="point" keyPath="origin">
                             <point key="value" x="0.59999999999999998" y="0.0"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="relativeStartTime">
-                            <real key="value" value="0.29999999999999999"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="springDamping">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="initialSpringVelocity">
+                            <real key="value" value="0.0"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="relativeDuration">
-                            <real key="value" value="0.59999999999999998"/>
+                            <real key="value" value="0.80000000000000004"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="reverseTimingOnDismissal" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="superview" destination="Geh-NA-aAN" id="eFR-BK-YXH"/>
@@ -474,13 +476,12 @@
                         <userDefinedRuntimeAttribute type="point" keyPath="origin">
                             <point key="value" x="0.0" y="1"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="relativeStartTime">
-                            <real key="value" value="0.0"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="springDamping">
+                            <real key="value" value="0.59999999999999998"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="relativeDuration">
-                            <real key="value" value="1"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="initialSpringVelocity">
+                            <real key="value" value="2"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="reverseTimingOnDismissal" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="superview" destination="7R0-Pn-46E" id="JUK-31-qMX"/>
@@ -568,7 +569,7 @@
                 <customObject id="JMr-Cg-9bm" userLabel="Transition" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                            <real key="value" value="0.5"/>
+                            <real key="value" value="0.40000000000000002"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="segueIdentifier" value="Transition"/>
                     </userDefinedRuntimeAttributes>
@@ -585,6 +586,9 @@
                         <userDefinedRuntimeAttribute type="point" keyPath="destination">
                             <point key="value" x="0.0" y="-0.5"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="relativeDuration">
+                            <real key="value" value="0.80000000000000004"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="superview" destination="a9r-Jd-3PU" id="V8V-kG-0BO"/>
@@ -595,6 +599,9 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="behaviourIdentifier" value="Transform1"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="shouldBeOnTop" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="relativeDuration">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="view" destination="K4C-G6-71s" id="tqV-HM-mmP"/>
@@ -604,6 +611,9 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="point" keyPath="destination">
                             <point key="value" x="0.0" y="0.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="relativeDuration">
+                            <real key="value" value="0.80000000000000004"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
@@ -632,7 +642,8 @@
                                     <constraint firstAttribute="width" constant="100" id="G3V-PH-NuM"/>
                                     <constraint firstAttribute="height" constant="100" id="SAD-G1-GwB"/>
                                 </constraints>
-                                <state key="normal" title="Go!"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="96"/>
+                                <state key="normal" title="👆"/>
                                 <connections>
                                     <segue destination="Iyk-W4-wWg" kind="show" identifier="Transition" id="gaG-G2-WTH"/>
                                 </connections>
@@ -662,7 +673,7 @@
                 <customObject id="GpR-9Q-UaT" userLabel="Transition" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                            <real key="value" value="0.5"/>
+                            <real key="value" value="0.80000000000000004"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="segueIdentifier" value="Transition"/>
                     </userDefinedRuntimeAttributes>
@@ -676,6 +687,12 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="point" keyPath="destination">
                             <point key="value" x="0.0" y="-1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="springDamping">
+                            <real key="value" value="0.59999999999999998"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="initialSpringVelocity">
+                            <real key="value" value="2"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>

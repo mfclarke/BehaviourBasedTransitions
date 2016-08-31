@@ -24,8 +24,8 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
     
     var snapshotView: UIView!
     
-    override func setup(presenting presenting: Bool, transitionDuration: NSTimeInterval, container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
-        super.setup(presenting: presenting, transitionDuration: transitionDuration, container: container, destinationBehaviour: destinationBehaviour)
+    override func setup(container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
+        super.setup(container, destinationBehaviour: destinationBehaviour)
         guard let sourceView = viewForTransition, destinationView = destinationBehaviour?.viewForTransition else { return }
         
         sourceFrame = getContainerFrame(container, view: sourceView)
@@ -94,9 +94,10 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
 /// ```TransformToPositionSourceBehaviour``` with the same behaviourIdentifier
 public class TransformToPositionDestinationBehaviour: TransitionBehaviour {
     
-    override func setup(presenting presenting: Bool, transitionDuration: NSTimeInterval, container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
-        super.setup(presenting: presenting, transitionDuration: transitionDuration, container: container, destinationBehaviour: destinationBehaviour)
+    override func setup(container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
+        super.setup(container, destinationBehaviour: destinationBehaviour)
         viewForTransition?.hidden = true
+        animationCompleted?()
     }
     
     override func complete() {

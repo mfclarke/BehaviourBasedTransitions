@@ -33,6 +33,12 @@ public class TransitionBehaviour: NSObject {
     /// Duration for the animation, relative to the overall transition duration (0...1)
     @IBInspectable public var relativeDuration: Double = 1
     
+    /// Spring damping, as per UIView.animateWithDuration docs
+    @IBInspectable public var springDamping: CGFloat = 1
+    
+    /// Initial spring velocity, as per UIView.animateWithDuration docs
+    @IBInspectable public var initialSpringVelocity: CGFloat = 0
+    
     /// If true, will reverse the timing of the animation.
     /// 
     /// So if a behaviour started at 0.25 and ended at 0.5 (duration 0.25), then on dismissal it would start at 0.5
@@ -86,11 +92,11 @@ public class TransitionBehaviour: NSObject {
     /// Set up by the BehaviourBasedTransition object.
     var isPresenting = false
     
+    /// Used to tell the transition when animation ends
+    var animationCompleted: (() -> ())?
+    
     /// Extend this func to set up your viewForTransition for animation to start
-    func setup(presenting presenting: Bool, transitionDuration: NSTimeInterval, container: UIView, destinationBehaviour: TransitionBehaviour?) {
-        self.isPresenting = presenting
-        self.transitionDuration = transitionDuration
-    }
+    func setup(container: UIView, destinationBehaviour: TransitionBehaviour?) {}
     
     /// Override this func to add animations, using your own ```UIView.animate``` calls or using the provided
     /// ```addAnimation``` func which gives you built in handling of start time and duration
@@ -121,9 +127,11 @@ public class TransitionBehaviour: NSObject {
         UIView.animateWithDuration(
             durationForAnim,
             delay: delayForAnim,
+            usingSpringWithDamping: springDamping,
+            initialSpringVelocity: initialSpringVelocity,
             options: [animCurve.toUIViewAnimationOption()],
             animations: animation,
-            completion: nil)
+            completion: { _ in self.animationCompleted?() })
     }
     
     private func clampedTimes(startTime: NSTimeInterval, _ duration: NSTimeInterval) -> (NSTimeInterval, NSTimeInterval, NSTimeInterval) {
