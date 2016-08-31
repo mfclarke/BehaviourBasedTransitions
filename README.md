@@ -8,7 +8,11 @@ Hand over the transition animation implementation to your designer, and say good
 
 The project has an example implementation of multiple transitions from one ```UIViewController``` to experiment with. All the detail is in the storyboard:
 
-* A transition is made up of many ```TransitionBehaviour``` objects. Each of these objects is a concrete subclass of ```TransitionBehaviour```, and is used to apply a specific animation behaviour to a specific view. For example, the ```FadeOutTransitionBehaviour``` object will fade out the view it's connected to, with the specified animation curve, over the duration of the transition animation or at the set ```relativeStartTime``` for the set ```relativeDuration```. These behaviours make use of ```IBInspectable```s to allow configuration of all settings directly from the storyboard.
+* A transition is made up of many ```TransitionBehaviour``` objects. Each of these objects is a concrete subclass of ```TransitionBehaviour```, and is used to apply a specific animation behaviour to a specific view. For example, the ```FadeOutTransitionBehaviour``` object will fade out the view it's connected to.
+* Configurable properties (```IBInspectable``` of course) for every ```TransitionBehaviour```:
+  * Animation curve - standard UIView animation curves: EaseIn, EaseOut, EaseInOut, Linear
+  * Spring properties - using UIView animate spring velocity and damping
+  * Relative start and end times, for timeline based animations
 * A view can have many behaviours, so you can compose a complex animation for a single ```UIView``` out of multiple ```TransitionBehaviour``` objects.
 * Each ```TransitionBehaviour``` belongs to a ```TransitionBehaviourCollection``` object. These are used to group behaviours for a single transition. In this way, one transition uses multiple ```TransitionBehaviour``` objects grouped by a ```TransitionBehaviourCollection```. This collection object has a ```transitionIdentifier```, which means you can implement multiple transitions from a single view controller. Usually you will have one of these in the source view controller and one in the destination, because you'll probably have stuff in both the source and destination you want to animate for a transition.
 * Finally, your source view controller will need a ```BehaviourBasedTransition``` object, connected to the view controller's ```transitions``` collection outlet. This ```BehaviourBasedTransition``` has a ```transitionIdentifier``` (to link it with the behaviours) and a ```segueIdentifier``` to link it to the segue it should transition for.
@@ -37,7 +41,6 @@ And don't forget to submit a PR with your fancy new behaviour ;)
 
 ## TODO
 
-* Add Cocoapods, Carthage, Swift Package Manager support
-* Add tests
 * Add more ```TransitionBehaviour```s (blur, 3D stuff, opacity), and expand the existing ones to allow physics based UIView animations configurable via IBInspectables
-* Add support for interactive transitions
+* Add tests
+* Add Cocoapods, Carthage, Swift Package Manager support
