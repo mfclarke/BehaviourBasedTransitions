@@ -107,10 +107,10 @@
             </objects>
             <point key="canvasLocation" x="545" y="-470"/>
         </scene>
-        <!--Source View Controller-->
+        <!--Source 1-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SourceViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Source 1" id="BYZ-38-t0r" customClass="SourceViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -122,7 +122,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yd-Jm-ZXF">
                                 <rect key="frame" x="268" y="96" width="64" height="89"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
-                                <state key="normal" title="😃"/>
+                                <state key="normal" title="👻"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXL-a1-zc8">
                                 <rect key="frame" x="268" y="414" width="64" height="89"/>
@@ -132,7 +132,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMS-aO-A8A">
                                 <rect key="frame" x="268" y="255" width="64" height="89"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
-                                <state key="normal" title="🤑"/>
+                                <state key="normal" title="🤔"/>
                                 <connections>
                                     <segue destination="APd-nP-E5c" kind="show" identifier="Destination1" id="fhY-2v-7jZ"/>
                                 </connections>
@@ -151,11 +151,27 @@
                             <constraint firstItem="IXL-a1-zc8" firstAttribute="top" secondItem="TMS-aO-A8A" secondAttribute="bottom" constant="69.5" id="FfB-LL-ryO"/>
                             <constraint firstItem="RaD-Vy-Vx4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="OcV-aw-nDa"/>
                             <constraint firstItem="IXL-a1-zc8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OpF-69-HpY"/>
+                            <constraint firstItem="TMS-aO-A8A" firstAttribute="top" secondItem="0yd-Jm-ZXF" secondAttribute="bottom" constant="35" id="Xs3-4t-yiL"/>
                             <constraint firstAttribute="leadingMargin" secondItem="RaD-Vy-Vx4" secondAttribute="leading" id="Yms-56-DSy"/>
                             <constraint firstItem="TMS-aO-A8A" firstAttribute="top" secondItem="0yd-Jm-ZXF" secondAttribute="bottom" constant="70" id="jYH-Ap-Qyw"/>
                             <constraint firstItem="0yd-Jm-ZXF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kbT-AI-ARc"/>
+                            <constraint firstItem="IXL-a1-zc8" firstAttribute="top" secondItem="TMS-aO-A8A" secondAttribute="bottom" constant="35" id="lZH-Nu-jKA"/>
                             <constraint firstItem="TMS-aO-A8A" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="qpj-JT-lm5"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Xs3-4t-yiL"/>
+                                <exclude reference="lZH-Nu-jKA"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="Xs3-4t-yiL"/>
+                                <exclude reference="jYH-Ap-Qyw"/>
+                                <exclude reference="FfB-LL-ryO"/>
+                                <include reference="lZH-Nu-jKA"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outletCollection property="transitionBehaviourCollections" destination="wEz-Ef-V1l" collectionClass="NSMutableArray" id="37G-eC-LZW"/>
@@ -236,10 +252,10 @@
             </objects>
             <point key="canvasLocation" x="663" y="383"/>
         </scene>
-        <!--Destination View Controller-->
+        <!--Destination 1-->
         <scene sceneID="MuV-YD-M1w">
             <objects>
-                <viewController id="APd-nP-E5c" customClass="DestinationViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Destination 1" id="APd-nP-E5c" customClass="DestinationViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lUQ-VY-1BF"/>
                         <viewControllerLayoutGuide type="bottom" id="Llc-BC-ysK"/>
@@ -321,10 +337,10 @@
             </objects>
             <point key="canvasLocation" x="663" y="1277"/>
         </scene>
-        <!--Destination View Controller-->
+        <!--Destination 2-->
         <scene sceneID="qZn-Wq-WMV">
             <objects>
-                <viewController id="2YT-75-nK4" customClass="DestinationViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Destination 2" id="2YT-75-nK4" customClass="DestinationViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D2Y-2w-f21"/>
                         <viewControllerLayoutGuide type="bottom" id="NX5-RN-zdL"/>
@@ -413,10 +429,10 @@
             </objects>
             <point key="canvasLocation" x="1374" y="1277"/>
         </scene>
-        <!--Detail3-->
+        <!--Destination 3-->
         <scene sceneID="EMa-n0-2jG">
             <objects>
-                <viewController title="Detail3" id="Iyk-W4-wWg" customClass="DestinationViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Destination 3" id="Iyk-W4-wWg" customClass="DestinationViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oag-GE-EL3"/>
                         <viewControllerLayoutGuide type="bottom" id="NjP-MP-vN2"/>
@@ -472,12 +488,12 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="2059" y="1277"/>
+            <point key="canvasLocation" x="2095" y="1277"/>
         </scene>
-        <!--Source View Controller-->
+        <!--Source 2-->
         <scene sceneID="J6a-Fq-O7j">
             <objects>
-                <viewController id="gsv-os-VWe" customClass="SourceViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Source 2" id="gsv-os-VWe" customClass="SourceViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TY0-Pr-mb2"/>
                         <viewControllerLayoutGuide type="bottom" id="ojP-43-LPD"/>
@@ -489,12 +505,12 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mA-tj-hGt">
                                 <rect key="frame" x="268" y="91" width="64" height="89"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
-                                <state key="normal" title="😃"/>
+                                <state key="normal" title="😎"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8lw-rj-aUj">
                                 <rect key="frame" x="268" y="419.5" width="64" height="89"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
-                                <state key="normal" title="🤓"/>
+                                <state key="normal" title="🤖"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4C-G6-71s">
                                 <rect key="frame" x="250" y="250" width="100" height="100"/>
@@ -519,13 +535,29 @@
                         <constraints>
                             <constraint firstItem="K4C-G6-71s" firstAttribute="centerX" secondItem="a9r-Jd-3PU" secondAttribute="centerX" id="60Z-uA-8Na"/>
                             <constraint firstItem="K4C-G6-71s" firstAttribute="top" secondItem="4mA-tj-hGt" secondAttribute="bottom" constant="70" id="FGv-YK-KcK"/>
+                            <constraint firstItem="8lw-rj-aUj" firstAttribute="top" secondItem="K4C-G6-71s" secondAttribute="bottom" constant="35" id="FbD-h0-9TR"/>
                             <constraint firstItem="8lw-rj-aUj" firstAttribute="top" secondItem="K4C-G6-71s" secondAttribute="bottom" constant="69.5" id="G56-BD-qyz"/>
                             <constraint firstItem="4mA-tj-hGt" firstAttribute="centerX" secondItem="a9r-Jd-3PU" secondAttribute="centerX" id="KKl-vw-fJj"/>
                             <constraint firstItem="Uab-S3-lZn" firstAttribute="leading" secondItem="a9r-Jd-3PU" secondAttribute="leadingMargin" id="QcA-JK-1mQ"/>
                             <constraint firstItem="K4C-G6-71s" firstAttribute="centerY" secondItem="a9r-Jd-3PU" secondAttribute="centerY" id="Vbr-pq-VE8"/>
                             <constraint firstItem="8lw-rj-aUj" firstAttribute="centerX" secondItem="a9r-Jd-3PU" secondAttribute="centerX" id="h34-Tz-TVA"/>
                             <constraint firstItem="Uab-S3-lZn" firstAttribute="top" secondItem="TY0-Pr-mb2" secondAttribute="bottom" id="jD5-tR-PRC"/>
+                            <constraint firstItem="K4C-G6-71s" firstAttribute="top" secondItem="4mA-tj-hGt" secondAttribute="bottom" constant="35" id="pCM-md-OGJ"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="pCM-md-OGJ"/>
+                                <exclude reference="FbD-h0-9TR"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="FGv-YK-KcK"/>
+                                <include reference="pCM-md-OGJ"/>
+                                <include reference="FbD-h0-9TR"/>
+                                <exclude reference="G56-BD-qyz"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outletCollection property="transitionBehaviourCollections" destination="XAX-3h-EMv" collectionClass="NSMutableArray" id="bNY-HZ-OPs"/>
@@ -582,10 +614,10 @@
             </objects>
             <point key="canvasLocation" x="1374" y="383"/>
         </scene>
-        <!--Source View Controller-->
+        <!--Source 3-->
         <scene sceneID="b1I-ol-S9h">
             <objects>
-                <viewController id="buw-t4-L8l" customClass="SourceViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Source 3" id="buw-t4-L8l" customClass="SourceViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fRD-am-lhK"/>
                         <viewControllerLayoutGuide type="bottom" id="RuX-Ta-UEa"/>
@@ -652,7 +684,7 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="2059" y="383"/>
+            <point key="canvasLocation" x="2095" y="383"/>
         </scene>
     </scenes>
     <resources>
