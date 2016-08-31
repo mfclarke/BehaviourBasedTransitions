@@ -1,5 +1,5 @@
 //
-//  DetailViewController.swift
+//  DestinationViewController.swift
 //  BehaviourBasedTransitions
 //
 //  Created by Maximilian Clarke on 26/08/2016.
@@ -9,7 +9,7 @@
 import UIKit
 import BehaviourBasedTransitions
 
-class DetailViewController: UIViewController, BehaviourTransitionable {
+class DestinationViewController: UIViewController, BehaviourTransitionable {
     
     @IBOutlet var transitions: [BehaviourBasedTransition] = []
     @IBOutlet var transitionBehaviourCollections: [TransitionBehaviourCollection] = []

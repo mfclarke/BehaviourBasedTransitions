@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SourceViewController.swift
 //  BehaviourBasedTransitions
 //
 //  Created by Maximilian Clarke on 26/08/2016.
@@ -9,7 +9,7 @@
 import UIKit
 import BehaviourBasedTransitions
 
-class HomeViewController: UIViewController, BehaviourTransitionable {
+class SourceViewController: UIViewController, BehaviourTransitionable {
     
     @IBOutlet var transitions: [BehaviourBasedTransition] = []
     @IBOutlet var transitionBehaviourCollections: [TransitionBehaviourCollection] = []
@@ -20,5 +20,9 @@ class HomeViewController: UIViewController, BehaviourTransitionable {
     }
     
     @IBAction func unwindToViewController (sender: UIStoryboardSegue) {}
+    
+    @IBAction func dismiss(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 
 }
