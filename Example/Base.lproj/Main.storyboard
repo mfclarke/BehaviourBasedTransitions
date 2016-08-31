@@ -134,7 +134,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                 <state key="normal" title="🤔"/>
                                 <connections>
-                                    <segue destination="APd-nP-E5c" kind="show" identifier="Destination1" id="fhY-2v-7jZ"/>
+                                    <segue destination="APd-nP-E5c" kind="show" identifier="Transition1" id="fhY-2v-7jZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RaD-Vy-Vx4">
@@ -182,16 +182,12 @@
                 <customObject id="Wpd-oW-J8M" userLabel="Transition" customClass="BehaviourBasedTransition" customModule="BehaviourBasedTransitions">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                            <real key="value" value="0.80000000000000004"/>
+                            <real key="value" value="0.59999999999999998"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="string" keyPath="segueIdentifier" value="Destination1"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition1"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="segueIdentifier" value="Transition1"/>
                     </userDefinedRuntimeAttributes>
                 </customObject>
                 <customObject id="wEz-Ef-V1l" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition1"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outletCollection property="behaviours" destination="JmP-dB-u2R" collectionClass="NSMutableArray" id="K8t-u4-KFX"/>
                         <outletCollection property="behaviours" destination="AjN-lE-eXv" collectionClass="NSMutableArray" id="ROF-Gn-27A"/>
@@ -288,9 +284,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xAx-3w-tPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="cfc-qH-pvH" userLabel="Exit" sceneMemberID="exit"/>
                 <customObject id="yHr-07-Z1A" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="transitionIdentifier" value="Transition1"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outletCollection property="behaviours" destination="es7-Zh-khf" collectionClass="NSMutableArray" id="hBl-xt-PKs"/>
                         <outletCollection property="behaviours" destination="K03-Kn-QvJ" collectionClass="NSMutableArray" id="yrb-xO-i2n"/>
@@ -521,7 +514,7 @@
                                 </constraints>
                                 <state key="normal" image="Gummi Bear"/>
                                 <connections>
-                                    <segue destination="2YT-75-nK4" kind="show" identifier="Transition" id="oiv-Oo-28R"/>
+                                    <segue destination="2YT-75-nK4" kind="show" identifier="Transition2" id="oiv-Oo-28R"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uab-S3-lZn">
@@ -571,7 +564,7 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="duration">
                             <real key="value" value="0.40000000000000002"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="string" keyPath="segueIdentifier" value="Transition"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="segueIdentifier" value="Transition2"/>
                     </userDefinedRuntimeAttributes>
                 </customObject>
                 <customObject id="XAX-3h-EMv" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions">
@@ -645,7 +638,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="96"/>
                                 <state key="normal" title="👆"/>
                                 <connections>
-                                    <segue destination="Iyk-W4-wWg" kind="show" identifier="Transition" id="gaG-G2-WTH"/>
+                                    <segue destination="Iyk-W4-wWg" kind="show" identifier="Transition3" id="gaG-G2-WTH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgh-l8-M9Q">
@@ -675,7 +668,7 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="duration">
                             <real key="value" value="0.80000000000000004"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="string" keyPath="segueIdentifier" value="Transition"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="segueIdentifier" value="Transition3"/>
                     </userDefinedRuntimeAttributes>
                 </customObject>
                 <customObject id="f4H-cA-7rt" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions">
