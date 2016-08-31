@@ -25,7 +25,6 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
     var snapshotView: UIView!
     
     override func setup(container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
-        super.setup(container, destinationBehaviour: destinationBehaviour)
         guard let sourceView = viewForTransition, destinationView = destinationBehaviour?.viewForTransition else { return }
         
         sourceFrame = getContainerFrame(container, view: sourceView)

@@ -18,7 +18,6 @@ public class FadeTransitionBehaviour: TransitionBehaviour {
     @IBInspectable public var toAlpha: CGFloat = 0
     
     override func setup(container: UIView, destinationBehaviour: TransitionBehaviour?) {
-        super.setup(container, destinationBehaviour: destinationBehaviour)
         viewForTransition?.alpha = isPresenting ? fromAlpha : toAlpha
     }
     

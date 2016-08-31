@@ -33,8 +33,6 @@ public class TranslateTransitionBehaviour: TransitionBehaviour {
     
 
     override func setup(container: UIView, destinationBehaviour: TransitionBehaviour?) {
-        super.setup(container, destinationBehaviour: destinationBehaviour)
-        
         viewForTransition?.transform = isPresenting ? originTransform() : destinationTransform()
     }
     
