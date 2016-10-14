@@ -20,9 +20,9 @@ The project has an example implementation of multiple transitions from one ```UI
 ## Including the framework
 #### This is still in experimental stage, so things will likely change a lot and will change quite rapidly. You've been warned!
 ### Carthage
-Add this repo to your Cartfile
+Add this repo to your Cartfile and follow standard Carthage procedure to build and link it.
 ### Git Submodule
-Add this repository as a git submodule and then follow standard procedure to link the framework to your project.
+Add this repo as a git submodule and then follow standard procedure to link the framework to your project.
 
 ## Advanced Behaviours
 
