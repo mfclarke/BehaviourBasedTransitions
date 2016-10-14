@@ -50,8 +50,6 @@ extension BehaviourBasedTransition: UIViewControllerAnimatedTransitioning, UIVie
         
         if isPresenting {
             container.addSubview(toController.view)
-        } else {
-            container.insertSubview(toController.view, belowSubview: fromController.view)
         }
         
         let behaviours = setupBehaviours(fromController, toController: toController, container: container, context: transitionContext)

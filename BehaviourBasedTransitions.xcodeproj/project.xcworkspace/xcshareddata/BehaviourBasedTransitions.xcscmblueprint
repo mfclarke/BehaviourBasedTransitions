@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "43547D5030281A63A4246670C12323E2699085AD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "43547D5030281A63A4246670C12323E2699085AD" : 0,
+    "D676CDCA5771490D15D8EB193B74E257D80F2D2E" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F5F96E44-1461-4613-9608-F49002C206DF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "43547D5030281A63A4246670C12323E2699085AD" : "BehaviourBasedTransitions\/",
+    "D676CDCA5771490D15D8EB193B74E257D80F2D2E" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BehaviourBasedTransitions",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "BehaviourBasedTransitions.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mfclarke\/BehaviourBasedTransitions.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "43547D5030281A63A4246670C12323E2699085AD"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:vimn-north\/PlayPlex-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D676CDCA5771490D15D8EB193B74E257D80F2D2E"
+    }
+  ]
+}
