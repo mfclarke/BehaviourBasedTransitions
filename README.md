@@ -17,11 +17,11 @@ The project has an example implementation of multiple transitions from one ```UI
 * Each ```TransitionBehaviour``` belongs to a ```TransitionBehaviourCollection``` object. These are used to group behaviours for a single transition. In this way, one transition uses multiple ```TransitionBehaviour``` objects grouped by a ```TransitionBehaviourCollection```. This collection object has a ```transitionIdentifier```, which means you can implement multiple transitions from a single view controller. Usually you will have one of these in the source view controller and one in the destination, because you'll probably have stuff in both the source and destination you want to animate for a transition.
 * Finally, your source view controller will need a ```BehaviourBasedTransition``` object, connected to the view controller's ```transitions``` collection outlet. This ```BehaviourBasedTransition``` has a ```transitionIdentifier``` (to link it with the behaviours) and a ```segueIdentifier``` to link it to the segue it should transition for.
 
-### Including the framework
-##### This is still in experimental stage, so things will likely change a lot and will change quite rapidly. You've been warned!
-#### Carthage
+## Including the framework
+#### This is still in experimental stage, so things will likely change a lot and will change quite rapidly. You've been warned!
+### Carthage
 Add this repo to your Cartfile
-#### Git Submodule
+### Git Submodule
 Add this repository as a git submodule and then follow standard procedure to link the framework to your project.
 
 ## Advanced Behaviours
