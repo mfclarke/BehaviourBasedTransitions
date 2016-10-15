@@ -33,17 +33,17 @@ public class TranslateTransitionBehaviour: TransitionBehaviour {
     
 
     override func setup(container: UIView, destinationBehaviour: TransitionBehaviour?) {
-        viewForTransition?.transform = isPresenting ? originTransform() : destinationTransform()
+        viewsForTransition.forEach { $0.transform = isPresenting ? originTransform() : destinationTransform() }
     }
     
     override func addAnimations() {
         addAnimation {
-            self.viewForTransition?.transform = self.isPresenting ? self.destinationTransform() : self.originTransform()
+            self.viewsForTransition.forEach { $0.transform = self.isPresenting ? self.destinationTransform() : self.originTransform() }
         }
     }
     
     override func complete() {
-        viewForTransition?.transform = CGAffineTransformIdentity
+        viewsForTransition.forEach { $0.transform = CGAffineTransformIdentity }
     }
     
     private func originTransform() -> CGAffineTransform {

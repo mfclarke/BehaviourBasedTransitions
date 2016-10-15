@@ -12,8 +12,8 @@ import UIKit
 /// a specific behaviour to use on a single view in a UIViewControllerAnimatedTransitioning animation
 public class TransitionBehaviour: NSObject {
     
-    /// The view the behaviour should effect
-    @IBOutlet public var view: UIView!
+    /// The views the behaviour should effect
+    @IBOutlet public var views: [UIView] = []
     
     /// The identifier of this behaviour. Normally not used, unless the particular behaviour has a corresponding
     /// destination ```TransitionBehaviour``` in another UIViewController. In which case the behaviourIdentifier values
@@ -78,13 +78,13 @@ public class TransitionBehaviour: NSObject {
     /// Set by setup function for calculation of relative start and duration times
     var transitionDuration: NSTimeInterval = 0
     
-    /// Returns the view to use for the transition. If there's a viewProvider connected, the viewProvider must provide the view.
-    /// If no delegate connected, it will use the view ```IBOutlet```.
-    var viewForTransition: UIView? {
+    /// Returns the views to use for the transition. If there's a viewsProvider connected, the viewsProvider must provide the views.
+    /// If no delegate connected, it will use the views ```IBOutlet``` collection.
+    var viewsForTransition: [UIView] {
         if let viewProvider = viewProvider as? TransitionBehaviourViewProvider {
-            return viewProvider.viewForBehaviour(identifier: behaviourIdentifier)
+            return viewProvider.viewsForBehaviour(identifier: behaviourIdentifier)
         } else {
-            return view
+            return views
         }
     }
     
@@ -150,6 +150,6 @@ public class TransitionBehaviour: NSObject {
 /// You can use this to provide a UICollectionViewCell's subview to a behaviour for example.
 public protocol TransitionBehaviourViewProvider {
     
-    func viewForBehaviour(identifier identifier: String) -> UIView?
+    func viewsForBehaviour(identifier identifier: String) -> [UIView]
     
 }

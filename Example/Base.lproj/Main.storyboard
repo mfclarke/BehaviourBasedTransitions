@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TDN-dU-3No">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="16A319" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TDN-dU-3No">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -208,7 +208,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="superview" destination="8bC-Xf-vdC" id="3Zz-6q-4Nn"/>
-                        <outlet property="view" destination="0yd-Jm-ZXF" id="Vd3-v4-6jJ"/>
+                        <outletCollection property="views" destination="0yd-Jm-ZXF" collectionClass="NSMutableArray" id="9xQ-U9-uMP"/>
                     </connections>
                 </customObject>
                 <customObject id="JmP-dB-u2R" userLabel="Emoji 2 Translation" customClass="TranslateTransitionBehaviour" customModule="BehaviourBasedTransitions">
@@ -225,7 +225,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="superview" destination="8bC-Xf-vdC" id="dBf-1v-T7P"/>
-                        <outlet property="view" destination="TMS-aO-A8A" id="Iww-PD-6YX"/>
+                        <outletCollection property="views" destination="TMS-aO-A8A" collectionClass="NSMutableArray" id="KgK-YI-WR1"/>
                     </connections>
                 </customObject>
                 <customObject id="AjN-lE-eXv" userLabel="Emoji 3 Translation" customClass="TranslateTransitionBehaviour" customModule="BehaviourBasedTransitions">
@@ -242,7 +242,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="superview" destination="8bC-Xf-vdC" id="hik-1u-V01"/>
-                        <outlet property="view" destination="IXL-a1-zc8" id="SBz-FQ-6CO"/>
+                        <outletCollection property="views" destination="IXL-a1-zc8" collectionClass="NSMutableArray" id="fEP-Y3-JxL"/>
                     </connections>
                 </customObject>
             </objects>
@@ -306,7 +306,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="superview" destination="Geh-NA-aAN" id="eFR-BK-YXH"/>
-                        <outlet property="view" destination="v3L-jU-NaJ" id="fEV-xB-yIW"/>
+                        <outletCollection property="views" destination="v3L-jU-NaJ" collectionClass="NSMutableArray" id="w6j-27-nVv"/>
                     </connections>
                 </customObject>
                 <customObject id="es7-Zh-khf" userLabel="Whole View Fade In Behaviour" customClass="FadeTransitionBehaviour" customModule="BehaviourBasedTransitions">
@@ -326,7 +326,7 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="reverseTimingOnDismissal" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="view" destination="Geh-NA-aAN" id="Njm-td-7to"/>
+                        <outletCollection property="views" destination="Geh-NA-aAN" collectionClass="NSMutableArray" id="juu-yG-NVP"/>
                     </connections>
                 </customObject>
             </objects>
@@ -403,7 +403,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="view" destination="rQx-0i-2he" id="juo-CQ-ITE"/>
+                        <outletCollection property="views" destination="rQx-0i-2he" collectionClass="NSMutableArray" id="7sX-cJ-lUS"/>
                     </connections>
                 </customObject>
                 <customObject id="5w7-tY-ysC" customClass="TransformToPositionDestinationBehaviour" customModule="BehaviourBasedTransitions">
@@ -418,7 +418,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="view" destination="Igj-rI-g09" id="1v0-VZ-kd8"/>
+                        <outletCollection property="views" destination="Igj-rI-g09" collectionClass="NSMutableArray" id="9PM-gM-6Yw"/>
                     </connections>
                 </customObject>
             </objects>
@@ -478,7 +478,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="superview" destination="7R0-Pn-46E" id="JUK-31-qMX"/>
-                        <outlet property="view" destination="7R0-Pn-46E" id="2We-Cv-CyM"/>
+                        <outletCollection property="views" destination="7R0-Pn-46E" collectionClass="NSMutableArray" id="m0F-OO-Hv4"/>
                     </connections>
                 </customObject>
             </objects>
@@ -585,7 +585,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="superview" destination="a9r-Jd-3PU" id="V8V-kG-0BO"/>
-                        <outlet property="view" destination="4mA-tj-hGt" id="CeP-yd-jEi"/>
+                        <outletCollection property="views" destination="4mA-tj-hGt" collectionClass="NSMutableArray" id="fZf-vg-SZk"/>
                     </connections>
                 </customObject>
                 <customObject id="rrt-48-IFL" customClass="TransformToPositionSourceBehaviour" customModule="BehaviourBasedTransitions">
@@ -597,7 +597,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="view" destination="K4C-G6-71s" id="tqV-HM-mmP"/>
+                        <outletCollection property="views" destination="K4C-G6-71s" collectionClass="NSMutableArray" id="5Yd-vx-m86"/>
                     </connections>
                 </customObject>
                 <customObject id="5bu-X2-R7I" userLabel="Emoji 2 Translation" customClass="TranslateTransitionBehaviour" customModule="BehaviourBasedTransitions">
@@ -611,7 +611,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="superview" destination="a9r-Jd-3PU" id="SzR-Wk-lSg"/>
-                        <outlet property="view" destination="8lw-rj-aUj" id="dua-q6-66h"/>
+                        <outletCollection property="views" destination="8lw-rj-aUj" collectionClass="NSMutableArray" id="bC0-SN-tV2"/>
                     </connections>
                 </customObject>
             </objects>
@@ -690,7 +690,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="superview" destination="cr2-0d-dL1" id="krf-4e-jbK"/>
-                        <outlet property="view" destination="cr2-0d-dL1" id="2O8-FR-mQc"/>
+                        <outletCollection property="views" destination="cr2-0d-dL1" collectionClass="NSMutableArray" id="Vde-S9-VQP"/>
                     </connections>
                 </customObject>
             </objects>
