@@ -13,6 +13,8 @@ import UIKit
 ///
 /// Typically used to provide the Photos.app style transition when you tap on a photo in the collection view.
 ///
+/// Will only use the first view in the ```views``` ```IBOutlet```
+///
 /// Note: This ```TransitionBehaviour``` needs a corresponding ```TransformToPositionDestinationBehaviour``` with the same
 /// behaviourIdentifier to function correctly
 public class TransformToPositionSourceBehaviour: TransitionBehaviour {
@@ -25,7 +27,7 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
     var snapshotView: UIView!
     
     override func setup(container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
-        guard let sourceView = viewForTransition, destinationView = destinationBehaviour?.viewForTransition else { return }
+        guard let sourceView = viewsForTransition.first, destinationView = destinationBehaviour?.viewsForTransition.first else { return }
         
         sourceFrame = getContainerFrame(container, view: sourceView)
         destinationFrame = getContainerFrame(container, view: destinationView)
@@ -59,7 +61,7 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
     
     override func complete() {
         snapshotView.removeFromSuperview()
-        viewForTransition?.hidden = false
+        viewsForTransition.first?.hidden = false
     }
     
     func destinationTransform(sourceFrame: CGRect, destinationFrame: CGRect) -> CGAffineTransform {
@@ -89,18 +91,20 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
 /// Provides the destination position for the corresponding ```TransformToPositionSourceBehaviour```, via it's
 /// ```viewForTransition```.
 ///
+/// Will only use the first view in the ```views``` ```IBOutlet```
+///
 /// Note: This ```TransitionBehaviour``` isn't supposed to be used on it's own. It should be paired with a
 /// ```TransformToPositionSourceBehaviour``` with the same behaviourIdentifier
 public class TransformToPositionDestinationBehaviour: TransitionBehaviour {
     
     override func setup(container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
         super.setup(container, destinationBehaviour: destinationBehaviour)
-        viewForTransition?.hidden = true
+        viewsForTransition.first?.hidden = true
         animationCompleted?()
     }
     
     override func complete() {
-        viewForTransition?.hidden = false
+        viewsForTransition.first?.hidden = false
     }
     
 }

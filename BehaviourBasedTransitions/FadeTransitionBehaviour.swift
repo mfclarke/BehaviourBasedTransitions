@@ -18,7 +18,7 @@ public class FadeTransitionBehaviour: TransitionBehaviour {
     @IBInspectable public var toAlpha: CGFloat = 0
     
     override func setup(container: UIView, destinationBehaviour: TransitionBehaviour?) {
-        viewForTransition?.alpha = isPresenting ? fromAlpha : toAlpha
+        viewsForTransition.forEach { $0.alpha = isPresenting ? fromAlpha : toAlpha }
     }
     
     override func addAnimations() {
@@ -26,11 +26,11 @@ public class FadeTransitionBehaviour: TransitionBehaviour {
     }
     
     private func applyAnimation() {
-        viewForTransition?.alpha = isPresenting ? toAlpha : fromAlpha
+        viewsForTransition.forEach { $0.alpha = isPresenting ? toAlpha : fromAlpha }
     }
     
     override func complete() {
-        viewForTransition?.alpha = isPresenting ? toAlpha : fromAlpha
+        viewsForTransition.forEach { $0.alpha = isPresenting ? toAlpha : fromAlpha }
     }
     
 }
