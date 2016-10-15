@@ -24,6 +24,9 @@ The project has an example implementation of multiple transitions from one ```UI
 #### This is still in experimental stage, so things will likely change a lot and will change quite rapidly. You've been warned!
 ### Carthage
 Add this repo to your Cartfile and follow standard Carthage procedure to build and link it.
+
+#### Note: Carthage support is limited. You won't be able to see the ```IBInspectable``` properties in IB because Xcode needs the actual source for the classes to be present in the project/workspace. You can work around this by simply adding the BehaviourBasedTransitions xcodeproj inside the Carthage checkouts folder to your project/workspace. Still link to the static binary framework as normal, but just have the source available to Xcode via the xcodeproj. See of the following issue for more details: https://github.com/Carthage/Carthage/issues/335
+
 ### Git Submodule
 Add this repo as a git submodule and then follow standard procedure to link the framework to your project.
 
