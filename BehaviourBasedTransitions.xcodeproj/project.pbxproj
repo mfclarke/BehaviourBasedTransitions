@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		405B1AC01DB8AB5B00C2C200 /* BehaviourBasedTransition+GestureRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405B1ABF1DB8AB5B00C2C200 /* BehaviourBasedTransition+GestureRecognition.swift */; };
 		406F29101D76BE950048ED60 /* ScaleTransitionBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406F290F1D76BE950048ED60 /* ScaleTransitionBehaviour.swift */; };
 		F1338D5F1D73290800D5DC34 /* BehaviourBasedTransitions.h in Headers */ = {isa = PBXBuildFile; fileRef = F1338D5E1D73290800D5DC34 /* BehaviourBasedTransitions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F1338D661D73290800D5DC34 /* BehaviourBasedTransitions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */; };
@@ -66,6 +67,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		405B1ABF1DB8AB5B00C2C200 /* BehaviourBasedTransition+GestureRecognition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BehaviourBasedTransition+GestureRecognition.swift"; sourceTree = "<group>"; };
 		406F290F1D76BE950048ED60 /* ScaleTransitionBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleTransitionBehaviour.swift; sourceTree = "<group>"; };
 		F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BehaviourBasedTransitions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1338D5E1D73290800D5DC34 /* BehaviourBasedTransitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BehaviourBasedTransitions.h; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				F1798CF11D71816100F5A405 /* Transition Behaviours */,
 				F1338D5E1D73290800D5DC34 /* BehaviourBasedTransitions.h */,
 				F18AF0AC1D718D77002C624E /* BehaviourBasedTransition.swift */,
+				405B1ABF1DB8AB5B00C2C200 /* BehaviourBasedTransition+GestureRecognition.swift */,
 				F18AF0AD1D718D77002C624E /* BehaviourTransitionable.swift */,
 				F1AB56A41D73155400BCAB21 /* TransitionBehaviourCollection.swift */,
 				F1B61C351D732D170036B984 /* Info.plist */,
@@ -335,6 +338,7 @@
 				F1338D7D1D73296000D5DC34 /* TransitionBehaviour.swift in Sources */,
 				F1338D7C1D73295A00D5DC34 /* TransitionBehaviourCollection.swift in Sources */,
 				F1338D7B1D73295A00D5DC34 /* BehaviourTransitionable.swift in Sources */,
+				405B1AC01DB8AB5B00C2C200 /* BehaviourBasedTransition+GestureRecognition.swift in Sources */,
 				F1338D7E1D73296000D5DC34 /* FadeTransitionBehaviour.swift in Sources */,
 				F1338D7A1D73295A00D5DC34 /* BehaviourBasedTransition.swift in Sources */,
 				F1338D7F1D73296000D5DC34 /* TranslateTransitionBehaviour.swift in Sources */,

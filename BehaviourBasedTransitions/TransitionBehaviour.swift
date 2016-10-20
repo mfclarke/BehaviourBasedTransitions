@@ -90,20 +90,23 @@ public class TransitionBehaviour: NSObject {
     
     /// Returns true if the transition is presenting rather than dismissing. 
     /// Set up by the BehaviourBasedTransition object.
-    var isPresenting = false
+    public var isPresenting = false
     
     /// Used to tell the transition when animation ends
     var animationCompleted: (() -> ())?
     
     /// Extend this func to set up your viewForTransition for animation to start
-    func setup(container: UIView, destinationBehaviour: TransitionBehaviour?) {}
+    public func setup(container: UIView, destinationBehaviour: TransitionBehaviour?) {}
     
     /// Override this func to add animations, using your own `UIView.animate` calls or using the provided
     /// `addAnimation` func which gives you built in handling of start time and duration
-    func addAnimations() {}
+    public func addAnimations() {}
     
     /// Override this func to clean up or reset your views at the end of the transition animation
-    func complete() {}
+    ///
+    /// Note: this takes care of transition cancellation for you. For example, if you're presenting and it's cancelled,
+    /// then this callback will be called with `presented == false`
+    public func complete(presented: Bool) {}
     
     /// Adds an animation with appropriate handling of start and duration times. The times passed in here will be relative
     /// to the time of the `TransitionBehaviour`, which in turn is relative to the duration of the whole transition
@@ -129,7 +132,7 @@ public class TransitionBehaviour: NSObject {
             delay: delayForAnim,
             usingSpringWithDamping: springDamping,
             initialSpringVelocity: initialSpringVelocity,
-            options: [animCurve.toUIViewAnimationOption()],
+            options: [animCurve.toUIViewAnimationOption(), .AllowUserInteraction],
             animations: animation,
             completion: { _ in self.animationCompleted?() })
     }
@@ -140,6 +143,22 @@ public class TransitionBehaviour: NSObject {
         let finishTime = clampedStartTime + clampedDuration
         
         return (clampedStartTime, clampedDuration, finishTime)
+    }
+    
+    func transitionCompleted(wasCancelled: Bool) {
+        if isPresenting {
+            if !wasCancelled {
+                complete(true)
+            } else {
+                complete(false)
+            }
+        } else {
+            if !wasCancelled {
+                complete(false)
+            } else {
+                complete(true)
+            }
+        }
     }
     
 }

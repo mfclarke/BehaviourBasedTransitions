@@ -14,18 +14,18 @@ public class ScaleTransitionBehaviour: TransitionBehaviour {
     @IBInspectable public var startSize: CGFloat = 1
     @IBInspectable public var endSize: CGFloat = 1
     
-    override func setup(container: UIView, destinationBehaviour: TransitionBehaviour?) {
+    override public func setup(container: UIView, destinationBehaviour: TransitionBehaviour?) {
         viewsForTransition.forEach { $0.transform = isPresenting ? startTransform() : endTransform() }
     }
     
-    override func addAnimations() {
+    override public func addAnimations() {
         addAnimation {
             self.viewsForTransition.forEach { $0.transform = self.isPresenting ? self.endTransform() : self.startTransform() }
         }
     }
     
-    override func complete() {
-        viewsForTransition.forEach { $0.transform = CGAffineTransformIdentity }
+    override public func complete(presented: Bool) {
+        viewsForTransition.forEach { $0.transform = presented ? self.endTransform() : self.startTransform() }
     }
     
     private func startTransform() -> CGAffineTransform {

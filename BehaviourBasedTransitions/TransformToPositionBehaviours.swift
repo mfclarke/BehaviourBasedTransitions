@@ -26,7 +26,7 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
     
     var snapshotView: UIView!
     
-    override func setup(container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
+    override public func setup(container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
         guard let sourceView = viewsForTransition.first, destinationView = destinationBehaviour?.viewsForTransition.first else { return }
         
         sourceFrame = getContainerFrame(container, view: sourceView)
@@ -46,7 +46,7 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
         snapshotView.transform = isPresenting ? CGAffineTransformIdentity : destTransform
     }
     
-    override func addAnimations() {
+    override public func addAnimations() {
         addAnimation {
             self.applyAnimation()
         }
@@ -59,7 +59,7 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
         snapshotView.transform = isPresenting ? destTransform : CGAffineTransformIdentity
     }
     
-    override func complete() {
+    override public func complete(presented: Bool) {
         snapshotView.removeFromSuperview()
         viewsForTransition.first?.hidden = false
     }
@@ -97,13 +97,13 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
 /// `TransformToPositionSourceBehaviour` with the same behaviourIdentifier
 public class TransformToPositionDestinationBehaviour: TransitionBehaviour {
     
-    override func setup(container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
+    override public func setup(container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
         super.setup(container, destinationBehaviour: destinationBehaviour)
         viewsForTransition.first?.hidden = true
         animationCompleted?()
     }
     
-    override func complete() {
+    override public func complete(presented: Bool) {
         viewsForTransition.first?.hidden = false
     }
     
