@@ -80,7 +80,7 @@ public class TransitionBehaviour: NSObject {
     
     /// Returns the views to use for the transition. If there's a viewsProvider connected, the viewsProvider must provide the views.
     /// If no delegate connected, it will use the views `IBOutlet` collection.
-    var viewsForTransition: [UIView] {
+    public final var viewsForTransition: [UIView] {
         if let viewProvider = viewProvider as? TransitionBehaviourViewProvider {
             return viewProvider.viewsForBehaviour(identifier: behaviourIdentifier)
         } else {
