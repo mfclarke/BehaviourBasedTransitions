@@ -16,15 +16,15 @@ public class TransitionBehaviour: NSObject {
     @IBOutlet public var views: [UIView] = []
     
     /// The identifier of this behaviour. Normally not used, unless the particular behaviour has a corresponding
-    /// destination ```TransitionBehaviour``` in another UIViewController. In which case the behaviourIdentifier values
+    /// destination `TransitionBehaviour` in another UIViewController. In which case the behaviourIdentifier values
     /// for each must be the same
     @IBInspectable public var behaviourIdentifier: String = ""
     
     /// **Expected Type: TransitionBehaviourViewProvider**
     /// 
-    /// Setting this will override the use of the ```view``` ```IBOutlet```
+    /// Setting this will override the use of the `view` `IBOutlet`
     /// 
-    /// Type here is ```AnyObject``` due to this Xcode issue: [http://stackoverflow.com/a/26180481/281734](http://stackoverflow.com/a/26180481/281734)
+    /// Type here is `AnyObject` due to this Xcode issue: [http://stackoverflow.com/a/26180481/281734](http://stackoverflow.com/a/26180481/281734)
     @IBOutlet public var viewProvider: AnyObject?
     
     /// Start time for the animation, relative to the overall transition duration (0...1)
@@ -79,7 +79,7 @@ public class TransitionBehaviour: NSObject {
     var transitionDuration: NSTimeInterval = 0
     
     /// Returns the views to use for the transition. If there's a viewsProvider connected, the viewsProvider must provide the views.
-    /// If no delegate connected, it will use the views ```IBOutlet``` collection.
+    /// If no delegate connected, it will use the views `IBOutlet` collection.
     var viewsForTransition: [UIView] {
         if let viewProvider = viewProvider as? TransitionBehaviourViewProvider {
             return viewProvider.viewsForBehaviour(identifier: behaviourIdentifier)
@@ -98,15 +98,15 @@ public class TransitionBehaviour: NSObject {
     /// Extend this func to set up your viewForTransition for animation to start
     func setup(container: UIView, destinationBehaviour: TransitionBehaviour?) {}
     
-    /// Override this func to add animations, using your own ```UIView.animate``` calls or using the provided
-    /// ```addAnimation``` func which gives you built in handling of start time and duration
+    /// Override this func to add animations, using your own `UIView.animate` calls or using the provided
+    /// `addAnimation` func which gives you built in handling of start time and duration
     func addAnimations() {}
     
     /// Override this func to clean up or reset your views at the end of the transition animation
     func complete() {}
     
     /// Adds an animation with appropriate handling of start and duration times. The times passed in here will be relative
-    /// to the time of the ```TransitionBehaviour```, which in turn is relative to the duration of the whole transition
+    /// to the time of the `TransitionBehaviour`, which in turn is relative to the duration of the whole transition
     func addAnimation(startTime: NSTimeInterval = 0, duration: NSTimeInterval = 1, animation: () -> ()) {
         let (animStartTime, animDuration, animFinishTime) = clampedTimes(startTime, duration)
         let (behaviourStartTime, behaviourDuration, behaviourFinishTime) = clampedTimes(relativeStartTime, relativeDuration)
@@ -145,7 +145,7 @@ public class TransitionBehaviour: NSObject {
 }
 
 /// Allows an object to dynamically provide the right view for the behaviour. Used for views that are created dynamically
-/// like ```UITableView```s or ```UICollectionView```s, views loaded from xibs, embedded controllers etc. 
+/// like `UITableView`s or `UICollectionView`s, views loaded from xibs, embedded controllers etc. 
 ///
 /// You can use this to provide a UICollectionViewCell's subview to a behaviour for example.
 public protocol TransitionBehaviourViewProvider {

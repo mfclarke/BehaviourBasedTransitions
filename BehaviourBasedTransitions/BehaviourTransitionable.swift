@@ -8,14 +8,14 @@
 
 import UIKit
 
-/// Used by ```BehaviourBasedTransition```s to get access to the correct ```TransitionBehaviour```s for animation
+/// Used by `BehaviourBasedTransition`s to get access to the correct `TransitionBehaviour`s for animation
 public protocol BehaviourTransitionable {
     
     /// Array of transitions that this view controller is the source for
     var transitions: [BehaviourBasedTransition] { get set }
     
-    /// Array of collections, which should each be assigned a unique ```transitionIdentifier``` that matches the
-    /// ```BehaviourBasedTransition``` they should be used in
+    /// Array of collections, which should each be assigned a unique `transitionIdentifier` that matches the
+    /// `BehaviourBasedTransition` they should be used in
     var transitionBehaviourCollections: [TransitionBehaviourCollection] { get set }
 }
 

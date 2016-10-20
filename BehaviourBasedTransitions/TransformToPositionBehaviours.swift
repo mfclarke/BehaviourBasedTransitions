@@ -8,14 +8,14 @@
 
 import UIKit
 
-/// Takes a snapshot of the view and transforms it to the ```CGRect``` of the corresponding 
-/// ```TransformToPositionDestinationBehaviour```'s ```viewForTransition```.
+/// Takes a snapshot of the view and transforms it to the `CGRect` of the corresponding 
+/// `TransformToPositionDestinationBehaviour`'s `viewForTransition`.
 ///
 /// Typically used to provide the Photos.app style transition when you tap on a photo in the collection view.
 ///
-/// Will only use the first view in the ```views``` ```IBOutlet```
+/// Will only use the first view in the `views` `IBOutlet`
 ///
-/// Note: This ```TransitionBehaviour``` needs a corresponding ```TransformToPositionDestinationBehaviour``` with the same
+/// Note: This `TransitionBehaviour` needs a corresponding `TransformToPositionDestinationBehaviour` with the same
 /// behaviourIdentifier to function correctly
 public class TransformToPositionSourceBehaviour: TransitionBehaviour {
     
@@ -88,13 +88,13 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
 }
 
 
-/// Provides the destination position for the corresponding ```TransformToPositionSourceBehaviour```, via it's
-/// ```viewForTransition```.
+/// Provides the destination position for the corresponding `TransformToPositionSourceBehaviour`, via it's
+/// `viewForTransition`.
 ///
-/// Will only use the first view in the ```views``` ```IBOutlet```
+/// Will only use the first view in the `views` `IBOutlet`
 ///
-/// Note: This ```TransitionBehaviour``` isn't supposed to be used on it's own. It should be paired with a
-/// ```TransformToPositionSourceBehaviour``` with the same behaviourIdentifier
+/// Note: This `TransitionBehaviour` isn't supposed to be used on it's own. It should be paired with a
+/// `TransformToPositionSourceBehaviour` with the same behaviourIdentifier
 public class TransformToPositionDestinationBehaviour: TransitionBehaviour {
     
     override func setup(container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {

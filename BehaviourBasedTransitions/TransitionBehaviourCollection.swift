@@ -8,13 +8,13 @@
 
 import UIKit
 
-/// Used to group ```TransitionBehaviour```s together under a single ```transitionIdentifier```
+/// Used to group `TransitionBehaviour`s together under a single `transitionIdentifier`
 public class TransitionBehaviourCollection: NSObject {
     
-    /// The identifier the ```TransitionBehaviour```s belong to
+    /// The identifier the `TransitionBehaviour`s belong to
     @IBInspectable public var transitionIdentifier: String = ""
     
-    // The behaviours for the ```transitionIdentifier```
+    // The behaviours for the `transitionIdentifier`
     @IBOutlet public var behaviours: [TransitionBehaviour] = []
     
 }

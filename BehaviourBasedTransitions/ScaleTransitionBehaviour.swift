@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// Scales a UIView from the ```startSize``` to the ```endSize```.
+/// Scales a UIView from the `startSize` to the `endSize`.
 public class ScaleTransitionBehaviour: TransitionBehaviour {
     
     @IBInspectable public var startSize: CGFloat = 1

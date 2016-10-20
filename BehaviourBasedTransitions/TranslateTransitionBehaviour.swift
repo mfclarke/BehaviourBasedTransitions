@@ -16,15 +16,15 @@ public class TranslateTransitionBehaviour: TransitionBehaviour {
     /// Start position relative to the size of the superview.
     ///
     /// {0,0} is the position of the UIView in the storyboard
-    /// {1,1} is the full width of the ```superview``` right and the full height of the ```superview``` down
-    /// {-1,-1} is the full width of the ```superview``` left and the full height of the ```superview``` up
+    /// {1,1} is the full width of the `superview` right and the full height of the `superview` down
+    /// {-1,-1} is the full width of the `superview` left and the full height of the `superview` up
     @IBInspectable var origin: CGPoint = CGPointZero
     
     /// Detination position relative to the size of the superview.
     ///
     /// {0,0} is the position of the UIView in the storyboard
-    /// {1,1} is the full width of the ```superview``` right and the full height of the ```superview``` down
-    /// {-1,-1} is the full width of the ```superview``` left and the full height of the ```superview``` up
+    /// {1,1} is the full width of the `superview` right and the full height of the `superview` down
+    /// {-1,-1} is the full width of the `superview` left and the full height of the `superview` up
     @IBInspectable public var destination: CGPoint = CGPointZero
     
     /// The superview used to calculate the relative origin and destination positions. This doesn't have to be a direct 

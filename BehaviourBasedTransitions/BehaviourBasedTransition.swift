@@ -8,13 +8,13 @@
 
 import UIKit
 
-/// Animates a UIViewController transition using ```TransitionBehaviour``` objects, typically set up in the Storyboard.
+/// Animates a UIViewController transition using `TransitionBehaviour` objects, typically set up in the Storyboard.
 ///
-/// Either or both ```UIViewController```s should conform to the ```BehaviourTransitionable``` protocol, to provide the
-/// ```TransitionBehaviour```s used in the transition, via ```TransitionBehaviourCollection```s.
+/// Either or both `UIViewController`s should conform to the `BehaviourTransitionable` protocol, to provide the
+/// `TransitionBehaviour`s used in the transition, via `TransitionBehaviourCollection`s.
 ///
-/// Each ```BehaviourBasedTransition``` should have a unique transitionIdentifier, which is used to get the correct
-/// ```TransitionBehaviour``` for the transition via the ```UIViewController```s ```TransitionBehaviourCollection```s.
+/// Each `BehaviourBasedTransition` should have a unique transitionIdentifier, which is used to get the correct
+/// `TransitionBehaviour` for the transition via the `UIViewController`s `TransitionBehaviourCollection`s.
 public class BehaviourBasedTransition: NSObject {
     
     
