@@ -167,7 +167,6 @@ private extension BehaviourBasedTransition {
                     sourceViewControllerSuperview?.addSubview(fromController.view)
                 }
                 context.completeTransition(false)
-
             } else {
                 if !isPresenting {
                     sourceViewControllerSuperview?.addSubview(toController.view)

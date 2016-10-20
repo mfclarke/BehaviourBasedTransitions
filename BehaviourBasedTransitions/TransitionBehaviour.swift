@@ -110,7 +110,7 @@ public class TransitionBehaviour: NSObject {
     
     /// Adds an animation with appropriate handling of start and duration times. The times passed in here will be relative
     /// to the time of the `TransitionBehaviour`, which in turn is relative to the duration of the whole transition
-    func addAnimation(startTime: NSTimeInterval = 0, duration: NSTimeInterval = 1, animation: () -> ()) {
+    public final func addAnimation(startTime: NSTimeInterval = 0, duration: NSTimeInterval = 1, animation: () -> ()) {
         let (animStartTime, animDuration, animFinishTime) = clampedTimes(startTime, duration)
         let (behaviourStartTime, behaviourDuration, behaviourFinishTime) = clampedTimes(relativeStartTime, relativeDuration)
         
