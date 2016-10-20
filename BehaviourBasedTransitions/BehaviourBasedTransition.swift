@@ -15,8 +15,7 @@ import UIKit
 ///
 /// Each `BehaviourBasedTransition` should have a unique transitionIdentifier, which is used to get the correct
 /// `TransitionBehaviour` for the transition via the `UIViewController`s `TransitionBehaviourCollection`s.
-public class BehaviourBasedTransition: NSObject {
-    
+public class BehaviourBasedTransition: UIPercentDrivenInteractiveTransition, UIViewControllerAnimatedTransitioning {
     
     // MARK: IBInspectable vars
     
@@ -27,19 +26,19 @@ public class BehaviourBasedTransition: NSObject {
     @IBInspectable public var segueIdentifier: String = ""
     
     /// Duration of the transition
-    @IBInspectable public var duration: Double = 0.5
-    
+    @IBInspectable public var transitionDuration: Double = 0.5
     
     // MARK: Private
     
     private var isPresenting = false
+    public var isInteractive = false
     
     private var behaviourAnimationsCompleted = 0
     private var allBehaviours: [TransitionBehaviour] = []
     
-}
-
-extension BehaviourBasedTransition: UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate {
+    private weak var sourceViewControllerSuperview: UIView?
+    
+    public var maxDistance: CGFloat = 500
 
     public func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         guard let
@@ -49,7 +48,12 @@ extension BehaviourBasedTransition: UIViewControllerAnimatedTransitioning, UIVie
             else { return }
         
         if isPresenting {
+            sourceViewControllerSuperview = fromController.view.superview
+            container.addSubview(fromController.view)
             container.addSubview(toController.view)
+        } else {
+            container.addSubview(toController.view)
+            container.addSubview(fromController.view)
         }
         
         let behaviours = setupBehaviours(fromController, toController: toController, container: container, context: transitionContext)
@@ -58,8 +62,12 @@ extension BehaviourBasedTransition: UIViewControllerAnimatedTransitioning, UIVie
     }
     
     public func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
-        return duration
+        return transitionDuration
     }
+    
+}
+
+extension BehaviourBasedTransition: UIViewControllerTransitioningDelegate {
     
     public func animationControllerForPresentedController(
         presented: UIViewController,
@@ -75,13 +83,19 @@ extension BehaviourBasedTransition: UIViewControllerAnimatedTransitioning, UIVie
         return self
     }
     
-    // TODO: Handle interactive transitions
-    
     public func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        if isInteractive {
+            isPresenting = true
+            return self
+        }
         return nil
     }
     
     public func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        if isInteractive {
+            isPresenting = false
+            return self
+        }
         return nil
     }
     
@@ -103,7 +117,7 @@ private extension BehaviourBasedTransition {
         
         allBehaviours.forEach { behaviour in
             behaviour.isPresenting = self.isPresenting
-            behaviour.transitionDuration = self.duration
+            behaviour.transitionDuration = self.transitionDuration
             behaviour.animationCompleted = {
                 self.behaviourAnimationCompleted(context)
             }
@@ -140,9 +154,27 @@ private extension BehaviourBasedTransition {
     func behaviourAnimationCompleted(context: UIViewControllerContextTransitioning) {
         behaviourAnimationsCompleted += 1
         if behaviourAnimationsCompleted == allBehaviours.count {
-            allBehaviours.forEach { $0.complete() }
+            guard let
+                toController = context.viewControllerForKey(UITransitionContextToViewControllerKey),
+                fromController = context.viewControllerForKey(UITransitionContextFromViewControllerKey)
+                else { return }
             
-            context.completeTransition(true)
+            allBehaviours.forEach { $0.transitionCompleted(context.transitionWasCancelled()) }
+            
+            if context.transitionWasCancelled() {
+                if isPresenting {
+                    toController.dismissViewControllerAnimated(false, completion: nil)
+                    sourceViewControllerSuperview?.addSubview(fromController.view)
+                }
+                context.completeTransition(false)
+
+            } else {
+                if !isPresenting {
+                    sourceViewControllerSuperview?.addSubview(toController.view)
+                }
+                context.completeTransition(true)
+            }
+            
         }
     }
     
