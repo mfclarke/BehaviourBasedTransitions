@@ -126,25 +126,28 @@ public class TransitionBehaviour: NSObject {
         
         let isReverse = (!isPresenting && reverseTimingOnDismissal)
         
-        let durationForAnim = (isReverse ? reverseDuration : forwardDuration) * transitionDuration
-        let delayForAnim = (isReverse ? reverseStartTime : forwardStartTime) * transitionDuration
-        let animCurve = AnimationCurve(rawValue: animationCurve) ?? .EaseInOut
-        
         if isInteractive {
+            let durationForAnim = (isReverse ? reverseDuration : forwardDuration)
+            let delayForAnim = (isReverse ? reverseStartTime : forwardStartTime)
+            
             UIView.animateKeyframesWithDuration(
-                duration,
+                transitionDuration,
                 delay: 0,
                 options: [.AllowUserInteraction],
                 animations: { 
                     UIView.addKeyframeWithRelativeStartTime(
-                        behaviourStartTime,
-                        relativeDuration: behaviourDuration,
+                        delayForAnim,
+                        relativeDuration: durationForAnim,
                         animations: animation
                     )
                 },
                 completion: { _ in self.animationCompleted?() }
             )
         } else {
+            let durationForAnim = (isReverse ? reverseDuration : forwardDuration) * transitionDuration
+            let delayForAnim = (isReverse ? reverseStartTime : forwardStartTime) * transitionDuration
+            let animCurve = AnimationCurve(rawValue: animationCurve) ?? .EaseInOut
+            
             UIView.animateWithDuration(
                 durationForAnim,
                 delay: delayForAnim,
