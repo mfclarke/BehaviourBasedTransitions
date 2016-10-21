@@ -92,6 +92,9 @@ public class TransitionBehaviour: NSObject {
     /// Set up by the BehaviourBasedTransition object.
     public var isPresenting = false
     
+    /// Returns true if the transition is being driven interactively
+    public var isInteractive = false
+    
     /// Used to tell the transition when animation ends
     var animationCompleted: (() -> ())?
     
@@ -127,14 +130,30 @@ public class TransitionBehaviour: NSObject {
         let delayForAnim = (isReverse ? reverseStartTime : forwardStartTime) * transitionDuration
         let animCurve = AnimationCurve(rawValue: animationCurve) ?? .EaseInOut
         
-        UIView.animateWithDuration(
-            durationForAnim,
-            delay: delayForAnim,
-            usingSpringWithDamping: springDamping,
-            initialSpringVelocity: initialSpringVelocity,
-            options: [animCurve.toUIViewAnimationOption(), .AllowUserInteraction],
-            animations: animation,
-            completion: { _ in self.animationCompleted?() })
+        if isInteractive {
+            UIView.animateKeyframesWithDuration(
+                duration,
+                delay: 0,
+                options: [.AllowUserInteraction],
+                animations: { 
+                    UIView.addKeyframeWithRelativeStartTime(
+                        behaviourStartTime,
+                        relativeDuration: behaviourDuration,
+                        animations: animation
+                    )
+                },
+                completion: { _ in self.animationCompleted?() }
+            )
+        } else {
+            UIView.animateWithDuration(
+                durationForAnim,
+                delay: delayForAnim,
+                usingSpringWithDamping: springDamping,
+                initialSpringVelocity: initialSpringVelocity,
+                options: [animCurve.toUIViewAnimationOption(), .AllowUserInteraction],
+                animations: animation,
+                completion: { _ in self.animationCompleted?() })
+        }
     }
     
     private func clampedTimes(startTime: NSTimeInterval, _ duration: NSTimeInterval) -> (NSTimeInterval, NSTimeInterval, NSTimeInterval) {
