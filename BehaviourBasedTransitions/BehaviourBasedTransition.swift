@@ -117,6 +117,7 @@ private extension BehaviourBasedTransition {
         
         allBehaviours.forEach { behaviour in
             behaviour.isPresenting = self.isPresenting
+            behaviour.isInteractive = self.isInteractive
             behaviour.transitionDuration = self.transitionDuration
             behaviour.animationCompleted = {
                 self.behaviourAnimationCompleted(context)
