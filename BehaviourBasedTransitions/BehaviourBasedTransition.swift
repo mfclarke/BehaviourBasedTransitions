@@ -28,6 +28,11 @@ public class BehaviourBasedTransition: UIPercentDrivenInteractiveTransition, UIV
     /// Duration of the transition
     @IBInspectable public var transitionDuration: Double = 0.5
     
+    /// Optional UIPanGestureRecognizer to use for interactive transition
+    @IBOutlet public var panGestureRecognizer: UIPanGestureRecognizer!
+    
+    @IBInspectable public var interactiveRollback: CGFloat = 0.333
+    
     // MARK: Private
     
     private var isPresenting = false
@@ -63,6 +68,31 @@ public class BehaviourBasedTransition: UIPercentDrivenInteractiveTransition, UIV
     
     public func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return transitionDuration
+    }
+    
+    public func updateForGestureChange(panGestureRecognizer panGestureRecognizer: UIPanGestureRecognizer, presenting: Bool) {
+        let translation = panGestureRecognizer.translationInView(panGestureRecognizer.view)
+        let percent = max((presenting ? -1 : 1) * translation.y / maxDistance, 0.0)
+        let location = panGestureRecognizer.locationInView(panGestureRecognizer.view)
+        
+        switch panGestureRecognizer.state {
+        case .Began:
+            isInteractive = true
+            let viewHeight = panGestureRecognizer.view?.frame.height ?? 0
+            maxDistance = presenting ? location.y : viewHeight - location.y
+            break
+            
+        case .Changed:
+            updateInteractiveTransition(percent)
+            
+        default:
+            isInteractive = false
+            if percent > interactiveRollback {
+                finishInteractiveTransition()
+            } else {
+                cancelInteractiveTransition()
+            }
+        }
     }
     
 }
