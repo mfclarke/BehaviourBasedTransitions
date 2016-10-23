@@ -18,7 +18,7 @@ public class VerticalPanInteractionHandler: InteractionHandler {
     
     private var maxDistance: CGFloat = 500
     
-    override func setupForGestureBegin() {
+    override public func setupForGestureBegin() {
         let location = panGestureRecognizer.locationInView(panGestureRecognizer.view)
         let viewHeight = panGestureRecognizer.view?.frame.height ?? 0
         
@@ -29,20 +29,20 @@ public class VerticalPanInteractionHandler: InteractionHandler {
         }
     }
     
-    override func calculatePercent() -> CGFloat {
+    override public func calculatePercent() -> CGFloat {
         let translation = panGestureRecognizer.translationInView(panGestureRecognizer.view)
         return shouldUpSwipePresent ?
             max((isHandlerForPresentationTransition ? -1 : 1) * translation.y / maxDistance, 0.0) :
             max((isHandlerForPresentationTransition ? 1 : -1) * translation.y / maxDistance, 0.0)
     }
     
-    override func shouldBeginPresentationTransition() -> Bool {
+    override public func shouldBeginPresentationTransition() -> Bool {
         return shouldUpSwipePresent ?
             panGestureRecognizer.velocityInView(panGestureRecognizer.view).y < 0 :
             panGestureRecognizer.velocityInView(panGestureRecognizer.view).y > 0
     }
     
-    override func shouldBeginDismissalTransition() -> Bool {
+    override public func shouldBeginDismissalTransition() -> Bool {
         return shouldUpSwipePresent ?
             panGestureRecognizer.velocityInView(panGestureRecognizer.view).y > 0 :
             panGestureRecognizer.velocityInView(panGestureRecognizer.view).y < 0
