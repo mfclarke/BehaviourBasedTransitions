@@ -41,11 +41,12 @@ public class BehaviourBasedTransition: UIPercentDrivenInteractiveTransition, UIV
     public var maxDistance: CGFloat = 500
 
     public func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        guard let
-            container = transitionContext.containerView(),
-            fromController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey),
-            toController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
+        guard
+            let fromController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey),
+            let toController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
             else { return }
+        
+        let container = transitionContext.containerView()
         
         if isPresenting {
             sourceViewControllerSuperview = fromController.view.superview
@@ -155,9 +156,9 @@ private extension BehaviourBasedTransition {
     func behaviourAnimationCompleted(context: UIViewControllerContextTransitioning) {
         behaviourAnimationsCompleted += 1
         if behaviourAnimationsCompleted == allBehaviours.count {
-            guard let
-                toController = context.viewControllerForKey(UITransitionContextToViewControllerKey),
-                fromController = context.viewControllerForKey(UITransitionContextFromViewControllerKey)
+            guard
+                let toController = context.viewControllerForKey(UITransitionContextToViewControllerKey),
+                let fromController = context.viewControllerForKey(UITransitionContextFromViewControllerKey)
                 else { return }
             
             allBehaviours.forEach { $0.transitionCompleted(context.transitionWasCancelled()) }
