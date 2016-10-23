@@ -19,9 +19,9 @@ class SourceViewController: UIViewController, BehaviourTransitionable {
         prepareSegueForTransition(segue)
     }
     
-    @IBAction func unwindToViewController (sender: UIStoryboardSegue) {}
+    @IBAction func unwindToViewController(withSender sender: UIStoryboardSegue) {}
     
-    @IBAction func dismiss(sender: AnyObject) {
+    @IBAction func dismiss(withSender sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
