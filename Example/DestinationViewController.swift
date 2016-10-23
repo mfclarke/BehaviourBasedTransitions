@@ -25,7 +25,7 @@ class DestinationViewController: UIViewController, BehaviourTransitionable {
 
 extension DestinationViewController {
 
-    @IBAction func panGestureChanged(gestureRecognizer: UIGestureRecognizer?) {
+    @IBAction func panGestureChanged(withGestureRecognizer gestureRecognizer: UIGestureRecognizer?) {
         guard let
             panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer,
             transition = transitioningDelegate as? BehaviourBasedTransition else { return }
