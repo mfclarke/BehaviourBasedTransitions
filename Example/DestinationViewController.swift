@@ -28,26 +28,26 @@ extension DestinationViewController {
     @IBAction func panGestureChanged(withGestureRecognizer gestureRecognizer: UIGestureRecognizer?) {
         guard let
             panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer,
-            transition = transitioningDelegate as? BehaviourBasedTransition else { return }
+            let transition = transitioningDelegate as? BehaviourBasedTransition else { return }
         
         let rollBack = CGFloat(0.333)
-        let translation = panGestureRecognizer.translationInView(view)
+        let translation = panGestureRecognizer.translation(in: view)
         let percent = max((1.0 * translation.y) / transition.maxDistance, 0.0)
-        let location = panGestureRecognizer.locationInView(view).y
+        let location = panGestureRecognizer.location(in: view).y
         
         switch panGestureRecognizer.state {
-        case .Began:
+        case .began:
             transition.isInteractive = true
             transition.maxDistance = view.frame.height - location
-            dismissViewControllerAnimated(true, completion: nil)
-        case .Changed:
-            transition.updateInteractiveTransition(percent)
+            dismiss(animated: true, completion: nil)
+        case .changed:
+            transition.update(percent)
         default: // .Ended, .Cancelled, .Failed ...
             transition.isInteractive = false
             if percent > rollBack {
-                transition.finishInteractiveTransition()
+                transition.finish()
             } else {
-                transition.cancelInteractiveTransition()
+                transition.cancel()
             }
         }
     }
@@ -56,10 +56,10 @@ extension DestinationViewController {
 
 extension DestinationViewController: UIGestureRecognizerDelegate {
     
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         guard let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer else { return false }
         
-        return panGestureRecognizer.velocityInView(view).y > 0
+        return panGestureRecognizer.velocity(in: view).y > 0
     }
     
 }

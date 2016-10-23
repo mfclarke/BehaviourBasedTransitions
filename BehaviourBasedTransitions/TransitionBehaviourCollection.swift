@@ -9,12 +9,12 @@
 import UIKit
 
 /// Used to group `TransitionBehaviour`s together under a single `transitionIdentifier`
-public class TransitionBehaviourCollection: NSObject {
+open class TransitionBehaviourCollection: NSObject {
     
     /// The identifier the `TransitionBehaviour`s belong to
-    @IBInspectable public var transitionIdentifier: String = ""
+    @IBInspectable open var transitionIdentifier: String = ""
     
     // The behaviours for the `transitionIdentifier`
-    @IBOutlet public var behaviours: [TransitionBehaviour] = []
+    @IBOutlet open var behaviours: [TransitionBehaviour] = []
     
 }
