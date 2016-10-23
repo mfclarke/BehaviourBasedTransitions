@@ -197,7 +197,7 @@
                 </panGestureRecognizer>
                 <customObject id="L8q-Si-bD9" customClass="PanGestureInteractionHandler" customModule="BehaviourBasedTransitions">
                     <connections>
-                        <outlet property="panGestureRecognizer" destination="Acr-Sq-Fr0" id="rpR-8P-g2p"/>
+                        <outlet property="gestureRecognizer" destination="Acr-Sq-Fr0" id="DLz-W4-QEx"/>
                         <outlet property="sourceViewController" destination="BYZ-38-t0r" id="qO5-S9-gbN"/>
                         <outlet property="transition" destination="Wpd-oW-J8M" id="5lD-E9-Ldq"/>
                     </connections>
@@ -310,7 +310,7 @@
                 <customObject id="VKK-1S-Hml" customClass="PanGestureInteractionHandler" customModule="BehaviourBasedTransitions">
                     <connections>
                         <outlet property="destinationViewController" destination="APd-nP-E5c" id="Rpl-4G-9yu"/>
-                        <outlet property="panGestureRecognizer" destination="II6-iF-nPR" id="ZQE-kg-4XD"/>
+                        <outlet property="gestureRecognizer" destination="II6-iF-nPR" id="EzF-hL-5VL"/>
                     </connections>
                 </customObject>
                 <customObject id="yHr-07-Z1A" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions">
