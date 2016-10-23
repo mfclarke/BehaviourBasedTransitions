@@ -25,7 +25,7 @@
 		F1338D901D732C5300D5DC34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1338D881D732C5300D5DC34 /* Main.storyboard */; };
 		F1338D911D732C5300D5DC34 /* DestinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1338D8A1D732C5300D5DC34 /* DestinationViewController.swift */; };
 		F1338D921D732C5300D5DC34 /* SourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1338D8B1D732C5300D5DC34 /* SourceViewController.swift */; };
-		F19606981DBCECE3005A4483 /* PanGestureInteractionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19606971DBCECE3005A4483 /* PanGestureInteractionHandler.swift */; };
+		F19606981DBCECE3005A4483 /* VerticalPanInteractionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19606971DBCECE3005A4483 /* VerticalPanInteractionHandler.swift */; };
 		F196069B1DBCF3D5005A4483 /* InteractionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196069A1DBCF3D5005A4483 /* InteractionHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,7 +87,7 @@
 		F18AF0AD1D718D77002C624E /* BehaviourTransitionable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BehaviourTransitionable.swift; path = BehaviourBasedTransitions/BehaviourTransitionable.swift; sourceTree = SOURCE_ROOT; };
 		F18AF0B91D718DC7002C624E /* BehaviourBasedTransitionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BehaviourBasedTransitionsTests.swift; path = BehaviourBasedTransitionsTests/BehaviourBasedTransitionsTests.swift; sourceTree = SOURCE_ROOT; };
 		F18AF0BB1D718DD1002C624E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = BehaviourBasedTransitionsTests/Info.plist; sourceTree = SOURCE_ROOT; };
-		F19606971DBCECE3005A4483 /* PanGestureInteractionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanGestureInteractionHandler.swift; sourceTree = "<group>"; };
+		F19606971DBCECE3005A4483 /* VerticalPanInteractionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalPanInteractionHandler.swift; sourceTree = "<group>"; };
 		F196069A1DBCF3D5005A4483 /* InteractionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionHandler.swift; sourceTree = "<group>"; };
 		F1AB56A41D73155400BCAB21 /* TransitionBehaviourCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransitionBehaviourCollection.swift; path = BehaviourBasedTransitions/TransitionBehaviourCollection.swift; sourceTree = SOURCE_ROOT; };
 		F1AB56A61D73155E00BCAB21 /* TransformToPositionBehaviours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransformToPositionBehaviours.swift; path = BehaviourBasedTransitions/TransformToPositionBehaviours.swift; sourceTree = SOURCE_ROOT; };
@@ -195,7 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				F196069A1DBCF3D5005A4483 /* InteractionHandler.swift */,
-				F19606971DBCECE3005A4483 /* PanGestureInteractionHandler.swift */,
+				F19606971DBCECE3005A4483 /* VerticalPanInteractionHandler.swift */,
 			);
 			name = "Interaction Handlers";
 			sourceTree = "<group>";
@@ -350,7 +350,7 @@
 				F1338D7C1D73295A00D5DC34 /* TransitionBehaviourCollection.swift in Sources */,
 				F1338D7B1D73295A00D5DC34 /* BehaviourTransitionable.swift in Sources */,
 				F196069B1DBCF3D5005A4483 /* InteractionHandler.swift in Sources */,
-				F19606981DBCECE3005A4483 /* PanGestureInteractionHandler.swift in Sources */,
+				F19606981DBCECE3005A4483 /* VerticalPanInteractionHandler.swift in Sources */,
 				F1338D7E1D73296000D5DC34 /* FadeTransitionBehaviour.swift in Sources */,
 				F1338D7A1D73295A00D5DC34 /* BehaviourBasedTransition.swift in Sources */,
 				F1338D7F1D73296000D5DC34 /* TranslateTransitionBehaviour.swift in Sources */,
