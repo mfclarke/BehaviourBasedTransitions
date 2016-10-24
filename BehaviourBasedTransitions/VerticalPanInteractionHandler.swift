@@ -12,6 +12,9 @@ public class VerticalPanInteractionHandler: InteractionHandler {
     
     @IBInspectable var shouldUpSwipePresent: Bool = true
     
+    @IBInspectable var topInset: CGFloat = 0
+    @IBInspectable var bottomInset: CGFloat = 0
+    
     var panGestureRecognizer: UIPanGestureRecognizer! {
         return gestureRecognizer as? UIPanGestureRecognizer
     }
@@ -37,14 +40,18 @@ public class VerticalPanInteractionHandler: InteractionHandler {
     }
     
     override public func shouldBeginPresentationTransition() -> Bool {
-        return shouldUpSwipePresent ?
-            panGestureRecognizer.velocityInView(panGestureRecognizer.view).y < 0 :
-            panGestureRecognizer.velocityInView(panGestureRecognizer.view).y > 0
+        let velocity = panGestureRecognizer.velocityInView(panGestureRecognizer.view)
+        return (shouldUpSwipePresent ? velocity.y < 0 : velocity.y > 0) && withinInsets()
     }
     
     override public func shouldBeginDismissalTransition() -> Bool {
-        return shouldUpSwipePresent ?
-            panGestureRecognizer.velocityInView(panGestureRecognizer.view).y > 0 :
-            panGestureRecognizer.velocityInView(panGestureRecognizer.view).y < 0
+        let velocity = panGestureRecognizer.velocityInView(panGestureRecognizer.view)
+        return (shouldUpSwipePresent ? velocity.y > 0 : velocity.y < 0) && withinInsets()
+    }
+    
+    private func withinInsets() -> Bool {
+        let location = panGestureRecognizer.locationInView(panGestureRecognizer.view)
+        let viewSize = panGestureRecognizer.view?.bounds.size ?? CGSize.zero
+        return (location.y > topInset && location.y < viewSize.height - bottomInset)
     }
 }
