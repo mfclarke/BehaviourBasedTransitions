@@ -38,6 +38,19 @@ In a lot of cases, you'll want to transition views that are created dynamically 
 ### Source/destination behaviour linking
 There is support for linking behaviours that are situated in different view controllers. In this way, you can have a behaviour that effects a view in the source view controller, but uses the frame or other properties of a view in the destination controller for the animation. An example of this is the ```TransformToPositionSourceBehaviour``` and ```TransformToPositionDestinationBehaviour```, which via the ```behaviourIdentifier``` property are linked together to provide Photos.app style transitions (small image grows to full size in the new view controller). The combination of both behaviours handle snapshotting, movement, scale and view visibility for the whole transition effect.
 
+## Interactivity
+Yes, the framework supports interactive transitions! To make your transition interactive, do the following in Interface Builder:
+
+1. Add a ```UIPanGestureRecognizer``` to your view controller
+1. Link the recognizer to the view it should recognize on
+1. Add a ```VerticalPanInteractionHandler``` to your view controller 
+1. Link the ```delegate``` of the gesture recognizer to the interaction handler
+1. Link the ```action``` of the gesture recognizer to the interaction handler
+1. Link the ```gestureRecognizer``` of the interaction handler to the gesture recognizer.
+1. If this is a presentation transition, link up the ```sourceViewController``` and ```transition``` outlets to their respective objects. For a dismissal transition, link up the ```destinationViewController``` outlet.
+
+Rejoice that you didn't have to write a single line of code to add interactivity to your transition!
+
 ## Roll your own TransitionBehaviours
 
 To implement new ```TransitionBehaviour```s, simply subclass the ```TransitionBehaviour``` object and extend the 3 callback functions:
@@ -48,8 +61,20 @@ To implement new ```TransitionBehaviour```s, simply subclass the ```TransitionBe
 
 And don't forget to submit a PR with your fancy new behaviour ;)
 
+## Roll your own InteractionHandlers
+
+To implement new ```InteractionHandler```s, simply subclass the ```InteractionHandlers``` object and extend the 4 callback functions:
+
+* ```setupForGestureBegin``` is used to prepare your handler when the gesture is recognized. Can be useful for using the touch location to set a limit for percent calculation for example.
+* ```calculatePercent``` is where you calculate how far along the transition is, depending on values from the ```UIGestureRecognizer``` class you're handling. For example, the touch location relative to the top of the screen for a vertical pan interaction.
+* ```shouldBeginPresentationTransition``` return ```true``` if the gesture state is correct for a presentation transition. For example, negative y velocity for a pan up.
+* ```shouldBeginDismissalTransition``` return ```true``` if the gesture state is correct for a dismissal transition. For example, positive y velocity for a pan down.
+
+Don't forget to submit a PR! ;)
+
 ## TODO
 
 * Add more ```TransitionBehaviour```s (blur, 3D stuff, opacity), and expand the existing ones to allow physics based UIView animations configurable via IBInspectables
+* Add more ```InteractionHandler```s (pinch, swipe, 3D touch)
 * Add tests
 * Add Cocoapods, Swift Package Manager support
