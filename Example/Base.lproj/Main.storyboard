@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TDN-dU-3No">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="16A319" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TDN-dU-3No">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -107,7 +107,7 @@
             </objects>
             <point key="canvasLocation" x="545" y="-470"/>
         </scene>
-        <!--Source 1-->
+        <!--Source View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController title="Source 1" id="BYZ-38-t0r" customClass="SourceViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -192,10 +192,17 @@
                 </customObject>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="Acr-Sq-Fr0">
                     <connections>
-                        <action selector="panGestureChanged:" destination="BYZ-38-t0r" id="UK2-ip-G5I"/>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="ykB-j7-ikp"/>
+                        <action selector="panGestureChangedWithGestureRecognizer:" destination="L8q-Si-bD9" id="M3w-EC-SO8"/>
+                        <outlet property="delegate" destination="L8q-Si-bD9" id="fDt-df-AfO"/>
                     </connections>
                 </panGestureRecognizer>
+                <customObject id="L8q-Si-bD9" customClass="VerticalPanInteractionHandler" customModule="BehaviourBasedTransitions">
+                    <connections>
+                        <outlet property="gestureRecognizer" destination="Acr-Sq-Fr0" id="DLz-W4-QEx"/>
+                        <outlet property="sourceViewController" destination="BYZ-38-t0r" id="qO5-S9-gbN"/>
+                        <outlet property="transition" destination="Wpd-oW-J8M" id="5lD-E9-Ldq"/>
+                    </connections>
+                </customObject>
                 <customObject id="wEz-Ef-V1l" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions">
                     <connections>
                         <outletCollection property="behaviours" destination="JmP-dB-u2R" collectionClass="NSMutableArray" id="K8t-u4-KFX"/>
@@ -257,7 +264,7 @@
             </objects>
             <point key="canvasLocation" x="663" y="383"/>
         </scene>
-        <!--Destination 1-->
+        <!--Destination View Controller-->
         <scene sceneID="MuV-YD-M1w">
             <objects>
                 <viewController title="Destination 1" id="APd-nP-E5c" customClass="DestinationViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -297,10 +304,16 @@
                 <exit id="cfc-qH-pvH" userLabel="Exit" sceneMemberID="exit"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="II6-iF-nPR">
                     <connections>
-                        <action selector="panGestureChanged:" destination="APd-nP-E5c" id="knU-Xq-8f3"/>
-                        <outlet property="delegate" destination="APd-nP-E5c" id="Z8W-ol-bdG"/>
+                        <action selector="panGestureChangedWithGestureRecognizer:" destination="VKK-1S-Hml" id="Had-lo-eq7"/>
+                        <outlet property="delegate" destination="VKK-1S-Hml" id="VlD-gC-Vbf"/>
                     </connections>
                 </panGestureRecognizer>
+                <customObject id="VKK-1S-Hml" customClass="VerticalPanInteractionHandler" customModule="BehaviourBasedTransitions">
+                    <connections>
+                        <outlet property="destinationViewController" destination="APd-nP-E5c" id="Rpl-4G-9yu"/>
+                        <outlet property="gestureRecognizer" destination="II6-iF-nPR" id="EzF-hL-5VL"/>
+                    </connections>
+                </customObject>
                 <customObject id="yHr-07-Z1A" customClass="TransitionBehaviourCollection" customModule="BehaviourBasedTransitions">
                     <connections>
                         <outletCollection property="behaviours" destination="es7-Zh-khf" collectionClass="NSMutableArray" id="hBl-xt-PKs"/>

@@ -37,8 +37,6 @@ public class BehaviourBasedTransition: UIPercentDrivenInteractiveTransition, UIV
     private var allBehaviours: [TransitionBehaviour] = []
     
     private weak var sourceViewControllerSuperview: UIView?
-    
-    public var maxDistance: CGFloat = 500
 
     public func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         guard let
