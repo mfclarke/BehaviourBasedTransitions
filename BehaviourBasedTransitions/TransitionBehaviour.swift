@@ -96,7 +96,7 @@ public class TransitionBehaviour: NSObject {
     public var isInteractive = false
     
     /// Used to tell the transition when animation ends
-    var animationCompleted: (() -> ())?
+    public var animationCompleted: (() -> ())?
     
     /// Extend this func to set up your viewForTransition for animation to start
     public func setup(container: UIView, destinationBehaviour: TransitionBehaviour?) {}
