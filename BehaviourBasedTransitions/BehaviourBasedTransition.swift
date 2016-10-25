@@ -65,6 +65,28 @@ public class BehaviourBasedTransition: UIPercentDrivenInteractiveTransition, UIV
         return transitionDuration
     }
     
+    public func allBehavioursCompleted(context: UIViewControllerContextTransitioning) {
+        guard let
+            toController = context.viewControllerForKey(UITransitionContextToViewControllerKey),
+            fromController = context.viewControllerForKey(UITransitionContextFromViewControllerKey)
+            else { return }
+        
+        allBehaviours.forEach { $0.transitionCompleted(context.transitionWasCancelled()) }
+        
+        if context.transitionWasCancelled() {
+            if isPresenting {
+                toController.dismissViewControllerAnimated(false, completion: nil)
+                sourceViewControllerSuperview?.addSubview(fromController.view)
+            }
+            context.completeTransition(false)
+        } else {
+            if !isPresenting {
+                sourceViewControllerSuperview?.addSubview(toController.view)
+            }
+            context.completeTransition(true)
+        }
+    }
+    
 }
 
 extension BehaviourBasedTransition: UIViewControllerTransitioningDelegate {
@@ -155,27 +177,7 @@ private extension BehaviourBasedTransition {
     func behaviourAnimationCompleted(context: UIViewControllerContextTransitioning) {
         behaviourAnimationsCompleted += 1
         if behaviourAnimationsCompleted == allBehaviours.count {
-            guard let
-                toController = context.viewControllerForKey(UITransitionContextToViewControllerKey),
-                fromController = context.viewControllerForKey(UITransitionContextFromViewControllerKey)
-                else { return }
-            
-            allBehaviours.forEach { $0.transitionCompleted(context.transitionWasCancelled()) }
-            
-            if context.transitionWasCancelled() {
-                if isPresenting {
-                    toController.dismissViewControllerAnimated(false, completion: nil)
-                    sourceViewControllerSuperview?.addSubview(fromController.view)
-                }
-                context.completeTransition(false)
-            } else {
-                if !isPresenting {
-                    sourceViewControllerSuperview?.addSubview(toController.view)
-                }
-                context.completeTransition(true)
-            }
-            
+            allBehavioursCompleted(context)
         }
     }
-    
 }
