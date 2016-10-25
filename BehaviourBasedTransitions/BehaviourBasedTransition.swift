@@ -17,7 +17,6 @@ import UIKit
 /// `TransitionBehaviour` for the transition via the `UIViewController`s `TransitionBehaviourCollection`s.
 public class BehaviourBasedTransition: UIPercentDrivenInteractiveTransition, UIViewControllerAnimatedTransitioning {
     
-    // MARK: IBInspectable vars
     
     /// Unique identifier for the transition
     @IBInspectable public var transitionIdentifier: String = ""
@@ -28,9 +27,8 @@ public class BehaviourBasedTransition: UIPercentDrivenInteractiveTransition, UIV
     /// Duration of the transition
     @IBInspectable public var transitionDuration: Double = 0.5
     
-    // MARK: Private
     
-    private var isPresenting = false
+    public private(set) var isPresenting = false
     public var isInteractive = false
     
     private var behaviourAnimationsCompleted = 0
