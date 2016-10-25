@@ -76,7 +76,7 @@ public class TransitionBehaviour: NSObject {
     // MARK: Internal
     
     /// Set by setup function for calculation of relative start and duration times
-    var transitionDuration: NSTimeInterval = 0
+    internal(set) public var transitionDuration: NSTimeInterval = 0
     
     /// Returns the views to use for the transition. If there's a viewsProvider connected, the viewsProvider must provide the views.
     /// If no delegate connected, it will use the views `IBOutlet` collection.
