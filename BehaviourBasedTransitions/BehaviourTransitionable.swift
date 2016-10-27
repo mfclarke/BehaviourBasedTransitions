@@ -32,7 +32,7 @@ public extension BehaviourTransitionable {
 /// `BehaviourBasedTransition` calls these at the appropriate times when transitioning.
 /// Default implementations are provided to propogate to child view controllers, including children of
 /// `UITabBarController` and `UIPageViewController`
-protocol BehaviourAppearable {
+public protocol BehaviourAppearable {
     func viewWillAppearByTransition(withIdentifier identifier: String)
     func viewWillDisappearByTransition(withIdentifier identifier: String)
     
@@ -42,19 +42,19 @@ protocol BehaviourAppearable {
 
 extension UIViewController: BehaviourAppearable {
     
-    func viewWillAppearByTransition(withIdentifier identifier: String) {
+    public func viewWillAppearByTransition(withIdentifier identifier: String) {
         childViewControllers.forEach { $0.viewWillAppearByTransition(withIdentifier: identifier) }
     }
     
-    func viewWillDisappearByTransition(withIdentifier identifier: String) {
+    public func viewWillDisappearByTransition(withIdentifier identifier: String) {
         childViewControllers.forEach { $0.viewWillDisappearByTransition(withIdentifier: identifier) }
     }
     
-    func viewDidAppearByTransition(withIdentifier identifier: String) {
+    public func viewDidAppearByTransition(withIdentifier identifier: String) {
         childViewControllers.forEach { $0.viewDidAppearByTransition(withIdentifier: identifier) }
     }
     
-    func viewDidDisappearByTransition(withIdentifier identifier: String) {
+    public func viewDidDisappearByTransition(withIdentifier identifier: String) {
         childViewControllers.forEach { $0.viewDidDisappearByTransition(withIdentifier: identifier) }
     }
     
@@ -62,22 +62,22 @@ extension UIViewController: BehaviourAppearable {
 
 extension UIPageViewController {
     
-    override func viewWillAppearByTransition(withIdentifier identifier: String) {
+    override public func viewWillAppearByTransition(withIdentifier identifier: String) {
         super.viewWillAppearByTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.viewWillAppearByTransition(withIdentifier: identifier) }
     }
     
-    override func viewWillDisappearByTransition(withIdentifier identifier: String) {
+    override public func viewWillDisappearByTransition(withIdentifier identifier: String) {
         super.viewWillDisappearByTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.viewWillDisappearByTransition(withIdentifier: identifier) }
     }
     
-    override func viewDidAppearByTransition(withIdentifier identifier: String) {
+    override public func viewDidAppearByTransition(withIdentifier identifier: String) {
         super.viewDidAppearByTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.viewDidAppearByTransition(withIdentifier: identifier) }
     }
     
-    override func viewDidDisappearByTransition(withIdentifier identifier: String) {
+    override public func viewDidDisappearByTransition(withIdentifier identifier: String) {
         super.viewDidDisappearByTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.viewDidDisappearByTransition(withIdentifier: identifier) }
     }
@@ -86,22 +86,22 @@ extension UIPageViewController {
 
 extension UITabBarController {
     
-    override func viewWillAppearByTransition(withIdentifier identifier: String) {
+    override public func viewWillAppearByTransition(withIdentifier identifier: String) {
         super.viewWillAppearByTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.viewWillAppearByTransition(withIdentifier: identifier) }
     }
     
-    override func viewWillDisappearByTransition(withIdentifier identifier: String) {
+    override public func viewWillDisappearByTransition(withIdentifier identifier: String) {
         super.viewWillDisappearByTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.viewWillDisappearByTransition(withIdentifier: identifier) }
     }
     
-    override func viewDidAppearByTransition(withIdentifier identifier: String) {
+    override public func viewDidAppearByTransition(withIdentifier identifier: String) {
         super.viewDidAppearByTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.viewDidAppearByTransition(withIdentifier: identifier) }
     }
     
-    override func viewDidDisappearByTransition(withIdentifier identifier: String) {
+    override public func viewDidDisappearByTransition(withIdentifier identifier: String) {
         super.viewDidDisappearByTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.viewDidDisappearByTransition(withIdentifier: identifier) }
     }
