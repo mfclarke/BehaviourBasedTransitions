@@ -34,9 +34,11 @@ public class VerticalPanInteractionHandler: InteractionHandler {
     
     override public func calculatePercent() -> CGFloat {
         let translation = panGestureRecognizer.translationInView(panGestureRecognizer.view)
-        return shouldUpSwipePresent ?
-            max((isHandlerForPresentationTransition ? -1 : 1) * translation.y / maxDistance, 0.0) :
-            max((isHandlerForPresentationTransition ? 1 : -1) * translation.y / maxDistance, 0.0)
+        let percent = shouldUpSwipePresent ?
+            (isHandlerForPresentationTransition ? -1 : 1) * translation.y / maxDistance :
+            (isHandlerForPresentationTransition ? 1 : -1) * translation.y / maxDistance
+
+        return min(1, max(percent, 0))
     }
     
     override public func shouldBeginPresentationTransition() -> Bool {
