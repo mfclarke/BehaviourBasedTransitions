@@ -4,13 +4,11 @@ xcode_project: BehaviourBasedTransitions.xcodeproj
 xcode_scheme: BehaviourBasedTransitions
 
 script:
-  xctool
+  xcodebuild
   -project BehaviourBasedTransitions.xcodeproj
-  -scheme BehaviourBasedTransitions
+  -scheme BehaviourBasedTransitionsTests
   -sdk iphonesimulator
   -destination 'platform=iOS Simulator,name=iPhone 6'
-  build
   test
   ONLY_ACTIVE_ARCH=NO
-  CODE_SIGN_IDENTITY=""
   CODE_SIGNING_REQUIRED=NO

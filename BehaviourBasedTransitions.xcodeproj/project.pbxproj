@@ -7,9 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4013695D1DC312E80030A301 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4013695B1DC312E80030A301 /* Nimble.framework */; };
+		4013695E1DC312E80030A301 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4013695C1DC312E80030A301 /* Quick.framework */; };
+		401369631DC313AB0030A301 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4013695B1DC312E80030A301 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		401369641DC313AB0030A301 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4013695C1DC312E80030A301 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		401369661DC313F30030A301 /* BehaviourBasedTransitionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401369651DC313F30030A301 /* BehaviourBasedTransitionSpec.swift */; };
+		401369681DC319640030A301 /* MockTransitionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401369671DC319640030A301 /* MockTransitionContext.swift */; };
+		4013696A1DC31F720030A301 /* MockTransitionableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401369691DC31F720030A301 /* MockTransitionableViewController.swift */; };
+		402EE5311DC31069008BD8DA /* BehaviourBasedTransitions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */; };
 		406F29101D76BE950048ED60 /* ScaleTransitionBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406F290F1D76BE950048ED60 /* ScaleTransitionBehaviour.swift */; };
 		F1338D5F1D73290800D5DC34 /* BehaviourBasedTransitions.h in Headers */ = {isa = PBXBuildFile; fileRef = F1338D5E1D73290800D5DC34 /* BehaviourBasedTransitions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F1338D661D73290800D5DC34 /* BehaviourBasedTransitions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */; };
 		F1338D711D73290800D5DC34 /* BehaviourBasedTransitions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */; };
 		F1338D731D73290800D5DC34 /* BehaviourBasedTransitions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F1338D7A1D73295A00D5DC34 /* BehaviourBasedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18AF0AC1D718D77002C624E /* BehaviourBasedTransition.swift */; };
@@ -30,19 +37,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F1338D671D73290800D5DC34 /* PBXContainerItemProxy */ = {
+		402EE5321DC31069008BD8DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F13E86591D70AE0C0003C8EC /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F1338D5B1D73290800D5DC34;
 			remoteInfo = BehaviourBasedTransitions;
-		};
-		F1338D691D73290800D5DC34 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F13E86591D70AE0C0003C8EC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F13E86601D70AE0C0003C8EC;
-			remoteInfo = Example;
 		};
 		F1338D6F1D73290800D5DC34 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -54,6 +54,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		401369621DC313910030A301 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				401369631DC313AB0030A301 /* Nimble.framework in CopyFiles */,
+				401369641DC313AB0030A301 /* Quick.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F1338D721D73290800D5DC34 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -68,10 +79,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4013695B1DC312E80030A301 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = ../Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		4013695C1DC312E80030A301 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = ../Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		401369651DC313F30030A301 /* BehaviourBasedTransitionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BehaviourBasedTransitionSpec.swift; sourceTree = "<group>"; };
+		401369671DC319640030A301 /* MockTransitionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTransitionContext.swift; sourceTree = "<group>"; };
+		401369691DC31F720030A301 /* MockTransitionableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTransitionableViewController.swift; sourceTree = "<group>"; };
+		402EE52C1DC31069008BD8DA /* BehaviourBasedTransitionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BehaviourBasedTransitionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		406F290F1D76BE950048ED60 /* ScaleTransitionBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleTransitionBehaviour.swift; sourceTree = "<group>"; };
 		F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BehaviourBasedTransitions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1338D5E1D73290800D5DC34 /* BehaviourBasedTransitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BehaviourBasedTransitions.h; sourceTree = "<group>"; };
-		F1338D651D73290800D5DC34 /* BehaviourBasedTransitionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BehaviourBasedTransitionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1338D841D732C5300D5DC34 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1338D851D732C5300D5DC34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1338D871D732C5300D5DC34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -85,7 +101,6 @@
 		F18AF0A81D718D67002C624E /* TranslateTransitionBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TranslateTransitionBehaviour.swift; path = BehaviourBasedTransitions/TranslateTransitionBehaviour.swift; sourceTree = SOURCE_ROOT; };
 		F18AF0AC1D718D77002C624E /* BehaviourBasedTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BehaviourBasedTransition.swift; path = BehaviourBasedTransitions/BehaviourBasedTransition.swift; sourceTree = SOURCE_ROOT; };
 		F18AF0AD1D718D77002C624E /* BehaviourTransitionable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BehaviourTransitionable.swift; path = BehaviourBasedTransitions/BehaviourTransitionable.swift; sourceTree = SOURCE_ROOT; };
-		F18AF0B91D718DC7002C624E /* BehaviourBasedTransitionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BehaviourBasedTransitionsTests.swift; path = BehaviourBasedTransitionsTests/BehaviourBasedTransitionsTests.swift; sourceTree = SOURCE_ROOT; };
 		F18AF0BB1D718DD1002C624E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = BehaviourBasedTransitionsTests/Info.plist; sourceTree = SOURCE_ROOT; };
 		F19606971DBCECE3005A4483 /* VerticalPanInteractionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalPanInteractionHandler.swift; sourceTree = "<group>"; };
 		F196069A1DBCF3D5005A4483 /* InteractionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionHandler.swift; sourceTree = "<group>"; };
@@ -95,18 +110,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		402EE5291DC31069008BD8DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				402EE5311DC31069008BD8DA /* BehaviourBasedTransitions.framework in Frameworks */,
+				4013695D1DC312E80030A301 /* Nimble.framework in Frameworks */,
+				4013695E1DC312E80030A301 /* Quick.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F1338D581D73290800D5DC34 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F1338D621D73290800D5DC34 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F1338D661D73290800D5DC34 /* BehaviourBasedTransitions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +138,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4013695F1DC313140030A301 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4013695B1DC312E80030A301 /* Nimble.framework */,
+				4013695C1DC312E80030A301 /* Quick.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F1338D5D1D73290800D5DC34 /* BehaviourBasedTransitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,7 +190,7 @@
 			children = (
 				F13E86611D70AE0C0003C8EC /* Example.app */,
 				F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */,
-				F1338D651D73290800D5DC34 /* BehaviourBasedTransitionsTests.xctest */,
+				402EE52C1DC31069008BD8DA /* BehaviourBasedTransitionsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,11 +198,14 @@
 		F13E86781D70AE0C0003C8EC /* BehaviourBasedTransitionTests */ = {
 			isa = PBXGroup;
 			children = (
-				F18AF0B91D718DC7002C624E /* BehaviourBasedTransitionsTests.swift */,
+				4013695F1DC313140030A301 /* Frameworks */,
 				F18AF0BB1D718DD1002C624E /* Info.plist */,
+				401369651DC313F30030A301 /* BehaviourBasedTransitionSpec.swift */,
+				401369671DC319640030A301 /* MockTransitionContext.swift */,
+				401369691DC31F720030A301 /* MockTransitionableViewController.swift */,
 			);
 			name = BehaviourBasedTransitionTests;
-			path = BehaviourableTests;
+			path = BehaviourBasedTransitionsTests;
 			sourceTree = "<group>";
 		};
 		F1798CF11D71816100F5A405 /* Transition Behaviours */ = {
@@ -214,6 +243,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		402EE52B1DC31069008BD8DA /* BehaviourBasedTransitionsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 402EE5341DC31069008BD8DA /* Build configuration list for PBXNativeTarget "BehaviourBasedTransitionsTests" */;
+			buildPhases = (
+				402EE5281DC31069008BD8DA /* Sources */,
+				402EE5291DC31069008BD8DA /* Frameworks */,
+				401369621DC313910030A301 /* CopyFiles */,
+				402EE52A1DC31069008BD8DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				402EE5331DC31069008BD8DA /* PBXTargetDependency */,
+			);
+			name = BehaviourBasedTransitionsTests;
+			productName = BehaviourBasedTransitionsTests;
+			productReference = 402EE52C1DC31069008BD8DA /* BehaviourBasedTransitionsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F1338D5B1D73290800D5DC34 /* BehaviourBasedTransitions */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F1338D741D73290800D5DC34 /* Build configuration list for PBXNativeTarget "BehaviourBasedTransitions" */;
@@ -231,25 +279,6 @@
 			productName = BehaviourBasedTransitions;
 			productReference = F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */;
 			productType = "com.apple.product-type.framework";
-		};
-		F1338D641D73290800D5DC34 /* BehaviourBasedTransitionsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F1338D771D73290800D5DC34 /* Build configuration list for PBXNativeTarget "BehaviourBasedTransitionsTests" */;
-			buildPhases = (
-				F1338D611D73290800D5DC34 /* Sources */,
-				F1338D621D73290800D5DC34 /* Frameworks */,
-				F1338D631D73290800D5DC34 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F1338D681D73290800D5DC34 /* PBXTargetDependency */,
-				F1338D6A1D73290800D5DC34 /* PBXTargetDependency */,
-			);
-			name = BehaviourBasedTransitionsTests;
-			productName = BehaviourBasedTransitionsTests;
-			productReference = F1338D651D73290800D5DC34 /* BehaviourBasedTransitionsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		F13E86601D70AE0C0003C8EC /* Example */ = {
 			isa = PBXNativeTarget;
@@ -280,12 +309,11 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Maximilian Clarke";
 				TargetAttributes = {
-					F1338D5B1D73290800D5DC34 = {
+					402EE52B1DC31069008BD8DA = {
 						CreatedOnToolsVersion = 7.3;
 					};
-					F1338D641D73290800D5DC34 = {
+					F1338D5B1D73290800D5DC34 = {
 						CreatedOnToolsVersion = 7.3;
-						TestTargetID = F13E86601D70AE0C0003C8EC;
 					};
 					F13E86601D70AE0C0003C8EC = {
 						CreatedOnToolsVersion = 7.3;
@@ -306,21 +334,21 @@
 			projectRoot = "";
 			targets = (
 				F1338D5B1D73290800D5DC34 /* BehaviourBasedTransitions */,
-				F1338D641D73290800D5DC34 /* BehaviourBasedTransitionsTests */,
+				402EE52B1DC31069008BD8DA /* BehaviourBasedTransitionsTests */,
 				F13E86601D70AE0C0003C8EC /* Example */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F1338D5A1D73290800D5DC34 /* Resources */ = {
+		402EE52A1DC31069008BD8DA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F1338D631D73290800D5DC34 /* Resources */ = {
+		F1338D5A1D73290800D5DC34 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -340,6 +368,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		402EE5281DC31069008BD8DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				401369681DC319640030A301 /* MockTransitionContext.swift in Sources */,
+				401369661DC313F30030A301 /* BehaviourBasedTransitionSpec.swift in Sources */,
+				4013696A1DC31F720030A301 /* MockTransitionableViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F1338D571D73290800D5DC34 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -357,13 +395,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F1338D611D73290800D5DC34 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F13E865D1D70AE0C0003C8EC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -377,15 +408,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F1338D681D73290800D5DC34 /* PBXTargetDependency */ = {
+		402EE5331DC31069008BD8DA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F1338D5B1D73290800D5DC34 /* BehaviourBasedTransitions */;
-			targetProxy = F1338D671D73290800D5DC34 /* PBXContainerItemProxy */;
-		};
-		F1338D6A1D73290800D5DC34 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F13E86601D70AE0C0003C8EC /* Example */;
-			targetProxy = F1338D691D73290800D5DC34 /* PBXContainerItemProxy */;
+			targetProxy = 402EE5321DC31069008BD8DA /* PBXContainerItemProxy */;
 		};
 		F1338D701D73290800D5DC34 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -414,6 +440,39 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		402EE5351DC31069008BD8DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = BehaviourBasedTransitionsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.maximilianclarke.BehaviourBasedTransitionsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		402EE5361DC31069008BD8DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = BehaviourBasedTransitionsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.maximilianclarke.BehaviourBasedTransitionsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		F1338D751D73290800D5DC34 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -451,30 +510,6 @@
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		F1338D781D73290800D5DC34 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = BehaviourBasedTransitionsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.maximilianclarke.BehaviourBasedTransitionsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BehaviourBasedTransitions.app/BehaviourBasedTransitions";
-			};
-			name = Debug;
-		};
-		F1338D791D73290800D5DC34 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = BehaviourBasedTransitionsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.maximilianclarke.BehaviourBasedTransitionsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BehaviourBasedTransitions.app/BehaviourBasedTransitions";
 			};
 			name = Release;
 		};
@@ -590,20 +625,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		402EE5341DC31069008BD8DA /* Build configuration list for PBXNativeTarget "BehaviourBasedTransitionsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				402EE5351DC31069008BD8DA /* Debug */,
+				402EE5361DC31069008BD8DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F1338D741D73290800D5DC34 /* Build configuration list for PBXNativeTarget "BehaviourBasedTransitions" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F1338D751D73290800D5DC34 /* Debug */,
 				F1338D761D73290800D5DC34 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F1338D771D73290800D5DC34 /* Build configuration list for PBXNativeTarget "BehaviourBasedTransitionsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F1338D781D73290800D5DC34 /* Debug */,
-				F1338D791D73290800D5DC34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
