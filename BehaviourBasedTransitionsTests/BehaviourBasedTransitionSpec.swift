@@ -14,11 +14,42 @@ import Nimble
 class BehaviourBasedTransitionSpec: QuickSpec {
     
     override func spec() {
+        
+        var transition: BehaviourBasedTransition!
+        
+        beforeEach {
+            transition = BehaviourBasedTransition()
+            transition.transitionIdentifier = "Test"
+        }
 
-        describe("Something") {
+        describe("animateTransition") {
             
-            it("should fail") {
-                fail()
+            var context: MockTransitionContext!
+            var fromController: MockTransitionableViewController!
+            var toController: MockTransitionableViewController!
+            var container: UIView!
+            
+            beforeEach {
+                context = MockTransitionContext()
+                fromController = MockTransitionableViewController()
+                toController = MockTransitionableViewController()
+                container = UIView()
+                
+                context.container = container
+                context.fromViewController = fromController
+                context.toViewController = toController
+            }
+            
+            it("should tell the from controller it will disappear") {
+                transition.animateTransition(context)
+                
+                expect(fromController.willDisappearTransitionIdentifier) == "Test"
+            }
+            
+            it("should tell the to controller it will appear") {
+                transition.animateTransition(context)
+                
+                expect(toController.willAppearTransitionIdentifier) == "Test"
             }
             
         }
