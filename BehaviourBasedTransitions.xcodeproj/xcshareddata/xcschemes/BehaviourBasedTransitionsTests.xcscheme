@@ -16,7 +16,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F1338D641D73290800D5DC34"
+               BlueprintIdentifier = "402EE52B1DC31069008BD8DA"
                BuildableName = "BehaviourBasedTransitionsTests.xctest"
                BlueprintName = "BehaviourBasedTransitionsTests"
                ReferencedContainer = "container:BehaviourBasedTransitions.xcodeproj">
