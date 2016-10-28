@@ -23,92 +23,166 @@ class BehaviourBasedTransitionSpec: QuickSpec {
 
         describe("animateTransition") {
             var transitionContext: MockTransitionContext!
-            var fromController: MockTransitionableViewController!
-            var toController: MockTransitionableViewController!
+            var sourceController: MockTransitionableViewController!
+            var destinationController: MockTransitionableViewController!
             var container: UIView!
             
             beforeEach {
                 transitionContext = MockTransitionContext()
-                fromController = MockTransitionableViewController()
-                toController = MockTransitionableViewController()
+                sourceController = MockTransitionableViewController()
+                destinationController = MockTransitionableViewController()
                 container = UIView()
                 
                 transitionContext.container = container
-                transitionContext.fromViewController = fromController
-                transitionContext.toViewController = toController
             }
             
-            it("should tell the from controller it will disappear") {
-                transition.animateTransition(transitionContext)
-                
-                expect(fromController.willDisappearTransitionIdentifier) == "Test"
+            func setupTransitionAndContext(forPresenting presenting: Bool) {
+                transition.isPresenting = presenting
+                transitionContext.fromViewController = presenting ? sourceController : destinationController
+                transitionContext.toViewController = presenting ? destinationController : sourceController
             }
             
-            it("should tell the to controller it will appear") {
-                transition.animateTransition(transitionContext)
-                
-                expect(toController.willAppearTransitionIdentifier) == "Test"
-            }
-            
-            context("when presenting") {
+            describe("notifications") {
                 beforeEach {
-                    transition.isPresenting = true
+                    setupTransitionAndContext(forPresenting: true)
                 }
                 
-                it("places the from controller in the container at the bottom") {
+                it("should tell the from controller it will disappear") {
                     transition.animateTransition(transitionContext)
                     
-                    expect(container.subviews.indexOf(fromController.view)) == 0
+                    expect(sourceController.willDisappearTransitionIdentifier) == "Test"
                 }
                 
-                it("places the to controller in the container on the top") {
+                it("should tell the to controller it will appear") {
                     transition.animateTransition(transitionContext)
                     
-                    expect(container.subviews.indexOf(toController.view)) == 1
+                    expect(destinationController.willAppearTransitionIdentifier) == "Test"
                 }
             }
             
-            context("when dismissing") {
-                beforeEach {
-                    transition.isPresenting = false
+            describe("container view setup") {
+                context("when presenting") {
+                    beforeEach {
+                        setupTransitionAndContext(forPresenting: true)
+                    }
+                    
+                    it("places the source controller in the container at the bottom") {
+                        transition.animateTransition(transitionContext)
+                        
+                        expect(container.subviews.indexOf(sourceController.view)) == 0
+                    }
+                    
+                    it("places the destination controller in the container on the top") {
+                        transition.animateTransition(transitionContext)
+                        
+                        expect(container.subviews.indexOf(destinationController.view)) == 1
+                    }
                 }
                 
-                it("places the from controller in the container at the top") {
-                    transition.animateTransition(transitionContext)
+                context("when dismissing") {
+                    beforeEach {
+                        setupTransitionAndContext(forPresenting: false)
+                    }
                     
-                    expect(container.subviews.indexOf(fromController.view)) == 1
-                }
-                
-                it("places the to controller in the container on the bottom") {
-                    transition.animateTransition(transitionContext)
+                    it("places the source controller in the container at the bottom") {
+                        transition.animateTransition(transitionContext)
+                        
+                        expect(container.subviews.indexOf(sourceController.view)) == 0
+                    }
                     
-                    expect(container.subviews.indexOf(toController.view)) == 0
+                    it("places the destination controller in the container on the top") {
+                        transition.animateTransition(transitionContext)
+                        
+                        expect(container.subviews.indexOf(destinationController.view)) == 1
+                    }
                 }
             }
             
-            context("when a behaviour is present in a view controller collection") {
-                var mockBehaviour: MockTransitionBehaviour!
+            describe("behaviours") {
+                var behaviour1: MockTransitionBehaviour!
+                var behaviour2: MockTransitionBehaviour!
+                var behaviour3: MockTransitionBehaviour!
+                var allBehaviours: [MockTransitionBehaviour]!
+                
+                var sourceCollection: TransitionBehaviourCollection!
+                var destinationCollection: TransitionBehaviourCollection!
                 
                 beforeEach {
-                    mockBehaviour = MockTransitionBehaviour()
-                    let collection = TransitionBehaviourCollection()
-                    collection.transitionIdentifier = "Test"
-                    collection.behaviours = [mockBehaviour]
-                    fromController.transitionBehaviourCollections = [collection]
+                    behaviour1 = MockTransitionBehaviour()
+                    behaviour2 = MockTransitionBehaviour()
+                    behaviour2.behaviourIdentifier = "LinkTest"
+                    behaviour3 = MockTransitionBehaviour()
+                    behaviour3.behaviourIdentifier = "LinkTest"
+                    allBehaviours = [behaviour1, behaviour2, behaviour3]
+                    
+                    sourceCollection = TransitionBehaviourCollection()
+                    sourceCollection.transitionIdentifier = "Test"
+                    sourceCollection.behaviours = [behaviour1, behaviour2]
+                    sourceController.transitionBehaviourCollections = [sourceCollection]
+                    sourceController.transitions = [transition]
+                    
+                    destinationCollection = TransitionBehaviourCollection()
+                    destinationCollection.transitionIdentifier = "Test"
+                    destinationCollection.behaviours = [behaviour3]
+                    destinationController.transitionBehaviourCollections = [destinationCollection]
+                    
+                    setupTransitionAndContext(forPresenting: true)
                 }
                 
-                it("sets it up") {
-                    transition.animateTransition(transitionContext)
+                describe("setup") {
+                    it("configures isPresenting for all behaviours") {
+                        transition.animateTransition(transitionContext)
+                        
+                        allBehaviours.forEach { expect($0.isPresenting) == true }
+                    }
                     
-                    expect(mockBehaviour.didSetup) == true
+                    it("configures isInteractive for all behaviours") {
+                        transition.isInteractive = true
+                        transition.animateTransition(transitionContext)
+                        
+                        allBehaviours.forEach { expect($0.isInteractive) == true }
+                    }
+                    
+                    it("configures duration for all behaviours") {
+                        transition.transitionDuration = 2
+                        transition.animateTransition(transitionContext)
+                        
+                        allBehaviours.forEach { expect($0.transitionDuration) == 2 }
+                    }
+                    
+                    it("calls setup callback for all behaviours") {
+                        transition.animateTransition(transitionContext)
+                        
+                        allBehaviours.forEach { expect($0.didSetup) == true }
+                    }
+                    
+                    it("links source to destination behaviours") {
+                        transition.animateTransition(transitionContext)
+                        
+                        expect(behaviour2.destinationBehaviour) == behaviour3
+                    }
+                    
+                    context("when dismissing") {
+                        it("still links source to destination behaviours") {
+                            setupTransitionAndContext(forPresenting: false)
+                            
+                            transition.animateTransition(transitionContext)
+                            
+                            expect(behaviour2.destinationBehaviour) == behaviour3
+                        }
+                    }
                 }
                 
-                it("adds it's animations") {
-                    transition.animateTransition(transitionContext)
-                    
-                    expect(mockBehaviour.didAddAnimations) == true
+                describe("adding animations") {
+                    it("should call addAnimations callback on all behaviours") {
+                        transition.animateTransition(transitionContext)
+                        
+                        allBehaviours.forEach { expect($0.didAddAnimations) == true }
+                    }
                 }
             }
+            
+            
         }
     }
     
