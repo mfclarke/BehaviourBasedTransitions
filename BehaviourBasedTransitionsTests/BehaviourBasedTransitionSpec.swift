@@ -17,6 +17,7 @@ class BehaviourBasedTransitionSpec: QuickSpec {
         var transition: BehaviourBasedTransition!
         var transitionContext: MockTransitionContext!
         var sourceController: MockTransitionableViewController!
+        var sourceControllerSuperview: UIView!
         var destinationController: MockTransitionableViewController!
         var container: UIView!
         
@@ -61,6 +62,9 @@ class BehaviourBasedTransitionSpec: QuickSpec {
             destinationCollection.transitionIdentifier = "Test"
             destinationCollection.behaviours = [behaviour3]
             destinationController.transitionBehaviourCollections = [destinationCollection]
+            
+            sourceControllerSuperview = UIView()
+            sourceControllerSuperview.addSubview(sourceController.view)
             
             setupTransitionAndContext(forPresenting: true)
         }
@@ -269,14 +273,10 @@ class BehaviourBasedTransitionSpec: QuickSpec {
                     }
                     
                     it("should tell the from controller it did disappear") {
-                        transition.animateTransition(transitionContext)
-                        
                         expect(sourceController.didDisappearTransitionIdentifier) == "Test"
                     }
                     
                     it("should tell the to controller it did appear") {
-                        transition.animateTransition(transitionContext)
-                        
                         expect(destinationController.didAppearTransitionIdentifier) == "Test"
                     }
                 }
@@ -298,20 +298,30 @@ class BehaviourBasedTransitionSpec: QuickSpec {
                     }
                     
                     it("should tell the from controller it did appear") {
-                        transition.animateTransition(transitionContext)
-                        
                         expect(sourceController.didAppearTransitionIdentifier) == "Test"
                     }
                     
                     it("should tell the to controller it did disappear") {
-                        transition.animateTransition(transitionContext)
-                        
                         expect(destinationController.didDisappearTransitionIdentifier) == "Test"
+                    }
+                    
+                    it("should dismiss the destination view controller") {
+                        expect(destinationController.dismissCalled) == true
+                    }
+                    
+                    it("re-adds the source controller back to it's original superview") {
+                        expect(sourceControllerSuperview.subviews.first) == sourceController.view
                     }
                 }
                 
                 context("when dismissing and transition completed") {
                     beforeEach {
+                        // At the moment, it requires the controller to have been presented with a
+                        // BehaviourBasedTransition to be dismissed correctly
+                        setupTransitionAndContext(forPresenting: true)
+                        transition.animateTransition(transitionContext)
+                        allBehaviours.forEach { $0.animationCompleted?() }
+                        
                         setupTransitionAndContext(forPresenting: false)
                         transition.animateTransition(transitionContext)
                         allBehaviours.forEach { $0.animationCompleted?() }
@@ -326,20 +336,26 @@ class BehaviourBasedTransitionSpec: QuickSpec {
                     }
                     
                     it("should tell the from controller it did appear") {
-                        transition.animateTransition(transitionContext)
-                        
                         expect(sourceController.didAppearTransitionIdentifier) == "Test"
                     }
                     
                     it("should tell the to controller it did disappear") {
-                        transition.animateTransition(transitionContext)
-                        
                         expect(destinationController.didDisappearTransitionIdentifier) == "Test"
+                    }
+                    
+                    it("re-adds the source controller back to it's original superview") {
+                        expect(sourceControllerSuperview.subviews.first) == sourceController.view
                     }
                 }
                 
                 context("when dismissing and transition cancelled") {
                     beforeEach {
+                        // At the moment, it requires the controller to have been presented with a 
+                        // BehaviourBasedTransition to be dismissed correctly
+                        setupTransitionAndContext(forPresenting: true)
+                        transition.animateTransition(transitionContext)
+                        allBehaviours.forEach { $0.animationCompleted?() }
+                        
                         setupTransitionAndContext(forPresenting: false)
                         transition.animateTransition(transitionContext)
                         transitionContext.cancelled = true
@@ -355,14 +371,10 @@ class BehaviourBasedTransitionSpec: QuickSpec {
                     }
                     
                     it("should tell the from controller it did disappear") {
-                        transition.animateTransition(transitionContext)
-                        
                         expect(sourceController.didDisappearTransitionIdentifier) == "Test"
                     }
                     
                     it("should tell the to controller it did appear") {
-                        transition.animateTransition(transitionContext)
-                        
                         expect(destinationController.didAppearTransitionIdentifier) == "Test"
                     }
                 }

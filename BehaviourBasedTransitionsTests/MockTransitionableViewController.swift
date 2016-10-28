@@ -15,24 +15,29 @@ class MockTransitionableViewController: UIViewController, BehaviourTransitionabl
     var transitionBehaviourCollections: [TransitionBehaviourCollection] = []
 
     var willAppearTransitionIdentifier: String?
-    var didAppearTransitionIdentifier: String?
-    var willDisappearTransitionIdentifier: String?
-    var didDisappearTransitionIdentifier: String?
-    
     override func viewWillAppearByTransition(withIdentifier identifier: String) {
         willAppearTransitionIdentifier = identifier
     }
     
+    var didAppearTransitionIdentifier: String?
     override func viewDidAppearByTransition(withIdentifier identifier: String) {
         didAppearTransitionIdentifier = identifier
     }
     
+    var willDisappearTransitionIdentifier: String?
     override func viewWillDisappearByTransition(withIdentifier identifier: String) {
         willDisappearTransitionIdentifier = identifier
     }
     
+    var didDisappearTransitionIdentifier: String?
     override func viewDidDisappearByTransition(withIdentifier identifier: String) {
         didDisappearTransitionIdentifier = identifier
+    }
+    
+    var dismissCalled = false
+    override func dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?) {
+        super.dismissViewControllerAnimated(flag, completion: completion)
+        dismissCalled = true
     }
     
 }
