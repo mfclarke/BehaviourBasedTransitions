@@ -13,6 +13,7 @@ class MockTransitionBehaviour: TransitionBehaviour {
     
     var didSetup = false
     var didAddAnimations = false
+    var completedPresentation: Bool?
     var destinationBehaviour: TransitionBehaviour?
     
     override func setup(container: UIView, destinationBehaviour: TransitionBehaviour?) {
@@ -22,6 +23,10 @@ class MockTransitionBehaviour: TransitionBehaviour {
     
     override func addAnimations() {
         didAddAnimations = true
+    }
+    
+    override func complete(presented: Bool) {
+        completedPresentation = presented
     }
 
 }

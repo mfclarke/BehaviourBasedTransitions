@@ -39,14 +39,26 @@ class MockTransitionContext: NSObject, UIViewControllerContextTransitioning {
         return nil
     }
     
+    var transitionFinished = false
+    func finishInteractiveTransition() {
+        transitionFinished = true
+    }
+    
+    var transitionCancelled = false
+    func cancelInteractiveTransition() {
+        transitionCancelled = true
+    }
+    
+    var transitionCompleted: Bool?
+    func completeTransition(didComplete: Bool) {
+        transitionCompleted = didComplete
+    }
+    
     
     // Stubbing out the rest of the protocol
     
     func presentationStyle() -> UIModalPresentationStyle { return .Custom }
     func updateInteractiveTransition(percentComplete: CGFloat) {}
-    func finishInteractiveTransition() {}
-    func cancelInteractiveTransition() {}
-    func completeTransition(didComplete: Bool) {}
     func targetTransform() -> CGAffineTransform { return CGAffineTransformIdentity }
     func initialFrameForViewController(vc: UIViewController) -> CGRect { return CGRect.zero }
     func finalFrameForViewController(vc: UIViewController) -> CGRect { return CGRect.zero }

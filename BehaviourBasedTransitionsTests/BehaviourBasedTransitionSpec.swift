@@ -20,6 +20,20 @@ class BehaviourBasedTransitionSpec: QuickSpec {
         var destinationController: MockTransitionableViewController!
         var container: UIView!
         
+        var behaviour1: MockTransitionBehaviour!
+        var behaviour2: MockTransitionBehaviour!
+        var behaviour3: MockTransitionBehaviour!
+        var allBehaviours: [MockTransitionBehaviour]!
+        
+        var sourceCollection: TransitionBehaviourCollection!
+        var destinationCollection: TransitionBehaviourCollection!
+        
+        func setupTransitionAndContext(forPresenting presenting: Bool) {
+            transition.isPresenting = presenting
+            transitionContext.fromViewController = presenting ? sourceController : destinationController
+            transitionContext.toViewController = presenting ? destinationController : sourceController
+        }
+        
         beforeEach {
             transition = BehaviourBasedTransition()
             transition.transitionIdentifier = "Test"
@@ -29,14 +43,28 @@ class BehaviourBasedTransitionSpec: QuickSpec {
             container = UIView()
             
             transitionContext.container = container
+            
+            behaviour1 = MockTransitionBehaviour()
+            behaviour2 = MockTransitionBehaviour()
+            behaviour2.behaviourIdentifier = "LinkTest"
+            behaviour3 = MockTransitionBehaviour()
+            behaviour3.behaviourIdentifier = "LinkTest"
+            allBehaviours = [behaviour1, behaviour2, behaviour3]
+            
+            sourceCollection = TransitionBehaviourCollection()
+            sourceCollection.transitionIdentifier = "Test"
+            sourceCollection.behaviours = [behaviour1, behaviour2]
+            sourceController.transitionBehaviourCollections = [sourceCollection]
+            sourceController.transitions = [transition]
+            
+            destinationCollection = TransitionBehaviourCollection()
+            destinationCollection.transitionIdentifier = "Test"
+            destinationCollection.behaviours = [behaviour3]
+            destinationController.transitionBehaviourCollections = [destinationCollection]
+            
+            setupTransitionAndContext(forPresenting: true)
         }
         
-        func setupTransitionAndContext(forPresenting presenting: Bool) {
-            transition.isPresenting = presenting
-            transitionContext.fromViewController = presenting ? sourceController : destinationController
-            transitionContext.toViewController = presenting ? destinationController : sourceController
-        }
-
         describe("animateTransition") {
             describe("notifications") {
                 beforeEach {
@@ -95,35 +123,6 @@ class BehaviourBasedTransitionSpec: QuickSpec {
             }
             
             describe("behaviours") {
-                var behaviour1: MockTransitionBehaviour!
-                var behaviour2: MockTransitionBehaviour!
-                var behaviour3: MockTransitionBehaviour!
-                var allBehaviours: [MockTransitionBehaviour]!
-                
-                var sourceCollection: TransitionBehaviourCollection!
-                var destinationCollection: TransitionBehaviourCollection!
-                
-                beforeEach {
-                    behaviour1 = MockTransitionBehaviour()
-                    behaviour2 = MockTransitionBehaviour()
-                    behaviour2.behaviourIdentifier = "LinkTest"
-                    behaviour3 = MockTransitionBehaviour()
-                    behaviour3.behaviourIdentifier = "LinkTest"
-                    allBehaviours = [behaviour1, behaviour2, behaviour3]
-                    
-                    sourceCollection = TransitionBehaviourCollection()
-                    sourceCollection.transitionIdentifier = "Test"
-                    sourceCollection.behaviours = [behaviour1, behaviour2]
-                    sourceController.transitionBehaviourCollections = [sourceCollection]
-                    sourceController.transitions = [transition]
-                    
-                    destinationCollection = TransitionBehaviourCollection()
-                    destinationCollection.transitionIdentifier = "Test"
-                    destinationCollection.behaviours = [behaviour3]
-                    destinationController.transitionBehaviourCollections = [destinationCollection]
-                    
-                    setupTransitionAndContext(forPresenting: true)
-                }
                 
                 describe("setup") {
                     it("configures isPresenting for all behaviours") {
@@ -191,7 +190,6 @@ class BehaviourBasedTransitionSpec: QuickSpec {
             }
             
             it("sets presenting false when animationControllerForDismissed called") {
-                transition.isPresenting = true
                 transition.animationControllerForDismissedController(destinationController)
                 
                 expect(transition.isPresenting) == false
@@ -235,7 +233,141 @@ class BehaviourBasedTransitionSpec: QuickSpec {
         }
         
         describe("transition completion") {
+            context("when behaviours haven't completed animation") {
+                it("shouldn't tell behaviours the transition completed") {
+                    transition.animateTransition(transitionContext)
+                    
+                    allBehaviours.forEach { expect($0.completedPresentation).to(beNil()) }
+                }
+            }
             
+            context("when some behaviours have completed but not all") {
+                it("shouldn't tell behaviours the transition completed") {
+                    transition.animateTransition(transitionContext)
+                    
+                    behaviour1.animationCompleted?()
+                    behaviour2.animationCompleted?()
+                    
+                    allBehaviours.forEach { expect($0.completedPresentation).to(beNil()) }
+                }
+            }
+            
+            context("when all behaviours have completed") {
+                context("when presenting and transition completed") {
+                    beforeEach {
+                        setupTransitionAndContext(forPresenting: true)
+                        transition.animateTransition(transitionContext)
+                        allBehaviours.forEach { $0.animationCompleted?() }
+                    }
+                    
+                    it("should tell behaviours the transition completed with presentation") {
+                        allBehaviours.forEach { expect($0.completedPresentation) == true }
+                    }
+                    
+                    it("should tell the context the transition completed") {
+                        expect(transitionContext.transitionCompleted) == true
+                    }
+                    
+                    it("should tell the from controller it did disappear") {
+                        transition.animateTransition(transitionContext)
+                        
+                        expect(sourceController.didDisappearTransitionIdentifier) == "Test"
+                    }
+                    
+                    it("should tell the to controller it did appear") {
+                        transition.animateTransition(transitionContext)
+                        
+                        expect(destinationController.didAppearTransitionIdentifier) == "Test"
+                    }
+                }
+                
+                context("when presenting and transition cancelled") {
+                    beforeEach {
+                        setupTransitionAndContext(forPresenting: true)
+                        transition.animateTransition(transitionContext)
+                        transitionContext.cancelled = true
+                        allBehaviours.forEach { $0.animationCompleted?() }
+                    }
+                    
+                    it("should tell behaviours the transition completed with dismissal") {
+                        allBehaviours.forEach { expect($0.completedPresentation) == false }
+                    }
+                    
+                    it("should tell the context the transition didn't complete") {
+                        expect(transitionContext.transitionCompleted) == false
+                    }
+                    
+                    it("should tell the from controller it did appear") {
+                        transition.animateTransition(transitionContext)
+                        
+                        expect(sourceController.didAppearTransitionIdentifier) == "Test"
+                    }
+                    
+                    it("should tell the to controller it did disappear") {
+                        transition.animateTransition(transitionContext)
+                        
+                        expect(destinationController.didDisappearTransitionIdentifier) == "Test"
+                    }
+                }
+                
+                context("when dismissing and transition completed") {
+                    beforeEach {
+                        setupTransitionAndContext(forPresenting: false)
+                        transition.animateTransition(transitionContext)
+                        allBehaviours.forEach { $0.animationCompleted?() }
+                    }
+                    
+                    it("should tell behaviours the transition completed with dismissal") {
+                        allBehaviours.forEach { expect($0.completedPresentation) == false }
+                    }
+                    
+                    it("should tell the context the transition did complete") {
+                        expect(transitionContext.transitionCompleted) == true
+                    }
+                    
+                    it("should tell the from controller it did appear") {
+                        transition.animateTransition(transitionContext)
+                        
+                        expect(sourceController.didAppearTransitionIdentifier) == "Test"
+                    }
+                    
+                    it("should tell the to controller it did disappear") {
+                        transition.animateTransition(transitionContext)
+                        
+                        expect(destinationController.didDisappearTransitionIdentifier) == "Test"
+                    }
+                }
+                
+                context("when dismissing and transition cancelled") {
+                    beforeEach {
+                        setupTransitionAndContext(forPresenting: false)
+                        transition.animateTransition(transitionContext)
+                        transitionContext.cancelled = true
+                        allBehaviours.forEach { $0.animationCompleted?() }
+                    }
+                    
+                    it("should tell behaviours the transition completed with presentation") {
+                        allBehaviours.forEach { expect($0.completedPresentation) == true }
+                    }
+                    
+                    it("should tell the context the transition didn't complete") {
+                        expect(transitionContext.transitionCompleted) == false
+                    }
+                    
+                    it("should tell the from controller it did disappear") {
+                        transition.animateTransition(transitionContext)
+                        
+                        expect(sourceController.didDisappearTransitionIdentifier) == "Test"
+                    }
+                    
+                    it("should tell the to controller it did appear") {
+                        transition.animateTransition(transitionContext)
+                        
+                        expect(destinationController.didAppearTransitionIdentifier) == "Test"
+                    }
+                }
+
+            }
         }
     }
     
