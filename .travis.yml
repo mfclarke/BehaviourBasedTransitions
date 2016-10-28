@@ -6,7 +6,7 @@ xcode_scheme: BehaviourBasedTransitions
 script:
   xctool
   -project BehaviourBasedTransitions.xcodeproj
-  -scheme BehaviourBasedTransitions
+  -scheme BehaviourBasedTransitionsTests
   -sdk iphonesimulator
   -destination 'platform=iOS Simulator,name=iPhone 6'
   build
