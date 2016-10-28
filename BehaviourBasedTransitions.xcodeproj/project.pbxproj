@@ -16,6 +16,7 @@
 		4013696A1DC31F720030A301 /* MockTransitionableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401369691DC31F720030A301 /* MockTransitionableViewController.swift */; };
 		402EE5311DC31069008BD8DA /* BehaviourBasedTransitions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */; };
 		406F29101D76BE950048ED60 /* ScaleTransitionBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406F290F1D76BE950048ED60 /* ScaleTransitionBehaviour.swift */; };
+		40DC24351DC3290A005D6ED8 /* MockTransitionBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DC24341DC3290A005D6ED8 /* MockTransitionBehaviour.swift */; };
 		F1338D5F1D73290800D5DC34 /* BehaviourBasedTransitions.h in Headers */ = {isa = PBXBuildFile; fileRef = F1338D5E1D73290800D5DC34 /* BehaviourBasedTransitions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F1338D711D73290800D5DC34 /* BehaviourBasedTransitions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */; };
 		F1338D731D73290800D5DC34 /* BehaviourBasedTransitions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -86,6 +87,7 @@
 		401369691DC31F720030A301 /* MockTransitionableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTransitionableViewController.swift; sourceTree = "<group>"; };
 		402EE52C1DC31069008BD8DA /* BehaviourBasedTransitionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BehaviourBasedTransitionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		406F290F1D76BE950048ED60 /* ScaleTransitionBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleTransitionBehaviour.swift; sourceTree = "<group>"; };
+		40DC24341DC3290A005D6ED8 /* MockTransitionBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockTransitionBehaviour.swift; sourceTree = "<group>"; };
 		F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BehaviourBasedTransitions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1338D5E1D73290800D5DC34 /* BehaviourBasedTransitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BehaviourBasedTransitions.h; sourceTree = "<group>"; };
 		F1338D841D732C5300D5DC34 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				401369651DC313F30030A301 /* BehaviourBasedTransitionSpec.swift */,
 				401369671DC319640030A301 /* MockTransitionContext.swift */,
 				401369691DC31F720030A301 /* MockTransitionableViewController.swift */,
+				40DC24341DC3290A005D6ED8 /* MockTransitionBehaviour.swift */,
 			);
 			name = BehaviourBasedTransitionTests;
 			path = BehaviourBasedTransitionsTests;
@@ -374,6 +377,7 @@
 			files = (
 				401369681DC319640030A301 /* MockTransitionContext.swift in Sources */,
 				401369661DC313F30030A301 /* BehaviourBasedTransitionSpec.swift in Sources */,
+				40DC24351DC3290A005D6ED8 /* MockTransitionBehaviour.swift in Sources */,
 				4013696A1DC31F720030A301 /* MockTransitionableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

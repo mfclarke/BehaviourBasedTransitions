@@ -30,7 +30,7 @@ public class BehaviourBasedTransition: UIPercentDrivenInteractiveTransition, UIV
     
     // MARK: Private
     
-    private var isPresenting = false
+    public internal(set) var isPresenting = false
     public var isInteractive = false
     
     private var behaviourAnimationsCompleted = 0
