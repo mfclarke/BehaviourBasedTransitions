@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		402EE5311DC31069008BD8DA /* BehaviourBasedTransitions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */; };
+		402EE5371DC310AF008BD8DA /* BehaviourBasedTransitionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18AF0B91D718DC7002C624E /* BehaviourBasedTransitionsTests.swift */; };
 		406F29101D76BE950048ED60 /* ScaleTransitionBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406F290F1D76BE950048ED60 /* ScaleTransitionBehaviour.swift */; };
 		F1338D5F1D73290800D5DC34 /* BehaviourBasedTransitions.h in Headers */ = {isa = PBXBuildFile; fileRef = F1338D5E1D73290800D5DC34 /* BehaviourBasedTransitions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F1338D661D73290800D5DC34 /* BehaviourBasedTransitions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */; };
 		F1338D711D73290800D5DC34 /* BehaviourBasedTransitions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */; };
 		F1338D731D73290800D5DC34 /* BehaviourBasedTransitions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F1338D7A1D73295A00D5DC34 /* BehaviourBasedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18AF0AC1D718D77002C624E /* BehaviourBasedTransition.swift */; };
@@ -30,19 +31,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F1338D671D73290800D5DC34 /* PBXContainerItemProxy */ = {
+		402EE5321DC31069008BD8DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F13E86591D70AE0C0003C8EC /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F1338D5B1D73290800D5DC34;
 			remoteInfo = BehaviourBasedTransitions;
-		};
-		F1338D691D73290800D5DC34 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F13E86591D70AE0C0003C8EC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F13E86601D70AE0C0003C8EC;
-			remoteInfo = Example;
 		};
 		F1338D6F1D73290800D5DC34 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -68,10 +62,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		402EE52C1DC31069008BD8DA /* BehaviourBasedTransitionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BehaviourBasedTransitionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		406F290F1D76BE950048ED60 /* ScaleTransitionBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleTransitionBehaviour.swift; sourceTree = "<group>"; };
 		F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BehaviourBasedTransitions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1338D5E1D73290800D5DC34 /* BehaviourBasedTransitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BehaviourBasedTransitions.h; sourceTree = "<group>"; };
-		F1338D651D73290800D5DC34 /* BehaviourBasedTransitionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BehaviourBasedTransitionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1338D841D732C5300D5DC34 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1338D851D732C5300D5DC34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1338D871D732C5300D5DC34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -95,18 +89,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		402EE5291DC31069008BD8DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				402EE5311DC31069008BD8DA /* BehaviourBasedTransitions.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F1338D581D73290800D5DC34 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F1338D621D73290800D5DC34 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F1338D661D73290800D5DC34 /* BehaviourBasedTransitions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +158,7 @@
 			children = (
 				F13E86611D70AE0C0003C8EC /* Example.app */,
 				F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */,
-				F1338D651D73290800D5DC34 /* BehaviourBasedTransitionsTests.xctest */,
+				402EE52C1DC31069008BD8DA /* BehaviourBasedTransitionsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -214,6 +208,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		402EE52B1DC31069008BD8DA /* BehaviourBasedTransitionsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 402EE5341DC31069008BD8DA /* Build configuration list for PBXNativeTarget "BehaviourBasedTransitionsTests" */;
+			buildPhases = (
+				402EE5281DC31069008BD8DA /* Sources */,
+				402EE5291DC31069008BD8DA /* Frameworks */,
+				402EE52A1DC31069008BD8DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				402EE5331DC31069008BD8DA /* PBXTargetDependency */,
+			);
+			name = BehaviourBasedTransitionsTests;
+			productName = BehaviourBasedTransitionsTests;
+			productReference = 402EE52C1DC31069008BD8DA /* BehaviourBasedTransitionsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F1338D5B1D73290800D5DC34 /* BehaviourBasedTransitions */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F1338D741D73290800D5DC34 /* Build configuration list for PBXNativeTarget "BehaviourBasedTransitions" */;
@@ -231,25 +243,6 @@
 			productName = BehaviourBasedTransitions;
 			productReference = F1338D5C1D73290800D5DC34 /* BehaviourBasedTransitions.framework */;
 			productType = "com.apple.product-type.framework";
-		};
-		F1338D641D73290800D5DC34 /* BehaviourBasedTransitionsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F1338D771D73290800D5DC34 /* Build configuration list for PBXNativeTarget "BehaviourBasedTransitionsTests" */;
-			buildPhases = (
-				F1338D611D73290800D5DC34 /* Sources */,
-				F1338D621D73290800D5DC34 /* Frameworks */,
-				F1338D631D73290800D5DC34 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F1338D681D73290800D5DC34 /* PBXTargetDependency */,
-				F1338D6A1D73290800D5DC34 /* PBXTargetDependency */,
-			);
-			name = BehaviourBasedTransitionsTests;
-			productName = BehaviourBasedTransitionsTests;
-			productReference = F1338D651D73290800D5DC34 /* BehaviourBasedTransitionsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		F13E86601D70AE0C0003C8EC /* Example */ = {
 			isa = PBXNativeTarget;
@@ -280,12 +273,11 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Maximilian Clarke";
 				TargetAttributes = {
-					F1338D5B1D73290800D5DC34 = {
+					402EE52B1DC31069008BD8DA = {
 						CreatedOnToolsVersion = 7.3;
 					};
-					F1338D641D73290800D5DC34 = {
+					F1338D5B1D73290800D5DC34 = {
 						CreatedOnToolsVersion = 7.3;
-						TestTargetID = F13E86601D70AE0C0003C8EC;
 					};
 					F13E86601D70AE0C0003C8EC = {
 						CreatedOnToolsVersion = 7.3;
@@ -306,21 +298,21 @@
 			projectRoot = "";
 			targets = (
 				F1338D5B1D73290800D5DC34 /* BehaviourBasedTransitions */,
-				F1338D641D73290800D5DC34 /* BehaviourBasedTransitionsTests */,
+				402EE52B1DC31069008BD8DA /* BehaviourBasedTransitionsTests */,
 				F13E86601D70AE0C0003C8EC /* Example */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F1338D5A1D73290800D5DC34 /* Resources */ = {
+		402EE52A1DC31069008BD8DA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F1338D631D73290800D5DC34 /* Resources */ = {
+		F1338D5A1D73290800D5DC34 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -340,6 +332,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		402EE5281DC31069008BD8DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				402EE5371DC310AF008BD8DA /* BehaviourBasedTransitionsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F1338D571D73290800D5DC34 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -357,13 +357,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F1338D611D73290800D5DC34 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F13E865D1D70AE0C0003C8EC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -377,15 +370,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F1338D681D73290800D5DC34 /* PBXTargetDependency */ = {
+		402EE5331DC31069008BD8DA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F1338D5B1D73290800D5DC34 /* BehaviourBasedTransitions */;
-			targetProxy = F1338D671D73290800D5DC34 /* PBXContainerItemProxy */;
-		};
-		F1338D6A1D73290800D5DC34 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F13E86601D70AE0C0003C8EC /* Example */;
-			targetProxy = F1338D691D73290800D5DC34 /* PBXContainerItemProxy */;
+			targetProxy = 402EE5321DC31069008BD8DA /* PBXContainerItemProxy */;
 		};
 		F1338D701D73290800D5DC34 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -414,6 +402,28 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		402EE5351DC31069008BD8DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = BehaviourBasedTransitionsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.maximilianclarke.BehaviourBasedTransitionsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		402EE5361DC31069008BD8DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = BehaviourBasedTransitionsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.maximilianclarke.BehaviourBasedTransitionsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		F1338D751D73290800D5DC34 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -451,30 +461,6 @@
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		F1338D781D73290800D5DC34 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = BehaviourBasedTransitionsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.maximilianclarke.BehaviourBasedTransitionsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BehaviourBasedTransitions.app/BehaviourBasedTransitions";
-			};
-			name = Debug;
-		};
-		F1338D791D73290800D5DC34 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = BehaviourBasedTransitionsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.maximilianclarke.BehaviourBasedTransitionsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BehaviourBasedTransitions.app/BehaviourBasedTransitions";
 			};
 			name = Release;
 		};
@@ -590,20 +576,19 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		402EE5341DC31069008BD8DA /* Build configuration list for PBXNativeTarget "BehaviourBasedTransitionsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				402EE5351DC31069008BD8DA /* Debug */,
+				402EE5361DC31069008BD8DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		F1338D741D73290800D5DC34 /* Build configuration list for PBXNativeTarget "BehaviourBasedTransitions" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F1338D751D73290800D5DC34 /* Debug */,
 				F1338D761D73290800D5DC34 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F1338D771D73290800D5DC34 /* Build configuration list for PBXNativeTarget "BehaviourBasedTransitionsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F1338D781D73290800D5DC34 /* Debug */,
-				F1338D791D73290800D5DC34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

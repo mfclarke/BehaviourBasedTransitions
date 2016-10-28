@@ -2,7 +2,7 @@
 //  BehaviourBasedTransitionsTests.swift
 //  BehaviourBasedTransitionsTests
 //
-//  Created by Maximilian Clarke on 28/08/2016.
+//  Created by Maximilian Clarke on 28/10/2016.
 //  Copyright © 2016 Maximilian Clarke. All rights reserved.
 //
 
@@ -22,8 +22,6 @@ class BehaviourBasedTransitionsTests: XCTestCase {
     }
     
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
     func testPerformanceExample() {

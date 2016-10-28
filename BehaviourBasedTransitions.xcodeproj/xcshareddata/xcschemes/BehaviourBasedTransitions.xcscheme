@@ -29,6 +29,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "F1338D5B1D73290800D5DC34"
+            BuildableName = "BehaviourBasedTransitions.framework"
+            BlueprintName = "BehaviourBasedTransitions"
+            ReferencedContainer = "container:BehaviourBasedTransitions.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
