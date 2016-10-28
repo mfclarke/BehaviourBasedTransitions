@@ -85,19 +85,11 @@ extension BehaviourBasedTransition: UIViewControllerTransitioningDelegate {
     }
     
     public func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        if isInteractive {
-            isPresenting = true
-            return self
-        }
-        return nil
+        return isInteractive ? self : nil
     }
     
     public func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        if isInteractive {
-            isPresenting = false
-            return self
-        }
-        return nil
+        return isInteractive ? self : nil
     }
     
 }

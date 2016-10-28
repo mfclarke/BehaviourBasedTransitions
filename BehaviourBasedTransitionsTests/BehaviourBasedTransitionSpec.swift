@@ -15,33 +15,29 @@ class BehaviourBasedTransitionSpec: QuickSpec {
     
     override func spec() {
         var transition: BehaviourBasedTransition!
+        var transitionContext: MockTransitionContext!
+        var sourceController: MockTransitionableViewController!
+        var destinationController: MockTransitionableViewController!
+        var container: UIView!
         
         beforeEach {
             transition = BehaviourBasedTransition()
             transition.transitionIdentifier = "Test"
+            transitionContext = MockTransitionContext()
+            sourceController = MockTransitionableViewController()
+            destinationController = MockTransitionableViewController()
+            container = UIView()
+            
+            transitionContext.container = container
+        }
+        
+        func setupTransitionAndContext(forPresenting presenting: Bool) {
+            transition.isPresenting = presenting
+            transitionContext.fromViewController = presenting ? sourceController : destinationController
+            transitionContext.toViewController = presenting ? destinationController : sourceController
         }
 
         describe("animateTransition") {
-            var transitionContext: MockTransitionContext!
-            var sourceController: MockTransitionableViewController!
-            var destinationController: MockTransitionableViewController!
-            var container: UIView!
-            
-            beforeEach {
-                transitionContext = MockTransitionContext()
-                sourceController = MockTransitionableViewController()
-                destinationController = MockTransitionableViewController()
-                container = UIView()
-                
-                transitionContext.container = container
-            }
-            
-            func setupTransitionAndContext(forPresenting presenting: Bool) {
-                transition.isPresenting = presenting
-                transitionContext.fromViewController = presenting ? sourceController : destinationController
-                transitionContext.toViewController = presenting ? destinationController : sourceController
-            }
-            
             describe("notifications") {
                 beforeEach {
                     setupTransitionAndContext(forPresenting: true)
@@ -181,7 +177,64 @@ class BehaviourBasedTransitionSpec: QuickSpec {
                     }
                 }
             }
+        }
+        
+        describe("transitioning delegate") {
+            it("sets presenting true when animationControllerForPresentedController called") {
+                transition.isPresenting = false
+                transition.animationControllerForPresentedController(
+                    destinationController,
+                    presentingController: sourceController,
+                    sourceController: sourceController)
+                
+                expect(transition.isPresenting) == true
+            }
             
+            it("sets presenting false when animationControllerForDismissed called") {
+                transition.isPresenting = true
+                transition.animationControllerForDismissedController(destinationController)
+                
+                expect(transition.isPresenting) == false
+            }
+            
+            context("when isInteractive true") {
+                beforeEach {
+                    transition.isInteractive = true
+                }
+                
+                it("returns itself when interactionControllerForPresentation called") {
+                    let returnVal = transition.interactionControllerForPresentation(transition)
+                    
+                    expect(returnVal === transition) == true
+                }
+                
+                it("returns itself when interactionControllerForPresentation called") {
+                    let returnVal = transition.interactionControllerForPresentation(transition)
+                    
+                    expect(returnVal === transition) == true
+                }
+            }
+            
+            context("when isInteractive false") {
+                beforeEach {
+                    transition.isInteractive = false
+                }
+                
+                it("returns nil when interactionControllerForPresentation called") {
+                    let returnVal = transition.interactionControllerForPresentation(transition)
+                    
+                    expect(returnVal).to(beNil())
+                }
+                
+                it("returns nil when interactionControllerForPresentation called") {
+                    let returnVal = transition.interactionControllerForPresentation(transition)
+                    
+                    expect(returnVal).to(beNil())
+                }
+            }
+        }
+        
+        describe("transition completion") {
             
         }
     }
