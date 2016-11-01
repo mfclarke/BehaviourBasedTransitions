@@ -30,7 +30,7 @@ public class BehaviourBasedTransition: UIPercentDrivenInteractiveTransition, UIV
     
     // MARK: Private
     
-    private var isPresenting = false
+    public internal(set) var isPresenting = false
     public var isInteractive = false
     
     private var behaviourAnimationsCompleted = 0
@@ -85,19 +85,11 @@ extension BehaviourBasedTransition: UIViewControllerTransitioningDelegate {
     }
     
     public func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        if isInteractive {
-            isPresenting = true
-            return self
-        }
-        return nil
+        return isInteractive ? self : nil
     }
     
     public func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        if isInteractive {
-            isPresenting = false
-            return self
-        }
-        return nil
+        return isInteractive ? self : nil
     }
     
 }
