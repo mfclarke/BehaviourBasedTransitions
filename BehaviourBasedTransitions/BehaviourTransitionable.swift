@@ -23,8 +23,11 @@ public extension BehaviourTransitionable {
     
     /// Helper method to handle logic for assigning the correct transition for the segue
     public func prepareSegueForTransition(segue: UIStoryboardSegue) {
-        segue.destinationViewController.modalPresentationStyle = .Custom
-        segue.destinationViewController.transitioningDelegate = transitions.filter { $0.segueIdentifier == segue.identifier }.first
+        if let transition = transitions.filter({ $0.segueIdentifier == segue.identifier }).first {
+            segue.destinationViewController.modalPresentationStyle = .FullScreen
+            segue.destinationViewController.transitioningDelegate = transition
+            segue.destinationViewController.prepareForTransition(withIdentifier: transition.transitionIdentifier)
+        }
     }
     
 }
