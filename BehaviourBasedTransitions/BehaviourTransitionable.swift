@@ -33,6 +33,8 @@ public extension BehaviourTransitionable {
 /// Default implementations are provided to propogate to child view controllers, including children of
 /// `UITabBarController` and `UIPageViewController`
 public protocol BehaviourAppearable {
+    func prepareForTransition(withIdentifier identifier: String)
+    
     func viewWillAppearByTransition(withIdentifier identifier: String)
     func viewWillDisappearByTransition(withIdentifier identifier: String)
     
@@ -41,6 +43,10 @@ public protocol BehaviourAppearable {
 }
 
 extension UIViewController: BehaviourAppearable {
+    
+    public func prepareForTransition(withIdentifier identifier: String) {
+        childViewControllers.forEach { $0.prepareForTransition(withIdentifier: identifier) }
+    }
     
     public func viewWillAppearByTransition(withIdentifier identifier: String) {
         childViewControllers.forEach { $0.viewWillAppearByTransition(withIdentifier: identifier) }
@@ -61,6 +67,11 @@ extension UIViewController: BehaviourAppearable {
 }
 
 extension UIPageViewController {
+    
+    override public func prepareForTransition(withIdentifier identifier: String) {
+        super.prepareForTransition(withIdentifier: identifier)
+        viewControllers?.forEach { $0.prepareForTransition(withIdentifier: identifier) }
+    }
     
     override public func viewWillAppearByTransition(withIdentifier identifier: String) {
         super.viewWillAppearByTransition(withIdentifier: identifier)
@@ -85,6 +96,11 @@ extension UIPageViewController {
 }
 
 extension UITabBarController {
+    
+    override public func prepareForTransition(withIdentifier identifier: String) {
+        super.prepareForTransition(withIdentifier: identifier)
+        viewControllers?.forEach { $0.prepareForTransition(withIdentifier: identifier) }
+    }
     
     override public func viewWillAppearByTransition(withIdentifier identifier: String) {
         super.viewWillAppearByTransition(withIdentifier: identifier)
