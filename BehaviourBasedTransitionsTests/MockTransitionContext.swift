@@ -11,7 +11,7 @@ import UIKit
 class MockTransitionContext: NSObject, UIViewControllerContextTransitioning {
     
     var container: UIView?
-    func containerView() -> UIView? { return container }
+    func containerView() -> UIView { return container ?? UIView() }
     
     var animated = true
     func isAnimated() -> Bool { return animated }
@@ -59,6 +59,7 @@ class MockTransitionContext: NSObject, UIViewControllerContextTransitioning {
     
     func presentationStyle() -> UIModalPresentationStyle { return .Custom }
     func updateInteractiveTransition(percentComplete: CGFloat) {}
+    func pauseInteractiveTransition() {}
     func targetTransform() -> CGAffineTransform { return CGAffineTransformIdentity }
     func initialFrameForViewController(vc: UIViewController) -> CGRect { return CGRect.zero }
     func finalFrameForViewController(vc: UIViewController) -> CGRect { return CGRect.zero }
