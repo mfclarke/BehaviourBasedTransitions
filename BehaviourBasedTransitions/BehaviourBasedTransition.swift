@@ -39,14 +39,15 @@ public class BehaviourBasedTransition: UIPercentDrivenInteractiveTransition, UIV
     private weak var sourceViewControllerSuperview: UIView?
 
     public func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        guard let
-            container = transitionContext.containerView(),
-            fromController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey),
-            toController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
+        guard
+            let fromController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey),
+            let toController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
             else { return }
         
         fromController.viewWillDisappearByTransition(withIdentifier: transitionIdentifier)
         toController.viewWillAppearByTransition(withIdentifier: transitionIdentifier)
+        
+        let container = transitionContext.containerView()
         
         if isPresenting {
             sourceViewControllerSuperview = fromController.view.superview
@@ -153,9 +154,9 @@ private extension BehaviourBasedTransition {
     }
 
     func allBehavioursCompleted(context: UIViewControllerContextTransitioning) {
-        guard let
-            toController = context.viewControllerForKey(UITransitionContextToViewControllerKey),
-            fromController = context.viewControllerForKey(UITransitionContextFromViewControllerKey)
+        guard 
+            let toController = context.viewControllerForKey(UITransitionContextToViewControllerKey),
+            let fromController = context.viewControllerForKey(UITransitionContextFromViewControllerKey)
             else { return }
         
         allBehaviours.forEach { $0.transitionCompleted(context.transitionWasCancelled()) }
