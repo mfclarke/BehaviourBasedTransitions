@@ -148,14 +148,24 @@ public class TransitionBehaviour: NSObject {
             let delayForAnim = (isReverse ? reverseStartTime : forwardStartTime) * transitionDuration
             let animCurve = AnimationCurve(rawValue: animationCurve) ?? .EaseInOut
             
-            UIView.animateWithDuration(
-                durationForAnim,
-                delay: delayForAnim,
-                usingSpringWithDamping: springDamping,
-                initialSpringVelocity: initialSpringVelocity,
-                options: [animCurve.toUIViewAnimationOption(), .AllowUserInteraction],
-                animations: animation,
-                completion: { _ in self.animationCompleted?() })
+            // Animation behaviour changes if we specify damping or velocity, even if they are 0
+            if springDamping != 0 || initialSpringVelocity != 0 {
+                UIView.animateWithDuration(
+                    durationForAnim,
+                    delay: delayForAnim,
+                    usingSpringWithDamping: springDamping,
+                    initialSpringVelocity: initialSpringVelocity,
+                    options: [animCurve.toUIViewAnimationOption(), .AllowUserInteraction],
+                    animations: animation,
+                    completion: { _ in self.animationCompleted?() })
+            } else {
+                UIView.animateWithDuration(
+                    durationForAnim,
+                    delay: delayForAnim,
+                    options: [animCurve.toUIViewAnimationOption(), .AllowUserInteraction],
+                    animations: animation,
+                    completion: { _ in self.animationCompleted?() })
+            }
         }
     }
     
