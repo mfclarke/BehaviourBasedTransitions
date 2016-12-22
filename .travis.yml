@@ -8,7 +8,7 @@ script:
   -project BehaviourBasedTransitions.xcodeproj
   -scheme BehaviourBasedTransitionsTests
   -sdk iphonesimulator
-  -destination 'platform=iOS Simulator,name=iPhone 6'
+  -destination 'platform=iOS Simulator,OS=10.2,name=iPhone 6'
   test
   ONLY_ACTIVE_ARCH=NO
   CODE_SIGNING_REQUIRED=NO
