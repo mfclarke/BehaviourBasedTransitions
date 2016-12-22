@@ -3,5 +3,5 @@
 # or
 # carthage update ReactiveCocoa --use-submodules --platform iOS
 
-github "Quick/Quick" == 0.9.3
-github "Quick/Nimble" == 4.1.0
+github "Quick/Quick" == 1.0.0
+github "Quick/Nimble" == 5.1.1
