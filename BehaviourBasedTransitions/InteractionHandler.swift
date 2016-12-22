@@ -9,7 +9,7 @@
 import UIKit
 
 /// Abstract class to encapsulate common logic for using `UIGestureRecognizer`s to drive interactive transitions 
-public class InteractionHandler: NSObject {
+open class InteractionHandler: NSObject {
     
     /// The gesture recognizer to handle
     @IBOutlet var gestureRecognizer: UIGestureRecognizer!
@@ -31,20 +31,20 @@ public class InteractionHandler: NSObject {
     @IBInspectable var rollback: CGFloat = 0.3333
     
     /// Returns true if the `sourceViewController` is connected
-    public var isHandlerForPresentationTransition: Bool {
+    open var isHandlerForPresentationTransition: Bool {
         return sourceViewController != nil
     }
     
     /// Should be connected to the gesture recognizer's action
     /// Used to trigger the segue/dismiss, and update the transition progress
-    @IBAction public func panGestureChanged(withGestureRecognizer gestureRecognizer: UIGestureRecognizer!) {
+    @IBAction open func panGestureChanged(withGestureRecognizer gestureRecognizer: UIGestureRecognizer!) {
         guard gestureRecognizer == self.gestureRecognizer else { return }
         
-        if let sourceViewController = sourceViewController, transition = transition {
+        if let sourceViewController = sourceViewController, let transition = transition {
             updateTransition(transition, presenting: true)
             
-            if gestureRecognizer.state == .Began {
-                sourceViewController.performSegueWithIdentifier(transition.segueIdentifier, sender: self)
+            if gestureRecognizer.state == .began {
+                sourceViewController.performSegue(withIdentifier: transition.segueIdentifier, sender: self)
             }
         }
         else if let destinationViewController = destinationViewController,
@@ -52,8 +52,8 @@ public class InteractionHandler: NSObject {
         {
             updateTransition(transition, presenting: false)
             
-            if gestureRecognizer.state == .Began {
-                destinationViewController.dismissViewControllerAnimated(true, completion: nil)
+            if gestureRecognizer.state == .began {
+                destinationViewController.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -63,20 +63,20 @@ public class InteractionHandler: NSObject {
     
     /// Called when the recognizer begins, for any specific setup. For example, using the start location of a touch
     /// to work out the distance the user must swipe for interaction to complete
-    public func setupForGestureBegin() { }
+    open func setupForGestureBegin() { }
     
     /// Should return the progress of the interaction, based on values from the connected gesture recognizer
-    public func calculatePercent() -> CGFloat {
+    open func calculatePercent() -> CGFloat {
         return 0
     }
     
     /// Return true if the gesture recognizer is in a state that should start a presentation transition
-    public func shouldBeginPresentationTransition() -> Bool {
+    open func shouldBeginPresentationTransition() -> Bool {
         return false
     }
     
     /// Return true if the gesture recognizer is in a state that should start a dismissal transition
-    public func shouldBeginDismissalTransition() -> Bool {
+    open func shouldBeginDismissalTransition() -> Bool {
         return false
     }
     
@@ -84,7 +84,7 @@ public class InteractionHandler: NSObject {
 
 extension InteractionHandler: UIGestureRecognizerDelegate {
     
-    public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if isHandlerForPresentationTransition {
             return shouldBeginPresentationTransition()
         } else {
@@ -96,24 +96,24 @@ extension InteractionHandler: UIGestureRecognizerDelegate {
 
 extension InteractionHandler {
     
-    private func updateTransition(transition: BehaviourBasedTransition, presenting: Bool) {
+    fileprivate func updateTransition(_ transition: BehaviourBasedTransition, presenting: Bool) {
         let percent = calculatePercent()
         
         switch gestureRecognizer.state {
-        case .Began:
+        case .began:
             transition.isInteractive = true
             setupForGestureBegin()
             break
             
-        case .Changed:
-            transition.updateInteractiveTransition(percent)
+        case .changed:
+            transition.update(percent)
             
         default:
             transition.isInteractive = false
             if percent > rollback {
-                transition.finishInteractiveTransition()
+                transition.finish()
             } else {
-                transition.cancelInteractiveTransition()
+                transition.cancel()
             }
         }
     }

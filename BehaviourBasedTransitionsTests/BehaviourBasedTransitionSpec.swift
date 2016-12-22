@@ -76,13 +76,13 @@ class BehaviourBasedTransitionSpec: QuickSpec {
                 }
                 
                 it("should tell the from controller it will disappear") {
-                    transition.animateTransition(transitionContext)
+                    transition.animateTransition(using: transitionContext)
                     
                     expect(sourceController.willDisappearTransitionIdentifier) == "Test"
                 }
                 
                 it("should tell the to controller it will appear") {
-                    transition.animateTransition(transitionContext)
+                    transition.animateTransition(using: transitionContext)
                     
                     expect(destinationController.willAppearTransitionIdentifier) == "Test"
                 }
@@ -95,15 +95,15 @@ class BehaviourBasedTransitionSpec: QuickSpec {
                     }
                     
                     it("places the source controller in the container at the bottom") {
-                        transition.animateTransition(transitionContext)
+                        transition.animateTransition(using: transitionContext)
                         
-                        expect(container.subviews.indexOf(sourceController.view)) == 0
+                        expect(container.subviews.index(of: sourceController.view)) == 0
                     }
                     
                     it("places the destination controller in the container on the top") {
-                        transition.animateTransition(transitionContext)
+                        transition.animateTransition(using: transitionContext)
                         
-                        expect(container.subviews.indexOf(destinationController.view)) == 1
+                        expect(container.subviews.index(of: destinationController.view)) == 1
                     }
                 }
                 
@@ -113,15 +113,15 @@ class BehaviourBasedTransitionSpec: QuickSpec {
                     }
                     
                     it("places the source controller in the container at the bottom") {
-                        transition.animateTransition(transitionContext)
+                        transition.animateTransition(using: transitionContext)
                         
-                        expect(container.subviews.indexOf(sourceController.view)) == 0
+                        expect(container.subviews.index(of: sourceController.view)) == 0
                     }
                     
                     it("places the destination controller in the container on the top") {
-                        transition.animateTransition(transitionContext)
+                        transition.animateTransition(using: transitionContext)
                         
-                        expect(container.subviews.indexOf(destinationController.view)) == 1
+                        expect(container.subviews.index(of: destinationController.view)) == 1
                     }
                 }
             }
@@ -130,33 +130,33 @@ class BehaviourBasedTransitionSpec: QuickSpec {
                 
                 describe("setup") {
                     it("configures isPresenting for all behaviours") {
-                        transition.animateTransition(transitionContext)
+                        transition.animateTransition(using: transitionContext)
                         
                         allBehaviours.forEach { expect($0.isPresenting) == true }
                     }
                     
                     it("configures isInteractive for all behaviours") {
                         transition.isInteractive = true
-                        transition.animateTransition(transitionContext)
+                        transition.animateTransition(using: transitionContext)
                         
                         allBehaviours.forEach { expect($0.isInteractive) == true }
                     }
                     
                     it("configures duration for all behaviours") {
                         transition.transitionDuration = 2
-                        transition.animateTransition(transitionContext)
+                        transition.animateTransition(using: transitionContext)
                         
                         allBehaviours.forEach { expect($0.transitionDuration) == 2 }
                     }
                     
                     it("calls setup callback for all behaviours") {
-                        transition.animateTransition(transitionContext)
+                        transition.animateTransition(using: transitionContext)
                         
                         allBehaviours.forEach { expect($0.didSetup) == true }
                     }
                     
                     it("links source to destination behaviours") {
-                        transition.animateTransition(transitionContext)
+                        transition.animateTransition(using: transitionContext)
                         
                         expect(behaviour2.destinationBehaviour) == behaviour3
                     }
@@ -165,7 +165,7 @@ class BehaviourBasedTransitionSpec: QuickSpec {
                         it("still links source to destination behaviours") {
                             setupTransitionAndContext(forPresenting: false)
                             
-                            transition.animateTransition(transitionContext)
+                            transition.animateTransition(using: transitionContext)
                             
                             expect(behaviour2.destinationBehaviour) == behaviour3
                         }
@@ -174,7 +174,7 @@ class BehaviourBasedTransitionSpec: QuickSpec {
                 
                 describe("adding animations") {
                     it("should call addAnimations callback on all behaviours") {
-                        transition.animateTransition(transitionContext)
+                        transition.animateTransition(using: transitionContext)
                         
                         allBehaviours.forEach { expect($0.didAddAnimations) == true }
                     }
@@ -185,16 +185,16 @@ class BehaviourBasedTransitionSpec: QuickSpec {
         describe("transitioning delegate") {
             it("sets presenting true when animationControllerForPresentedController called") {
                 transition.isPresenting = false
-                transition.animationControllerForPresentedController(
-                    destinationController,
-                    presentingController: sourceController,
-                    sourceController: sourceController)
+                let _ = transition.animationController(
+                    forPresented: destinationController,
+                    presenting: sourceController,
+                    source: sourceController)
                 
                 expect(transition.isPresenting) == true
             }
             
             it("sets presenting false when animationControllerForDismissed called") {
-                transition.animationControllerForDismissedController(destinationController)
+                let _ = transition.animationController(forDismissed: destinationController)
                 
                 expect(transition.isPresenting) == false
             }
@@ -205,13 +205,13 @@ class BehaviourBasedTransitionSpec: QuickSpec {
                 }
                 
                 it("returns itself when interactionControllerForPresentation called") {
-                    let returnVal = transition.interactionControllerForPresentation(transition)
+                    let returnVal = transition.interactionControllerForPresentation(using: transition)
                     
                     expect(returnVal === transition) == true
                 }
                 
                 it("returns itself when interactionControllerForPresentation called") {
-                    let returnVal = transition.interactionControllerForPresentation(transition)
+                    let returnVal = transition.interactionControllerForPresentation(using: transition)
                     
                     expect(returnVal === transition) == true
                 }
@@ -223,13 +223,13 @@ class BehaviourBasedTransitionSpec: QuickSpec {
                 }
                 
                 it("returns nil when interactionControllerForPresentation called") {
-                    let returnVal = transition.interactionControllerForPresentation(transition)
+                    let returnVal = transition.interactionControllerForPresentation(using: transition)
                     
                     expect(returnVal).to(beNil())
                 }
                 
                 it("returns nil when interactionControllerForPresentation called") {
-                    let returnVal = transition.interactionControllerForPresentation(transition)
+                    let returnVal = transition.interactionControllerForPresentation(using: transition)
                     
                     expect(returnVal).to(beNil())
                 }
@@ -239,7 +239,7 @@ class BehaviourBasedTransitionSpec: QuickSpec {
         describe("transition completion") {
             context("when behaviours haven't completed animation") {
                 it("shouldn't tell behaviours the transition completed") {
-                    transition.animateTransition(transitionContext)
+                    transition.animateTransition(using: transitionContext)
                     
                     allBehaviours.forEach { expect($0.completedPresentation).to(beNil()) }
                 }
@@ -247,7 +247,7 @@ class BehaviourBasedTransitionSpec: QuickSpec {
             
             context("when some behaviours have completed but not all") {
                 it("shouldn't tell behaviours the transition completed") {
-                    transition.animateTransition(transitionContext)
+                    transition.animateTransition(using: transitionContext)
                     
                     behaviour1.animationCompleted?()
                     behaviour2.animationCompleted?()
@@ -260,7 +260,7 @@ class BehaviourBasedTransitionSpec: QuickSpec {
                 context("when presenting and transition completed") {
                     beforeEach {
                         setupTransitionAndContext(forPresenting: true)
-                        transition.animateTransition(transitionContext)
+                        transition.animateTransition(using: transitionContext)
                         allBehaviours.forEach { $0.animationCompleted?() }
                     }
                     
@@ -284,7 +284,7 @@ class BehaviourBasedTransitionSpec: QuickSpec {
                 context("when presenting and transition cancelled") {
                     beforeEach {
                         setupTransitionAndContext(forPresenting: true)
-                        transition.animateTransition(transitionContext)
+                        transition.animateTransition(using: transitionContext)
                         transitionContext.cancelled = true
                         allBehaviours.forEach { $0.animationCompleted?() }
                     }
@@ -319,11 +319,11 @@ class BehaviourBasedTransitionSpec: QuickSpec {
                         // At the moment, it requires the controller to have been presented with a
                         // BehaviourBasedTransition to be dismissed correctly
                         setupTransitionAndContext(forPresenting: true)
-                        transition.animateTransition(transitionContext)
+                        transition.animateTransition(using: transitionContext)
                         allBehaviours.forEach { $0.animationCompleted?() }
                         
                         setupTransitionAndContext(forPresenting: false)
-                        transition.animateTransition(transitionContext)
+                        transition.animateTransition(using: transitionContext)
                         allBehaviours.forEach { $0.animationCompleted?() }
                     }
                     
@@ -353,11 +353,11 @@ class BehaviourBasedTransitionSpec: QuickSpec {
                         // At the moment, it requires the controller to have been presented with a 
                         // BehaviourBasedTransition to be dismissed correctly
                         setupTransitionAndContext(forPresenting: true)
-                        transition.animateTransition(transitionContext)
+                        transition.animateTransition(using: transitionContext)
                         allBehaviours.forEach { $0.animationCompleted?() }
                         
                         setupTransitionAndContext(forPresenting: false)
-                        transition.animateTransition(transitionContext)
+                        transition.animateTransition(using: transitionContext)
                         transitionContext.cancelled = true
                         allBehaviours.forEach { $0.animationCompleted?() }
                     }

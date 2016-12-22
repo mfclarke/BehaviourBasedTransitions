@@ -17,22 +17,22 @@ import UIKit
 ///
 /// Note: This `TransitionBehaviour` needs a corresponding `TransformToPositionDestinationBehaviour` with the same
 /// behaviourIdentifier to function correctly
-public class TransformToPositionSourceBehaviour: TransitionBehaviour {
+open class TransformToPositionSourceBehaviour: TransitionBehaviour {
     
-    @IBInspectable public var shouldBeOnTop: Bool = false
+    @IBInspectable open var shouldBeOnTop: Bool = false
     
     var sourceFrame: CGRect?
     var destinationFrame: CGRect?
     
     var snapshotView: UIView!
     
-    override public func setup(container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
-        guard let sourceView = viewsForTransition.first, destinationView = destinationBehaviour?.viewsForTransition.first else { return }
+    override open func setup(_ container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
+        guard let sourceView = viewsForTransition.first, let destinationView = destinationBehaviour?.viewsForTransition.first else { return }
         
         sourceFrame = getContainerFrame(container, view: sourceView)
         destinationFrame = getContainerFrame(container, view: destinationView)
         
-        snapshotView = sourceView.resizableSnapshotViewFromRect(sourceView.bounds, afterScreenUpdates: true, withCapInsets: UIEdgeInsetsZero)
+        snapshotView = sourceView.resizableSnapshotView(from: sourceView.bounds, afterScreenUpdates: true, withCapInsets: UIEdgeInsets.zero)
         snapshotView.frame = sourceFrame!
         if shouldBeOnTop {
             container.addSubview(snapshotView)
@@ -40,31 +40,31 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
             sourceView.addSubview(snapshotView)
         }
         
-        sourceView.hidden = true
+        sourceView.isHidden = true
         
         let destTransform = destinationTransform(sourceFrame!, destinationFrame: destinationFrame!)
-        snapshotView.transform = isPresenting ? CGAffineTransformIdentity : destTransform
+        snapshotView.transform = isPresenting ? CGAffineTransform.identity : destTransform
     }
     
-    override public func addAnimations() {
+    override open func addAnimations() {
         addAnimation {
             self.applyAnimation()
         }
     }
     
     func applyAnimation() {
-        guard let sourceFrame = sourceFrame, destinationFrame = destinationFrame else { return }
+        guard let sourceFrame = sourceFrame, let destinationFrame = destinationFrame else { return }
         
         let destTransform = destinationTransform(sourceFrame, destinationFrame: destinationFrame)
-        snapshotView.transform = isPresenting ? destTransform : CGAffineTransformIdentity
+        snapshotView.transform = isPresenting ? destTransform : CGAffineTransform.identity
     }
     
-    override public func complete(presented: Bool) {
+    override open func complete(_ presented: Bool) {
         snapshotView.removeFromSuperview()
-        viewsForTransition.first?.hidden = false
+        viewsForTransition.first?.isHidden = false
     }
     
-    func destinationTransform(sourceFrame: CGRect, destinationFrame: CGRect) -> CGAffineTransform {
+    func destinationTransform(_ sourceFrame: CGRect, destinationFrame: CGRect) -> CGAffineTransform {
         let offset = CGPoint(
             x: destinationFrame.midX - sourceFrame.midX,
             y: destinationFrame.midY - sourceFrame.midY)
@@ -73,11 +73,11 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
             x: destinationFrame.size.width / sourceFrame.size.width,
             y: destinationFrame.size.height / sourceFrame.size.height)
         
-        return CGAffineTransformMake(scale.x, 0, 0, scale.y, offset.x, offset.y)
+        return CGAffineTransform(a: scale.x, b: 0, c: 0, d: scale.y, tx: offset.x, ty: offset.y)
     }
     
-    func getContainerFrame(container: UIView, view: UIView) -> CGRect {
-        if let frameInContainer = view.superview?.convertRect(view.frame, toView: container) {
+    func getContainerFrame(_ container: UIView, view: UIView) -> CGRect {
+        if let frameInContainer = view.superview?.convert(view.frame, to: container) {
             return frameInContainer
         }
         
@@ -95,16 +95,16 @@ public class TransformToPositionSourceBehaviour: TransitionBehaviour {
 ///
 /// Note: This `TransitionBehaviour` isn't supposed to be used on it's own. It should be paired with a
 /// `TransformToPositionSourceBehaviour` with the same behaviourIdentifier
-public class TransformToPositionDestinationBehaviour: TransitionBehaviour {
+open class TransformToPositionDestinationBehaviour: TransitionBehaviour {
     
-    override public func setup(container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
+    override open func setup(_ container: UIView, destinationBehaviour: TransitionBehaviour? = nil) {
         super.setup(container, destinationBehaviour: destinationBehaviour)
-        viewsForTransition.first?.hidden = true
+        viewsForTransition.first?.isHidden = true
         animationCompleted?()
     }
     
-    override public func complete(presented: Bool) {
-        viewsForTransition.first?.hidden = false
+    override open func complete(_ presented: Bool) {
+        viewsForTransition.first?.isHidden = false
     }
     
 }

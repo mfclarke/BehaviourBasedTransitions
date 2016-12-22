@@ -11,31 +11,31 @@ import UIKit
 class MockTransitionContext: NSObject, UIViewControllerContextTransitioning {
     
     var container: UIView?
-    func containerView() -> UIView { return container ?? UIView() }
+    var containerView : UIView { return container ?? UIView() }
     
-    var animated = true
-    func isAnimated() -> Bool { return animated }
+    var _isAnimated = true
+    var isAnimated : Bool { return _isAnimated }
     
-    var interactive = false
-    func isInteractive() -> Bool { return interactive }
+    var _isInteractive = false
+    var isInteractive : Bool { return _isInteractive }
     
     var cancelled = false
-    func transitionWasCancelled() -> Bool { return cancelled }
+    var transitionWasCancelled : Bool { return cancelled }
     
     var fromViewController: UIViewController?
     var toViewController: UIViewController?
-    func viewControllerForKey(key: String) -> UIViewController? {
+    func viewController(forKey key: UITransitionContextViewControllerKey) -> UIViewController? {
         switch key {
-        case UITransitionContextFromViewControllerKey:
+        case UITransitionContextViewControllerKey.from:
             return fromViewController
-        case UITransitionContextToViewControllerKey:
+        case UITransitionContextViewControllerKey.to:
             return toViewController
         default:
             return nil
         }
     }
     
-    func viewForKey(key: String) -> UIView? {
+    func view(forKey key: UITransitionContextViewKey) -> UIView? {
         return nil
     }
     
@@ -50,18 +50,18 @@ class MockTransitionContext: NSObject, UIViewControllerContextTransitioning {
     }
     
     var transitionCompleted: Bool?
-    func completeTransition(didComplete: Bool) {
+    func completeTransition(_ didComplete: Bool) {
         transitionCompleted = didComplete
     }
     
     
     // Stubbing out the rest of the protocol
     
-    func presentationStyle() -> UIModalPresentationStyle { return .Custom }
-    func updateInteractiveTransition(percentComplete: CGFloat) {}
+    var presentationStyle : UIModalPresentationStyle { return .custom }
+    func updateInteractiveTransition(_ percentComplete: CGFloat) {}
     func pauseInteractiveTransition() {}
-    func targetTransform() -> CGAffineTransform { return CGAffineTransformIdentity }
-    func initialFrameForViewController(vc: UIViewController) -> CGRect { return CGRect.zero }
-    func finalFrameForViewController(vc: UIViewController) -> CGRect { return CGRect.zero }
+    var targetTransform : CGAffineTransform { return CGAffineTransform.identity }
+    func initialFrame(for vc: UIViewController) -> CGRect { return CGRect.zero }
+    func finalFrame(for vc: UIViewController) -> CGRect { return CGRect.zero }
     
 }
