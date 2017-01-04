@@ -35,8 +35,8 @@ class MockTransitionableViewController: UIViewController, BehaviourTransitionabl
     }
     
     var dismissCalled = false
-    override func dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?) {
-        super.dismissViewControllerAnimated(flag, completion: completion)
+    override func dismiss(animated flag: Bool, completion: (() -> Void)?) {
+        super.dismiss(animated: flag, completion: completion)
         dismissCalled = true
     }
     

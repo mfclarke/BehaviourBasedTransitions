@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class VerticalPanInteractionHandler: InteractionHandler {
+open class VerticalPanInteractionHandler: InteractionHandler {
     
     @IBInspectable var shouldUpSwipePresent: Bool = true
     
@@ -19,10 +19,10 @@ public class VerticalPanInteractionHandler: InteractionHandler {
         return gestureRecognizer as? UIPanGestureRecognizer
     }
     
-    private var maxDistance: CGFloat = 500
+    fileprivate var maxDistance: CGFloat = 500
     
-    override public func setupForGestureBegin() {
-        let location = panGestureRecognizer.locationInView(panGestureRecognizer.view)
+    override open func setupForGestureBegin() {
+        let location = panGestureRecognizer.location(in: panGestureRecognizer.view)
         let viewHeight = panGestureRecognizer.view?.frame.height ?? 0
         
         if isHandlerForPresentationTransition {
@@ -32,8 +32,8 @@ public class VerticalPanInteractionHandler: InteractionHandler {
         }
     }
     
-    override public func calculatePercent() -> CGFloat {
-        let translation = panGestureRecognizer.translationInView(panGestureRecognizer.view)
+    override open func calculatePercent() -> CGFloat {
+        let translation = panGestureRecognizer.translation(in: panGestureRecognizer.view)
         let percent = shouldUpSwipePresent ?
             (isHandlerForPresentationTransition ? -1 : 1) * translation.y / maxDistance :
             (isHandlerForPresentationTransition ? 1 : -1) * translation.y / maxDistance
@@ -41,18 +41,18 @@ public class VerticalPanInteractionHandler: InteractionHandler {
         return min(1, max(percent, 0))
     }
     
-    override public func shouldBeginPresentationTransition() -> Bool {
-        let velocity = panGestureRecognizer.velocityInView(panGestureRecognizer.view)
+    override open func shouldBeginPresentationTransition() -> Bool {
+        let velocity = panGestureRecognizer.velocity(in: panGestureRecognizer.view)
         return (shouldUpSwipePresent ? velocity.y < 0 : velocity.y > 0) && withinInsets()
     }
     
-    override public func shouldBeginDismissalTransition() -> Bool {
-        let velocity = panGestureRecognizer.velocityInView(panGestureRecognizer.view)
+    override open func shouldBeginDismissalTransition() -> Bool {
+        let velocity = panGestureRecognizer.velocity(in: panGestureRecognizer.view)
         return (shouldUpSwipePresent ? velocity.y > 0 : velocity.y < 0) && withinInsets()
     }
     
-    private func withinInsets() -> Bool {
-        let location = panGestureRecognizer.locationInView(panGestureRecognizer.view)
+    fileprivate func withinInsets() -> Bool {
+        let location = panGestureRecognizer.location(in: panGestureRecognizer.view)
         let viewSize = panGestureRecognizer.view?.bounds.size ?? CGSize.zero
         return (location.y > topInset && location.y < viewSize.height - bottomInset)
     }

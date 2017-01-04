@@ -9,33 +9,33 @@
 import UIKit
 
 /// Scales a UIView from the `startSize` to the `endSize`.
-public class ScaleTransitionBehaviour: TransitionBehaviour {
+open class ScaleTransitionBehaviour: TransitionBehaviour {
     
-    @IBInspectable public var startSize: CGFloat = 1
-    @IBInspectable public var endSize: CGFloat = 1
+    @IBInspectable open var startSize: CGFloat = 1
+    @IBInspectable open var endSize: CGFloat = 1
     
-    override public func setup(container: UIView, destinationBehaviour: TransitionBehaviour?) {
+    override open func setup(_ container: UIView, destinationBehaviour: TransitionBehaviour?) {
         viewsForTransition.forEach { $0.transform = isPresenting ? startTransform() : endTransform() }
     }
     
-    override public func addAnimations() {
+    override open func addAnimations() {
         addAnimation {
             self.viewsForTransition.forEach { $0.transform = self.isPresenting ? self.endTransform() : self.startTransform() }
         }
     }
     
-    override public func complete(presented: Bool) {
+    override open func complete(_ presented: Bool) {
         viewsForTransition.forEach { $0.transform = presented ? self.endTransform() : self.startTransform() }
     }
     
-    private func startTransform() -> CGAffineTransform {
+    fileprivate func startTransform() -> CGAffineTransform {
         let sanitizedStartSize = startSize == 0 ? 0.0000001 : startSize
-        return CGAffineTransformMakeScale(sanitizedStartSize, sanitizedStartSize)
+        return CGAffineTransform(scaleX: sanitizedStartSize, y: sanitizedStartSize)
     }
     
-    private func endTransform() -> CGAffineTransform {
+    fileprivate func endTransform() -> CGAffineTransform {
         let sanitizedEndSize = endSize == 0 ? 0.0000001 : endSize
-        return CGAffineTransformMakeScale(sanitizedEndSize, sanitizedEndSize)
+        return CGAffineTransform(scaleX: sanitizedEndSize, y: sanitizedEndSize)
     }
     
 }

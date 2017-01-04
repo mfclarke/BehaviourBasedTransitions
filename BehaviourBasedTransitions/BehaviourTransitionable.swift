@@ -22,11 +22,11 @@ public protocol BehaviourTransitionable {
 public extension BehaviourTransitionable {
     
     /// Helper method to handle logic for assigning the correct transition for the segue
-    public func prepareSegueForTransition(segue: UIStoryboardSegue) {
+    public func prepareSegueForTransition(_ segue: UIStoryboardSegue) {
         if let transition = transitions.filter({ $0.segueIdentifier == segue.identifier }).first {
-            segue.destinationViewController.modalPresentationStyle = .FullScreen
-            segue.destinationViewController.transitioningDelegate = transition
-            segue.destinationViewController.prepareForTransition(withIdentifier: transition.transitionIdentifier)
+            segue.destination.modalPresentationStyle = .fullScreen
+            segue.destination.transitioningDelegate = transition
+            segue.destination.prepareForTransition(withIdentifier: transition.transitionIdentifier)
         }
     }
     
@@ -47,23 +47,23 @@ public protocol BehaviourAppearable {
 
 extension UIViewController: BehaviourAppearable {
     
-    public func prepareForTransition(withIdentifier identifier: String) {
+    open func prepareForTransition(withIdentifier identifier: String) {
         childViewControllers.forEach { $0.prepareForTransition(withIdentifier: identifier) }
     }
     
-    public func viewWillAppearByTransition(withIdentifier identifier: String) {
+    open func viewWillAppearByTransition(withIdentifier identifier: String) {
         childViewControllers.forEach { $0.viewWillAppearByTransition(withIdentifier: identifier) }
     }
     
-    public func viewWillDisappearByTransition(withIdentifier identifier: String) {
+    open func viewWillDisappearByTransition(withIdentifier identifier: String) {
         childViewControllers.forEach { $0.viewWillDisappearByTransition(withIdentifier: identifier) }
     }
     
-    public func viewDidAppearByTransition(withIdentifier identifier: String) {
+    open func viewDidAppearByTransition(withIdentifier identifier: String) {
         childViewControllers.forEach { $0.viewDidAppearByTransition(withIdentifier: identifier) }
     }
     
-    public func viewDidDisappearByTransition(withIdentifier identifier: String) {
+    open func viewDidDisappearByTransition(withIdentifier identifier: String) {
         childViewControllers.forEach { $0.viewDidDisappearByTransition(withIdentifier: identifier) }
     }
     
@@ -71,27 +71,27 @@ extension UIViewController: BehaviourAppearable {
 
 extension UIPageViewController {
     
-    override public func prepareForTransition(withIdentifier identifier: String) {
+    override open func prepareForTransition(withIdentifier identifier: String) {
         super.prepareForTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.prepareForTransition(withIdentifier: identifier) }
     }
     
-    override public func viewWillAppearByTransition(withIdentifier identifier: String) {
+    override open func viewWillAppearByTransition(withIdentifier identifier: String) {
         super.viewWillAppearByTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.viewWillAppearByTransition(withIdentifier: identifier) }
     }
     
-    override public func viewWillDisappearByTransition(withIdentifier identifier: String) {
+    override open func viewWillDisappearByTransition(withIdentifier identifier: String) {
         super.viewWillDisappearByTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.viewWillDisappearByTransition(withIdentifier: identifier) }
     }
     
-    override public func viewDidAppearByTransition(withIdentifier identifier: String) {
+    override open func viewDidAppearByTransition(withIdentifier identifier: String) {
         super.viewDidAppearByTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.viewDidAppearByTransition(withIdentifier: identifier) }
     }
     
-    override public func viewDidDisappearByTransition(withIdentifier identifier: String) {
+    override open func viewDidDisappearByTransition(withIdentifier identifier: String) {
         super.viewDidDisappearByTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.viewDidDisappearByTransition(withIdentifier: identifier) }
     }
@@ -100,27 +100,27 @@ extension UIPageViewController {
 
 extension UITabBarController {
     
-    override public func prepareForTransition(withIdentifier identifier: String) {
+    override open func prepareForTransition(withIdentifier identifier: String) {
         super.prepareForTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.prepareForTransition(withIdentifier: identifier) }
     }
     
-    override public func viewWillAppearByTransition(withIdentifier identifier: String) {
+    override open func viewWillAppearByTransition(withIdentifier identifier: String) {
         super.viewWillAppearByTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.viewWillAppearByTransition(withIdentifier: identifier) }
     }
     
-    override public func viewWillDisappearByTransition(withIdentifier identifier: String) {
+    override open func viewWillDisappearByTransition(withIdentifier identifier: String) {
         super.viewWillDisappearByTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.viewWillDisappearByTransition(withIdentifier: identifier) }
     }
     
-    override public func viewDidAppearByTransition(withIdentifier identifier: String) {
+    override open func viewDidAppearByTransition(withIdentifier identifier: String) {
         super.viewDidAppearByTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.viewDidAppearByTransition(withIdentifier: identifier) }
     }
     
-    override public func viewDidDisappearByTransition(withIdentifier identifier: String) {
+    override open func viewDidDisappearByTransition(withIdentifier identifier: String) {
         super.viewDidDisappearByTransition(withIdentifier: identifier)
         viewControllers?.forEach { $0.viewDidDisappearByTransition(withIdentifier: identifier) }
     }

@@ -1,0 +1,7 @@
+# Run the following command when making changes:
+# carthage update --use-submodules --platform iOS
+# or
+# carthage update ReactiveCocoa --use-submodules --platform iOS
+
+github "Quick/Quick" == 1.0.0
+github "Quick/Nimble" == 5.1.1
