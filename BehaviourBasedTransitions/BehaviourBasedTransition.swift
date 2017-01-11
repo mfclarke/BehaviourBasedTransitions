@@ -34,7 +34,6 @@ public class BehaviourBasedTransition: UIPercentDrivenInteractiveTransition, UIV
     public var isInteractive = false
     
     private var behaviourAnimationsCompleted = 0
-    private var allBehaviours: [TransitionBehaviour] = []
     
     private weak var sourceViewControllerSuperview: UIView?
 
@@ -96,6 +95,17 @@ extension BehaviourBasedTransition: UIViewControllerTransitioningDelegate {
 
 private extension BehaviourBasedTransition {
     
+    func getAllBehaviours(transitionContext: UIViewControllerContextTransitioning) -> [TransitionBehaviour] {
+        guard
+            let fromController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey),
+            let toController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
+            else { return [] }
+        
+        let sourceBehaviours = isPresenting ? behavioursFromController(fromController) : behavioursFromController(toController)
+        let destBehaviours = isPresenting ? behavioursFromController(toController) : behavioursFromController(fromController)
+        return sourceBehaviours + destBehaviours
+    }
+    
     func setupBehaviours(fromController: UIViewController, toController: UIViewController, container: UIView, context: UIViewControllerContextTransitioning) -> [TransitionBehaviour] {
         if isPresenting {
             toController.view.hidden = true
@@ -104,7 +114,7 @@ private extension BehaviourBasedTransition {
         
         let sourceBehaviours = isPresenting ? behavioursFromController(fromController) : behavioursFromController(toController)
         let destBehaviours = isPresenting ? behavioursFromController(toController) : behavioursFromController(fromController)
-        allBehaviours = sourceBehaviours + destBehaviours
+        let allBehaviours = getAllBehaviours(context)
         
         behaviourAnimationsCompleted = 0
         
@@ -112,8 +122,9 @@ private extension BehaviourBasedTransition {
             behaviour.isPresenting = self.isPresenting
             behaviour.isInteractive = self.isInteractive
             behaviour.transitionDuration = self.transitionDuration
-            behaviour.animationCompleted = {
-                self.behaviourAnimationCompleted(context)
+            behaviour.animationCompleted = { [weak self, weak context] in
+                guard let strongContext = context else { return }
+                self?.behaviourAnimationCompleted(strongContext)
             }
         }
         
@@ -147,7 +158,7 @@ private extension BehaviourBasedTransition {
     
     func behaviourAnimationCompleted(context: UIViewControllerContextTransitioning) {
         behaviourAnimationsCompleted += 1
-        if behaviourAnimationsCompleted == allBehaviours.count {
+        if behaviourAnimationsCompleted == getAllBehaviours(context).count {
             allBehavioursCompleted(context)
         }
     }
@@ -158,7 +169,7 @@ private extension BehaviourBasedTransition {
             fromController = context.viewControllerForKey(UITransitionContextFromViewControllerKey)
             else { return }
         
-        allBehaviours.forEach { $0.transitionCompleted(context.transitionWasCancelled()) }
+        getAllBehaviours(context).forEach { $0.transitionCompleted(context.transitionWasCancelled()) }
         
         if context.transitionWasCancelled() {
             if isPresenting {
