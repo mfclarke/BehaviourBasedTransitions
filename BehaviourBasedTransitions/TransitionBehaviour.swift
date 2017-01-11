@@ -25,7 +25,7 @@ public class TransitionBehaviour: NSObject {
     /// Setting this will override the use of the `view` `IBOutlet`
     /// 
     /// Type here is `AnyObject` due to this Xcode issue: [http://stackoverflow.com/a/26180481/281734](http://stackoverflow.com/a/26180481/281734)
-    @IBOutlet public var viewProvider: AnyObject?
+    @IBOutlet public weak var viewProvider: AnyObject?
     
     /// Start time for the animation, relative to the overall transition duration (0...1)
     @IBInspectable public var relativeStartTime: Double = 0
@@ -141,7 +141,7 @@ public class TransitionBehaviour: NSObject {
                         animations: animation
                     )
                 },
-                completion: { _ in self.animationCompleted?() }
+                completion: { [weak self] _ in self?.animationCompleted?() }
             )
         } else {
             let durationForAnim = (isReverse ? reverseDuration : forwardDuration) * transitionDuration
@@ -155,7 +155,7 @@ public class TransitionBehaviour: NSObject {
                 initialSpringVelocity: initialSpringVelocity,
                 options: [animCurve.toUIViewAnimationOption(), .AllowUserInteraction],
                 animations: animation,
-                completion: { _ in self.animationCompleted?() })
+                completion: { [weak self] _ in self?.animationCompleted?() })
         }
     }
     
