@@ -19,9 +19,8 @@ open class ScaleTransitionBehaviour: TransitionBehaviour {
     }
     
     override open func addAnimations() {
-        addAnimation { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.viewsForTransition.forEach { $0.transform = strongSelf.isPresenting ? strongSelf.endTransform() : strongSelf.startTransform() }
+        addAnimation {
+            self.viewsForTransition.forEach { $0.transform = self.isPresenting ? self.endTransform() : self.startTransform() }
         }
     }
     

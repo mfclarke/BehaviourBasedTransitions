@@ -16,7 +16,7 @@ open class InteractionHandler: NSObject {
     
     /// The source view controller for the interactive transition.
     /// Only has to be connected if the recognizer is for a presentation transition
-    @IBOutlet weak var sourceViewController: UIViewController?
+    @IBOutlet var sourceViewController: UIViewController?
     
     /// The interactive transition
     /// Only has to be connected if the recognizer is for a presentation transition
@@ -24,7 +24,7 @@ open class InteractionHandler: NSObject {
     
     /// The destination view controller for the interactive transition.
     /// Only has to be connected if the recognizer is for a dismissal transition
-    @IBOutlet weak var destinationViewController: UIViewController?
+    @IBOutlet var destinationViewController: UIViewController?
     
     /// The percent threshold for a transition to complete if the interaction stops before completion
     /// The transition will rollback to the initial state if the interaction percent progress is below this value

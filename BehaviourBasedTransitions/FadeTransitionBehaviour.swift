@@ -22,7 +22,7 @@ open class FadeTransitionBehaviour: TransitionBehaviour {
     }
     
     override open func addAnimations() {
-        addAnimation { [weak self] in self?.applyAnimation() }
+        addAnimation { self.applyAnimation() }
     }
     
     fileprivate func applyAnimation() {

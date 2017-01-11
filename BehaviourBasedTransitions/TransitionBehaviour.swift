@@ -25,7 +25,7 @@ open class TransitionBehaviour: NSObject {
     /// Setting this will override the use of the `view` `IBOutlet`
     ///
     /// Type here is `AnyObject` due to this Xcode issue: [http://stackoverflow.com/a/26180481/281734](http://stackoverflow.com/a/26180481/281734)
-    @IBOutlet open weak var viewProvider: AnyObject?
+    @IBOutlet open var viewProvider: AnyObject?
     
     /// Start time for the animation, relative to the overall transition duration (0...1)
     @IBInspectable open var relativeStartTime: Double = 0
@@ -141,12 +141,11 @@ open class TransitionBehaviour: NSObject {
                         animations: animation
                     )
                 },
-                completion: { [weak self] _ in self?.animationCompleted?() }
+                completion: { _ in self.animationCompleted?() }
             )
         } else {
             let durationForAnim = (isReverse ? reverseDuration : forwardDuration) * transitionDuration
             let delayForAnim = (isReverse ? reverseStartTime : forwardStartTime) * transitionDuration
-
             let animCurve = AnimationCurve(rawValue: animationCurve) ?? .easeInOut
 
             // Animation behaviour changes if we specify damping or velocity, even if they are 0
@@ -158,14 +157,14 @@ open class TransitionBehaviour: NSObject {
                     initialSpringVelocity: initialSpringVelocity,
                     options: [animCurve.toUIViewAnimationOption(), .allowUserInteraction],
                     animations: animation,
-                    completion: { [weak self] _ in self?.animationCompleted?() })
+                    completion: { _ in self.animationCompleted?() })
             } else {
                 UIView.animate(
                     withDuration: durationForAnim,
                     delay: delayForAnim,
                     options: [animCurve.toUIViewAnimationOption(), .allowUserInteraction],
                     animations: animation,
-                    completion: { [weak self] _ in self?.animationCompleted?() })
+                    completion: { _ in self.animationCompleted?() })
             }
         }
     }
