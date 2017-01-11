@@ -47,8 +47,8 @@ open class TransformToPositionSourceBehaviour: TransitionBehaviour {
     }
     
     override open func addAnimations() {
-        addAnimation {
-            self.applyAnimation()
+        addAnimation { [weak self] in
+            self?.applyAnimation()
         }
     }
     
