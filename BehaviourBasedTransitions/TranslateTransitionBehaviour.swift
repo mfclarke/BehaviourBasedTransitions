@@ -29,16 +29,18 @@ open class TranslateTransitionBehaviour: TransitionBehaviour {
     
     /// The superview used to calculate the relative origin and destination positions. This doesn't have to be a direct 
     /// ancestor of the view, but normally would be.
-    @IBOutlet open var superview: UIView!
+    @IBOutlet open weak var superview: UIView!
     
 
     override open func setup(_ container: UIView, destinationBehaviour: TransitionBehaviour?) {
         viewsForTransition.forEach { $0.transform = isPresenting ? originTransform() : destinationTransform() }
     }
     
+
     override open func addAnimations() {
-        addAnimation {
-            self.viewsForTransition.forEach { $0.transform = self.isPresenting ? self.destinationTransform() : self.originTransform() }
+        addAnimation { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.viewsForTransition.forEach { $0.transform = strongSelf.isPresenting ? strongSelf.destinationTransform() : strongSelf.originTransform() }
         }
     }
     

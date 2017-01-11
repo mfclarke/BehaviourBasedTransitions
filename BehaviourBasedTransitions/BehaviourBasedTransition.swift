@@ -34,14 +34,13 @@ open class BehaviourBasedTransition: UIPercentDrivenInteractiveTransition, UIVie
     open var isInteractive = false
     
     fileprivate var behaviourAnimationsCompleted = 0
-    fileprivate var allBehaviours: [TransitionBehaviour] = []
     
     fileprivate weak var sourceViewControllerSuperview: UIView?
 
     open func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard
-            let fromController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from),
-            let toController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)
+            let fromController = transitionContext.viewController(forKey: .from),
+            let toController = transitionContext.viewController(forKey: .to)
             else { return }
         
         fromController.viewWillDisappearByTransition(withIdentifier: transitionIdentifier)
@@ -96,6 +95,17 @@ extension BehaviourBasedTransition: UIViewControllerTransitioningDelegate {
 }
 
 private extension BehaviourBasedTransition {
+
+    func getAllBehaviours(fromTransitionContext transitionContext: UIViewControllerContextTransitioning) -> [TransitionBehaviour] {
+        guard
+            let fromController = transitionContext.viewController(forKey: .from),
+            let toController = transitionContext.viewController(forKey: .to)
+            else { return [] }
+        
+        let sourceBehaviours = isPresenting ? behavioursFromController(fromController) : behavioursFromController(toController)
+        let destBehaviours = isPresenting ? behavioursFromController(toController) : behavioursFromController(fromController)
+        return sourceBehaviours + destBehaviours
+    }
     
     func setupBehaviours(_ fromController: UIViewController, toController: UIViewController, container: UIView, context: UIViewControllerContextTransitioning) -> [TransitionBehaviour] {
         if isPresenting {
@@ -105,7 +115,7 @@ private extension BehaviourBasedTransition {
         
         let sourceBehaviours = isPresenting ? behavioursFromController(fromController) : behavioursFromController(toController)
         let destBehaviours = isPresenting ? behavioursFromController(toController) : behavioursFromController(fromController)
-        allBehaviours = sourceBehaviours + destBehaviours
+        let allBehaviours = getAllBehaviours(fromTransitionContext: context)
         
         behaviourAnimationsCompleted = 0
         
@@ -113,8 +123,9 @@ private extension BehaviourBasedTransition {
             behaviour.isPresenting = self.isPresenting
             behaviour.isInteractive = self.isInteractive
             behaviour.transitionDuration = self.transitionDuration
-            behaviour.animationCompleted = {
-                self.behaviourAnimationCompleted(context)
+            behaviour.animationCompleted = { [weak self, weak context] in
+                guard let strongContext = context else { return }
+                self?.behaviourAnimationCompleted(strongContext)
             }
         }
         
@@ -148,7 +159,7 @@ private extension BehaviourBasedTransition {
     
     func behaviourAnimationCompleted(_ context: UIViewControllerContextTransitioning) {
         behaviourAnimationsCompleted += 1
-        if behaviourAnimationsCompleted == allBehaviours.count {
+        if behaviourAnimationsCompleted == getAllBehaviours(fromTransitionContext: context).count {
             allBehavioursCompleted(context)
         }
     }
@@ -158,8 +169,8 @@ private extension BehaviourBasedTransition {
             let toController = context.viewController(forKey: UITransitionContextViewControllerKey.to),
             let fromController = context.viewController(forKey: UITransitionContextViewControllerKey.from)
             else { return }
-        
-        allBehaviours.forEach { $0.transitionCompleted(context.transitionWasCancelled) }
+
+        getAllBehaviours(fromTransitionContext: context).forEach { $0.transitionCompleted(context.transitionWasCancelled) }
         
         if context.transitionWasCancelled {
             if isPresenting {
